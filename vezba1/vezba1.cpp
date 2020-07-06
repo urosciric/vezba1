@@ -5,9 +5,17 @@
 
 using namespace std;
 
+
 void proba2()
 {
     cout << "hahahahahah" << endl;
+}
+
+using namespace std;
+
+void proba()
+{
+    cout << "eeeee" << endl;
 }
 
 int main()
