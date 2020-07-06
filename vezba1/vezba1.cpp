@@ -3,10 +3,15 @@
 
 #include <iostream>
 
+using namespace std;
+
+void proba()
+{
+    cout << "eeeee" << endl;
+}
+
 int main()
 {
-    int a = 0;
-    double b;
     std::cout << "Hello World111!\n";
 }
 
