@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 int nizX[MAXN];
 int nizY[MAXN];
 
@@ -18,49 +19,94 @@ int fruitY;
 int snake_length=0;
 bool game_over = false;
 
+
+game_display display(width, height);
+
 int pom = 0;
 
 enum direction{STOP=0,LEFT,RIGHT,UP,DOWN};
 direction dir;
 
-void Picture()
+void ispis(game_display& zikica)
 {
     system("cls");
-    std::ostringstream ss;
-    for (int p = 0; p < width; p++) ss << "#";
-    ss << endl;
-    for (int i = 1; i < height-1; i++)
-    { 
+    display.print(std::cout);
+}
+
+void Picture()
+{
+     /*system("cls");
+     std::ostringstream ss;
+     for (int p = 0; p < width; p++) ss << "#";
+     ss << endl;
+     for (int i = 1; i < height-1; i++)
+     {
+         for (int j = 0; j < width; j++)
+         {
+             if (j == 0 || j == width - 1)
+             {
+                 ss << "#";
+             }
+             else if (y == i && x == j)
+             {
+                 ss << "O";
+                 pom++;
+             }
+             else if (fruitY == i && fruitX == j)
+             {
+                 ss << "$";
+                 pom++;
+             }
+             for (int q = 0; q < snake_length; q++)
+                 if (nizX[q] == j && nizY[q] == i)
+                 {
+                     ss << "o";
+                     pom++;
+                 }
+             if (pom == 0) ss << " ";
+             pom = 0;
+         }
+         ss << endl;
+     }
+     for (int p = 0; p < width; p++) ss << "#";
+
+     cout << ss.str();*/
+    //std::ostringstream ss;
+    for (int p = 0; p < width; p++) display.put(p, 0, '#');
+    for (int i = 1; i < height - 1; i++)
+    {
+        ispis(display);
         for (int j = 0; j < width; j++)
         {
             if (j == 0 || j == width - 1)
             {
-                ss << "#";
+                display.put(i, j, '#');
             }
             else if (y == i && x == j)
             {
-                ss << "O";
+                display.put(i, j, 'O');
                 pom++;
             }
             else if (fruitY == i && fruitX == j)
             {
-                ss << "$";
+                display.put(i, j, '$');
                 pom++;
             }
-            for (int q = 0; q < snake_length; q++) 
+            for (int q = 0; q < snake_length; q++)
                 if (nizX[q] == j && nizY[q] == i)
                 {
-                    ss << "o";
+                    display.put(i, j, 'o');
                     pom++;
                 }
-            if (pom == 0) ss << " ";
+            if (pom == 0) display.put(i, j, ' ');
             pom = 0;
-        }
-        ss << endl;
-    }
-    for (int p = 0; p < width; p++) ss << "#";
 
-    cout << ss.str();
+        }
+    }
+    for (int p = 0; p < width; p++) display.put(p, width, '#');
+    system("cls");
+    display.print(std::cout);
+
 }
 
 void Input()
@@ -189,15 +235,15 @@ void Work()
 
 int main()
 {
-    game_display display(30, 30);
+    
 
-    for (int i = 0; i < 30; i++)
+    /*for (int i = 0; i < 30; i++)
     {
         display.clear();
         display.put(i, 20, 'Q');
         system("cls");
         display.print(std::cout);
-    }
+    }*/
 
 
     fruitX = rand() % 18 + 1;
