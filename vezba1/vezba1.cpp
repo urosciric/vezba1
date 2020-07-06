@@ -3,8 +3,12 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
+    int zikicino;
+    cin >> zikicino;
     std::cout << "Hello World111!\n";
 }
 
