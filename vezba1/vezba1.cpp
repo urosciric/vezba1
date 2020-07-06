@@ -23,6 +23,7 @@ int main()
     proba();
     proba2();
     std::cout << "Hello World111!\n";
+    cout << "zikica" << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
