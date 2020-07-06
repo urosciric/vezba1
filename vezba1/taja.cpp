@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "taja.h"
-#include <iostream>
 
 
 void function_taja(int vezba1)

@@ -1,7 +1,7 @@
-#include <iostream>
-#include <random>
-#include <conio.h>
-#include <sstream>
+#include "pch.h"
+#include "definitions.h"
+#include "game_display.h"
+
 #define MAXN 23
 
 using namespace std;
@@ -189,6 +189,17 @@ void Work()
 
 int main()
 {
+    game_display display(30, 30);
+
+    for (int i = 0; i < 30; i++)
+    {
+        display.clear();
+        display.put(i, 20, 'Q');
+        system("cls");
+        display.print(std::cout);
+    }
+
+
     fruitX = rand() % 18 + 1;
     fruitY = rand() % 18 + 1;
     while (!game_over)
