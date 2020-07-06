@@ -17,7 +17,7 @@ void game_display::print(std::ostream& stream)
 	{
 		for (size_t j = 0; j < height; j++)
 		{
-			stream << display_data[i+j*width];
+			stream << display_data[j+i*width];
 		}
 		stream << "\r\n";
 	}
