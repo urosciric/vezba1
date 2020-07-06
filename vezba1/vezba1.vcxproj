@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="taja.cpp" />
     <ClCompile Include="vezba1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="taja.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
