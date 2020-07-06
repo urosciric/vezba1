@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <conio.h>
+#include <sstream>
 #define MAXN 23
 
 using namespace std;
@@ -25,38 +26,41 @@ direction dir;
 void Picture()
 {
     system("cls");
-    for (int p = 0; p < width; p++) cout << "#";
-    cout << endl;
+    std::ostringstream ss;
+    for (int p = 0; p < width; p++) ss << "#";
+    ss << endl;
     for (int i = 1; i < height-1; i++)
     { 
         for (int j = 0; j < width; j++)
         {
             if (j == 0 || j == width - 1)
             {
-                cout << "#";
+                ss << "#";
             }
             else if (y == i && x == j)
             {
-                cout << "O";
+                ss << "O";
                 pom++;
             }
             else if (fruitY == i && fruitX == j)
             {
-                cout << "$";
+                ss << "$";
                 pom++;
             }
             for (int q = 0; q < snake_length; q++) 
                 if (nizX[q] == j && nizY[q] == i)
                 {
-                    cout << "o";
+                    ss << "o";
                     pom++;
                 }
-            if (pom == 0) cout << " ";
+            if (pom == 0) ss << " ";
             pom = 0;
         }
-        cout << endl;
+        ss << endl;
     }
-    for (int p = 0; p < width; p++) cout << "#";
+    for (int p = 0; p < width; p++) ss << "#";
+
+    cout << ss.str();
 }
 
 void Input()
