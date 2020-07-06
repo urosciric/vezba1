@@ -5,12 +5,15 @@
 
 using namespace std;
 
+void proba2()
+{
+    cout << "hahahahahah" << endl;
+}
+
 int main()
 {
-    int a = 0;
-    double b;
-    int zikicino;
-    cin >> zikicino;
+    proba();
+    proba2();
     std::cout << "Hello World111!\n";
 }
 
