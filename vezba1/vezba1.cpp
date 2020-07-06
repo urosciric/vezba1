@@ -7,6 +7,8 @@ using namespace std;
 
 int main()
 {
+    int a = 0;
+    double b;
     int zikicino;
     cin >> zikicino;
     std::cout << "Hello World111!\n";
