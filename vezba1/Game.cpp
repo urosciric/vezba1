@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "Game.h"
 
-game::game()
-	: display(20, 20)
+game::game(size_t width, size_t height)
+	: display(width, height)
+	, snake_maze(width, height)
 {
+
 }
 game_display& game::get_display()
 {
@@ -13,4 +15,9 @@ game_display& game::get_display()
 input_controler& game::get_inputs()
 {
 	return inputs;
+}
+
+maze& game::draw_maze()
+{
+	return snake_maze;
 }

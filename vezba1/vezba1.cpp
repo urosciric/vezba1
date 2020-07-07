@@ -20,7 +20,6 @@ int snake_length=0;
 bool game_over = false;
 
 
-game the_game;
 
 
 int pom = 0;
@@ -28,13 +27,13 @@ int pom = 0;
 enum direction{STOP=0,LEFT,RIGHT,UP,DOWN};
 direction dir;
 
-void ispis(game_display& zikica)
+void ispis(game& the_game)
 {
     system("cls");
     the_game.get_display().print(std::cout);
 }
 
-void Special_elements()
+void Special_elements(game& the_game)
 {
     for (int i = 1; i < height - 1; i++)
     {
@@ -62,7 +61,7 @@ void Special_elements()
     }
 }
 
-void Picture()
+void Picture(game& the_game)
 {
     for (int p = 0; p < width; p++) the_game.get_display().put(0, p, '#');
     for (int i = 1; i < height - 1; i++)
@@ -78,7 +77,7 @@ void Picture()
     the_game.get_display().clear();
 }
 
-void Input()
+void Input(game& the_game)
 {
     the_game.get_inputs().read_keys();
     
@@ -102,7 +101,7 @@ void Input()
     }
 }
 
-void Work()
+void Work(game& the_game)
 {
     switch (dir)
     {
@@ -201,16 +200,79 @@ void Work()
     if (x == 0 || y == 0 || x == width - 1 || y == height - 1) game_over = true;
 }
 
+
+class a_klasa
+{
+public:
+    a_klasa()
+    {
+        std::cout <<"konstruktor a\r\n";
+    }
+    // copy konstruktor
+    a_klasa(const a_klasa& right)
+    {
+        std::cout << "copy konstruktor a\r\n";
+    }
+    ~a_klasa()
+    {
+        std::cout << "destruktor a\r\n";
+    }
+};
+
+class b_klasa
+{
+    a_klasa unutra;
+public:
+    int a;
+    b_klasa()
+    {
+        a = 99;
+        std::cout << "konstruktor b\r\n";
+    }
+    // copy konstruktor
+    b_klasa(const b_klasa& right)
+        : unutra(right.unutra)
+    {
+        std::cout << "copy konstruktor b\r\n";
+    }
+    ~b_klasa()
+    {
+        std::cout << "destruktor b\r\n";
+    }
+};
+
+void pom_func(b_klasa& b)
+{
+
+}
+
+void konstruktor_example()
+{
+    b_klasa temp;
+    pom_func(temp);
+}
+
 int main()
 {
+    //konstruktor_example();
+    game the_game(width, height);
+
     fruitX = rand() % 18 + 1;
     fruitY = rand() % 18 + 1;
     while (!game_over)
     {
-        Special_elements();
-        Picture();
-        Input();
-        Work();
+        the_game.get_inputs().read_keys();
+        the_game.get_display().clear();
+        the_game.draw_maze().print(the_game);
+
+        std::ostringstream ss;
+        the_game.get_display().print(ss);
+        system("cls");
+        std::cout << ss.str();
+        /*Special_elements(the_game);
+        Picture(the_game);
+        Input(the_game);
+        Work(the_game);*/
         for (int i = 0; i < 10000000; i++);
     }
     cout << "jbg";
