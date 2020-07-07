@@ -20,7 +20,7 @@ int snake_length=0;
 bool game_over = false;
 
 
-Game game;
+game the_game;
 
 
 int pom = 0;
@@ -31,7 +31,7 @@ direction dir;
 void ispis(game_display& zikica)
 {
     system("cls");
-    game.get_display().print(std::cout);
+    the_game.get_display().print(std::cout);
 }
 
 void Special_elements()
@@ -42,19 +42,19 @@ void Special_elements()
         {
             if (y == i && x == j)
             {
-                display.put(i, j, 'O');
+                the_game.get_display().put(i, j, 'O');
                 pom++;
             }
             else if (fruitY == i && fruitX == j)
             {
-                display.put(i, j, '$');
+                the_game.get_display().put(i, j, '$');
                 pom++;
             }
             for (int q = 0; q < snake_length; q++)
             {
                 if (nizX[q] == j && nizY[q] == i)
                 {
-                    display.put(i, j, 'o');
+                    the_game.get_display().put(i, j, 'o');
                     pom++;
                 }
             }
@@ -64,42 +64,41 @@ void Special_elements()
 
 void Picture()
 {
-    for (int p = 0; p < width; p++) display.put(0, p, '#');
+    for (int p = 0; p < width; p++) the_game.get_display().put(0, p, '#');
     for (int i = 1; i < height - 1; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            if (j == 0 || j == width - 1) display.put(i, j, '#');
+            if (j == 0 || j == width - 1) the_game.get_display().put(i, j, '#');
         }
     }
-    for (int p = 0; p < width; p++) display.put(height - 1, p, '#');
+    for (int p = 0; p < width; p++) the_game.get_display().put(height - 1, p, '#');
     system("cls");
-    display.print(std::cout);
-    display.clear();
+    the_game.get_display().print(std::cout);
+    the_game.get_display().clear();
 }
 
 void Input()
 {
-    if (_kbhit())
+    the_game.get_inputs().read_keys();
+    
+    switch (the_game.get_inputs().get_current())
     {
-        switch (_getch())
-        {
-        case 'a':
-            dir = LEFT;
-            break;
-        case 'd':
-            dir = RIGHT;
-            break;
-        case 'w':
-            dir = UP;
-            break;
-        case 's':
-            dir = DOWN;
-            break;
-        case 'x':
-            game_over = true;
-            break;
-        }
+    case game_key::left:
+        dir = LEFT;
+        break;
+    case game_key::right:
+        dir = RIGHT;
+        break;
+    case game_key::up:
+        dir = UP;
+        break;
+    case game_key::down:
+        dir = DOWN;
+        break;
+    case game_key::exit:
+        game_over = true;
+        break;
     }
 }
 
