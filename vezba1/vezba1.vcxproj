@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="body.cpp" />
+    <ClCompile Include="fruit.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="game_display.cpp" />
     <ClCompile Include="input_controler.cpp" />
@@ -152,6 +154,8 @@
     <ClCompile Include="vezba1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="body.h" />
+    <ClInclude Include="fruit.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="game_display.h" />
     <ClInclude Include="Header.h" />

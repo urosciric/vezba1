@@ -254,6 +254,7 @@ void konstruktor_example()
 
 int main()
 {
+    srand(time(NULL));
     //konstruktor_example();
     game the_game(width, height);
 
@@ -262,8 +263,8 @@ int main()
     while (!game_over)
     {
         the_game.get_inputs().read_keys();
-        the_game.get_display().clear();
-        the_game.draw_maze().print(the_game);
+
+        the_game.print();
 
         std::ostringstream ss;
         the_game.get_display().print(ss);
