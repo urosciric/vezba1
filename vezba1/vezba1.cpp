@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "definitions.h"
-#include "game_display.h"
+#include "Game.h"
 
 #define MAXN 23
 
@@ -20,7 +20,8 @@ int snake_length=0;
 bool game_over = false;
 
 
-game_display display(width, height);
+Game game;
+
 
 int pom = 0;
 
@@ -30,7 +31,7 @@ direction dir;
 void ispis(game_display& zikica)
 {
     system("cls");
-    display.print(std::cout);
+    game.get_display().print(std::cout);
 }
 
 void Special_elements()

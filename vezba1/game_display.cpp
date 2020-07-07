@@ -34,6 +34,5 @@ void game_display::clear()
 
 void game_display::init_content()
 {
-	std::vector<char> height_helper;
 	display_data.assign(width* height, ' ');
 }
