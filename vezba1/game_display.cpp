@@ -10,19 +10,21 @@ game_display::game_display(size_t xsize, size_t ysize)
 
 void game_display::put(size_t x, size_t y, char what)
 {
-	display_data[x+y*width] = what;
+	display_data[y+x*height] = what;
 }
 
 void game_display::print(std::ostream& stream)
 {
+	std::ostringstream ss;
 	for (size_t i = 0; i < width; i++)
 	{
 		for (size_t j = 0; j < height; j++)
 		{
-			stream << display_data[j+i*width];
+			ss << display_data[j+i*width];
 		}
-		stream << "\r\n";
+		ss << "\r\n";
 	}
+	stream << ss.str();
 }
 
 void game_display::clear()

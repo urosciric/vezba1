@@ -33,56 +33,13 @@ void ispis(game_display& zikica)
     display.print(std::cout);
 }
 
-void Picture()
+void Special_elements()
 {
-     /*system("cls");
-     std::ostringstream ss;
-     for (int p = 0; p < width; p++) ss << "#";
-     ss << endl;
-     for (int i = 1; i < height-1; i++)
-     {
-         for (int j = 0; j < width; j++)
-         {
-             if (j == 0 || j == width - 1)
-             {
-                 ss << "#";
-             }
-             else if (y == i && x == j)
-             {
-                 ss << "O";
-                 pom++;
-             }
-             else if (fruitY == i && fruitX == j)
-             {
-                 ss << "$";
-                 pom++;
-             }
-             for (int q = 0; q < snake_length; q++)
-                 if (nizX[q] == j && nizY[q] == i)
-                 {
-                     ss << "o";
-                     pom++;
-                 }
-             if (pom == 0) ss << " ";
-             pom = 0;
-         }
-         ss << endl;
-     }
-     for (int p = 0; p < width; p++) ss << "#";
-
-     cout << ss.str();*/
-    //std::ostringstream ss;
-    for (int p = 0; p < width; p++) display.put(p, 0, '#');
     for (int i = 1; i < height - 1; i++)
     {
-        ispis(display);
         for (int j = 0; j < width; j++)
         {
-            if (j == 0 || j == width - 1)
-            {
-                display.put(i, j, '#');
-            }
-            else if (y == i && x == j)
+            if (y == i && x == j)
             {
                 display.put(i, j, 'O');
                 pom++;
@@ -93,20 +50,31 @@ void Picture()
                 pom++;
             }
             for (int q = 0; q < snake_length; q++)
+            {
                 if (nizX[q] == j && nizY[q] == i)
                 {
                     display.put(i, j, 'o');
                     pom++;
                 }
-            if (pom == 0) display.put(i, j, ' ');
-            pom = 0;
-
+            }
         }
     }
-    for (int p = 0; p < width; p++) display.put(p, width, '#');
+}
+
+void Picture()
+{
+    for (int p = 0; p < width; p++) display.put(0, p, '#');
+    for (int i = 1; i < height - 1; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (j == 0 || j == width - 1) display.put(i, j, '#');
+        }
+    }
+    for (int p = 0; p < width; p++) display.put(height - 1, p, '#');
     system("cls");
     display.print(std::cout);
-
+    display.clear();
 }
 
 void Input()
@@ -235,21 +203,11 @@ void Work()
 
 int main()
 {
-    
-
-    /*for (int i = 0; i < 30; i++)
-    {
-        display.clear();
-        display.put(i, 20, 'Q');
-        system("cls");
-        display.print(std::cout);
-    }*/
-
-
     fruitX = rand() % 18 + 1;
     fruitY = rand() % 18 + 1;
     while (!game_over)
     {
+        Special_elements();
         Picture();
         Input();
         Work();
