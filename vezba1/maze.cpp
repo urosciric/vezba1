@@ -2,10 +2,16 @@
 #include "maze.h"
 #include "Game.h"
 
-maze::maze(size_t x, size_t y)
+
+maze_base::maze_base(size_t x, size_t y)
 {
 	width = x;
 	height = y;
+}
+
+maze::maze(size_t x, size_t y)
+	: maze_base(x,y)
+{
 }
 
 void maze::print(game& the_game)

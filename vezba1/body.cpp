@@ -78,6 +78,7 @@ void body::print(game& the_game)
         new_tail.X = old_x;
         new_tail.Y = old_y;
         tail_data.push_back(new_tail);
+        score = tail_data.size();
     }
 
     the_game.get_display().put(X, Y, 'O');
@@ -90,4 +91,6 @@ void body::print(game& the_game)
     {
         the_game.get_display().put(one.X, one.Y, 'o');
     }
+
+    std::cout << score;
 }

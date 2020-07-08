@@ -10,16 +10,16 @@ class game
 {
 	game_display display;
 	input_controler inputs;
-	maze* snake_maze;
+	maze_base* snake_maze;
 	fruit cash;
 	//fruit cash2;
 	body head;
 	bool end_game = false;
 public:
-	game(maze* maze);
+	game(maze_base* maze);
 	game_display& get_display();
 	input_controler& get_inputs();
-	maze& get_maze();
+	maze_base& get_maze();
 	body& get_head();
 	void print();
 	void game_over();

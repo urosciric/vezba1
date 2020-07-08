@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 
-game::game(maze* maze)
+game::game(maze_base* maze)
 	: snake_maze(maze)
 	, display(maze->get_width(), maze->get_height())
 	, cash(maze->get_width(), maze->get_height())
@@ -25,7 +25,7 @@ body& game::get_head()
 	return head;
 }
 
-maze& game::get_maze()
+maze_base& game::get_maze()
 {
 	return *snake_maze;
 }

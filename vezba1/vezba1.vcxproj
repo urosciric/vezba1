@@ -145,6 +145,7 @@
     <ClCompile Include="fruit.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="game_display.cpp" />
+    <ClCompile Include="hardcore_maze.cpp" />
     <ClCompile Include="input_controler.cpp" />
     <ClCompile Include="maze.cpp" />
     <ClCompile Include="pch.cpp">
@@ -159,6 +160,7 @@
     <ClInclude Include="fruit.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="game_display.h" />
+    <ClInclude Include="hardcore_maze.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="input_controler.h" />
     <ClInclude Include="maze.h" />

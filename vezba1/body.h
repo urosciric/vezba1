@@ -15,6 +15,9 @@ class body
 
 	std::vector<tail> tail_data;
 
+protected:
+	size_t score;
+
 public:	
 	body(size_t x, size_t y);
 	void print(game& the_game);

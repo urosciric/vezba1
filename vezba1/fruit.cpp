@@ -19,6 +19,7 @@ void fruit::random()
 
 void fruit::print(game& the_game)
 {
+	if (the_game.get_display().get(fruitX, fruitY) == '#') random();
 	the_game.get_display().put(fruitX, fruitY, '$');
 }
 

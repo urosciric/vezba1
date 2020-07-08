@@ -45,6 +45,9 @@
     <ClCompile Include="tail.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hardcore_maze.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="taja.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hardcore_maze.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
