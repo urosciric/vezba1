@@ -4,11 +4,14 @@
 enum class game_key
 {
 	none,
-	left,
-	right,
-	up,
-	down,
-	exit
+	left1,
+	right1,
+	up1,
+	down1,
+	left2,
+	right2,
+	up2,
+	down2
 };
 
 class input_controler
@@ -19,3 +22,4 @@ public:
 	game_key get_current();
 };
 
+//

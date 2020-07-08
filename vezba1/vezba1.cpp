@@ -16,7 +16,8 @@ int main()
     game the_game(&my_maze);
     while (!the_game.is_game_over())
     {
-        the_game.get_inputs().read_keys();
+        the_game.get_inputs1().read_keys();
+        the_game.get_inputs2().read_keys();
 
         the_game.print();
 

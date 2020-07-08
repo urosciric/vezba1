@@ -6,23 +6,34 @@ game::game(maze_base* maze)
 	, display(maze->get_width(), maze->get_height())
 	, cash(maze->get_width(), maze->get_height())
 	//, cash2(height, width)
-	, head(maze->get_width(), maze->get_height())
 {
-
+	players.push_back(body(maze->get_width(), maze->get_height(), ))
+	, head(maze->get_width(), maze->get_height())
+		, head2()
 }
 game_display& game::get_display()
 {
 	return display;
 }
 
-input_controler& game::get_inputs()
+input_controler1& game::get_inputs1()
 {
-	return inputs;
+	return inputs1;
 }
 
-body& game::get_head()
+input_controler2& game::get_inputs2()
 {
-	return head;
+	return inputs2;
+}
+
+body1& game::get_head1()
+{
+	return head1;
+}
+
+body2& game::get_head2()
+{
+	return head2;
 }
 
 maze_base& game::get_maze()
@@ -36,7 +47,8 @@ void game::print()
 	snake_maze->print(*this);
 	cash.print(*this);
 	//cash2.print(*this);
-	head.print(*this);
+	head1.print(*this);
+	head2.print(*this);
 }
 
 void game::game_over()

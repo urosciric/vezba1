@@ -2,7 +2,7 @@
 #include "tail.h"
 class game;
 
-class body
+class body_base
 {
 	enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 	direction dir;
@@ -15,11 +15,15 @@ class body
 
 	std::vector<tail> tail_data;
 
+	char head_char;
+	char tail_char;
+
 protected:
-	size_t score;
+	size_t score1;
 
 public:	
-	body(size_t x, size_t y);
+	body(size_t x, size_t y, char head, char tail);
 	void print(game& the_game);
 };
+
 

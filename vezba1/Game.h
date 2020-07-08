@@ -4,7 +4,6 @@
 #include "maze.h"
 #include "fruit.h"
 #include "body.h"
-#include "tail.h"
 
 class game
 {
@@ -13,14 +12,12 @@ class game
 	maze_base* snake_maze;
 	fruit cash;
 	//fruit cash2;
-	body head;
+	std::vector<body> players;
 	bool end_game = false;
 public:
 	game(maze_base* maze);
 	game_display& get_display();
 	input_controler& get_inputs();
-	maze_base& get_maze();
-	body& get_head();
 	void print();
 	void game_over();
 	bool is_game_over();
