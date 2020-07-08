@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int height = 30;
-int width = 30;
+int height = 40;
+int width = 40;
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 
     hardcore_maze2 my_maze(width, height);
     player1 play1(5, 5);
-    player2 play2(3, 10);
+    player2 play2(3, 8);
 
     game the_game(&my_maze);
     the_game.add_player(&play1);
