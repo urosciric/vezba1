@@ -256,7 +256,8 @@ int main()
 {
     srand(time(NULL));
     //konstruktor_example();
-    game the_game(width, height);
+    maze my_maze(width, height);
+    game the_game(&my_maze);
 
     fruitX = rand() % 18 + 1;
     fruitY = rand() % 18 + 1;

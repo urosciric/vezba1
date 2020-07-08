@@ -8,5 +8,13 @@ class maze
 public:
 	maze(size_t x, size_t y);
 	void print(game& the_game);
+	size_t get_width()
+	{
+		return width;
+	}
+	size_t get_height()
+	{
+		return height;
+	}
 };
 

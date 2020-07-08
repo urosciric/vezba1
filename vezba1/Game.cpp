@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "Game.h"
 
-game::game(size_t width, size_t height)
-	: display(width, height)
-	, snake_maze(width, height)
-	, cash(height, width)
+game::game(maze* maze)
+	: snake_maze(maze)
+	, display(maze->get_width(), maze->get_height())
+	, cash(maze->get_width(), maze->get_height())
 	//, cash2(height, width)
-	, head(height, width)
+	, head(maze->get_width(), maze->get_height())
 {
 
 }
@@ -27,13 +27,13 @@ body& game::get_head()
 
 maze& game::get_maze()
 {
-	return snake_maze;
+	return *snake_maze;
 }
 
 void game::print()
 {
 	display.clear();
-	snake_maze.print(*this);
+	snake_maze->print(*this);
 	cash.print(*this);
 	//cash2.print(*this);
 	head.print(*this);
