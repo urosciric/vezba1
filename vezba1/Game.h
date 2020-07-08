@@ -12,10 +12,11 @@ class game
 	maze_base* snake_maze;
 	fruit cash;
 	//fruit cash2;
-	std::vector<body> players;
+	std::vector<body_base*> players;
 	bool end_game = false;
 public:
 	game(maze_base* maze);
+	void add_player(body_base* player);
 	game_display& get_display();
 	input_controler& get_inputs();
 	void print();

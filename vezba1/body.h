@@ -2,13 +2,11 @@
 #include "tail.h"
 class game;
 
+enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+
 class body_base
 {
-	enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 	direction dir;
-
-	size_t width;
-	size_t height;
 
 	size_t X = -1;
 	size_t Y = -1;
@@ -17,13 +15,46 @@ class body_base
 
 	char head_char;
 	char tail_char;
+	bool first;
 
-protected:
-	size_t score1;
+	size_t score;
 
 public:	
-	body(size_t x, size_t y, char head, char tail);
+	body_base(size_t x, size_t y);
 	void print(game& the_game);
+protected:
+	virtual direction get_direction(game& the_game) = 0;
+	virtual char get_head_char() = 0;
+	virtual char get_tail_char() = 0;
 };
 
+class player1 : public body_base
+{
+public:
+	player1(size_t x, size_t y);
+	direction get_direction(game& the_game);
+	char get_head_char()
+	{
+		return 'O';
+	}
+	char get_tail_char()
+	{
+		return 'o';
+	}
+};
+
+class player2 : public body_base
+{
+public:
+	player2(size_t x, size_t y);
+	direction get_direction(game& the_game);
+	char get_head_char()
+	{
+		return 'Q';
+	}
+	char get_tail_char()
+	{
+		return 'q';
+	}
+};
 
