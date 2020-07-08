@@ -260,7 +260,7 @@ int main()
 
     fruitX = rand() % 18 + 1;
     fruitY = rand() % 18 + 1;
-    while (!game_over)
+    while (!the_game.is_game_over())
     {
         the_game.get_inputs().read_keys();
 

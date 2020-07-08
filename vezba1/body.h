@@ -1,18 +1,22 @@
 #pragma once
+#include "tail.h"
 class game;
 
 class body
 {
-	typedef std::vector<size_t> lenght;
-
-	lenght bodyXY;
+	enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+	direction dir;
 
 	size_t width;
 	size_t height;
 
-public:
-	
-	void body_parts(game& the_game, size_t x, size_t y);
+	size_t X = -1;
+	size_t Y = -1;
+
+	std::vector<tail> tail_data;
+
+public:	
+	body(size_t x, size_t y);
 	void print(game& the_game);
 };
 

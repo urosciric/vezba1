@@ -12,6 +12,7 @@ fruit::fruit(size_t x, size_t y)
 
 void fruit::random()
 {
+
 	fruitX = rand() % (width - 2) + 1;
 	fruitY = rand() % (height - 2) + 1;
 }

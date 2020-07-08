@@ -10,11 +10,11 @@ game_display::game_display(size_t xsize, size_t ysize)
 
 void game_display::put(size_t x, size_t y, char what)
 {
-	display_data[y+x*height] = what;
+	display_data[x + y * height] = what;
 }
 char game_display::get(size_t x, size_t y)
 {
-	return display_data[y + x * height];
+	return display_data[x + y * height];
 }
 
 void game_display::print(std::ostream& stream)
