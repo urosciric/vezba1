@@ -89,6 +89,8 @@ void body::print(game& the_game)
     //}
     for (auto& one : tail_data)
     {
+        if (the_game.get_display().get(one.X, one.Y) == '#')
+            the_game.game_over();
         the_game.get_display().put(one.X, one.Y, 'o');
     }
 

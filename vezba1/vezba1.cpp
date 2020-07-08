@@ -12,7 +12,7 @@ int main()
 {
     srand(time(NULL));
     //konstruktor_example();
-    hardcore_maze1 my_maze(width, height);
+    hardcore_maze2 my_maze(width, height);
     game the_game(&my_maze);
     while (!the_game.is_game_over())
     {
@@ -22,6 +22,7 @@ int main()
 
         std::ostringstream ss;
         the_game.get_display().print(ss);
+        //for(int i=0;i<100000;i++)
         system("cls");
         std::cout << ss.str();
     }
