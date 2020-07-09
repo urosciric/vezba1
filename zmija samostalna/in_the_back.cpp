@@ -22,11 +22,13 @@ void in_the_back::print()
 
 	std::ostringstream ss;
 
-	for (size_t i = 0; i < height * width; i++)
+	for (size_t i = 0; i < height; i++)
 	{
-		ss << draw[i];
-		if (i % width == 0)
-			std::cout << "\r\n";
+		for (size_t j = 0; j < width; j++)
+		{
+			ss << draw[i*width+j];
+		}
+		ss << "\r\n";
 	}
 
 	std::cout << ss.str();

@@ -1,13 +1,14 @@
 #include "pch.h"
 #include "game.h"
 
-map& game::prin()
-{
-	return mapp;
-}
 
-in_the_back& game::printt()
+
+void game::print_in_the_back()
 {
-	return back;
+	back.print();
+}
+void game::fill_in_the_back()
+{
+	mapp.print(back);
 }
 

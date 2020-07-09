@@ -12,12 +12,13 @@ class game
 public:
 	
 	game()
-		: mapp(2, 2)
-		, back(2, 2)
+		: mapp(40, 40)
+		, back(40, 40)
 	{
 	}
-	map& prin();
-	in_the_back& printt();
+
+	void print_in_the_back();
+	void fill_in_the_back();
 
 };
 

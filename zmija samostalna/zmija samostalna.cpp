@@ -15,8 +15,11 @@ int main()
     srand(time(NULL));
     while (1 > 0)
     {
-        the_game.prin().print();
-        the_game.printt().print();
+
+        the_game.print_in_the_back();
+        the_game.fill_in_the_back();
+
+        system("cls");
 
     }
 

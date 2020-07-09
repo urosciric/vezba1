@@ -3,7 +3,6 @@
 #include "in_the_back.h"
 
 map::map(size_t he,size_t wi)
-	: back(he, wi)
 {
 
 	height = he;
@@ -11,7 +10,7 @@ map::map(size_t he,size_t wi)
 
 }
 
-void map::print()
+void map::print(in_the_back& back)
 {
 
 	for (size_t i = 0; i < height; i++)
