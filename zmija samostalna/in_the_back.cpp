@@ -6,7 +6,6 @@ in_the_back::in_the_back(size_t x, size_t y)
 
 	height = x;
 	width = y;
-	//init_content();
 	draw.assign(width * height, ' ');
 }
 
@@ -35,7 +34,16 @@ void in_the_back::print()
 
 }
 
-/*void in_the_back::init_content()
+char in_the_back::get(size_t x, size_t y)
 {
+
+	return draw[x * width + y];
+
+}
+
+void in_the_back::clear()
+{
+
 	draw.assign(width * height, ' ');
-}*/
+
+}

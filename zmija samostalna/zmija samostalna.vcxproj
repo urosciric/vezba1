@@ -141,19 +141,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fruit.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="in_the_back.cpp" />
+    <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="zmija samostalna.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fruit.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="in_the_back.h" />
+    <ClInclude Include="keyboard.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
