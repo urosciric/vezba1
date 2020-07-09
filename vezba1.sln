@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vezba1", "vezba1\vezba1.vcxproj", "{814DB4A6-9580-4D37-B383-DF90578082FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zmija samostalna", "zmija samostalna\zmija samostalna.vcxproj", "{35E2EBC0-2A32-4536-ABB0-3449A0398D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{814DB4A6-9580-4D37-B383-DF90578082FE}.Release|x64.Build.0 = Release|x64
 		{814DB4A6-9580-4D37-B383-DF90578082FE}.Release|x86.ActiveCfg = Release|Win32
 		{814DB4A6-9580-4D37-B383-DF90578082FE}.Release|x86.Build.0 = Release|Win32
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Debug|x64.ActiveCfg = Debug|x64
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Debug|x64.Build.0 = Debug|x64
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Debug|x86.ActiveCfg = Debug|Win32
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Debug|x86.Build.0 = Debug|Win32
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Release|x64.ActiveCfg = Release|x64
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Release|x64.Build.0 = Release|x64
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Release|x86.ActiveCfg = Release|Win32
+		{35E2EBC0-2A32-4536-ABB0-3449A0398D06}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
