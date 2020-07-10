@@ -2,6 +2,7 @@
 #include "in_the_back.h"
 #include "keyboard.h"
 #include "fruit.h"
+#include "game.h"
 
 struct cords
 {
@@ -11,8 +12,12 @@ struct cords
 
 };
 
+enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+
 class player
 {
+
+protected:
 
 	size_t height;
 	size_t width;
@@ -26,7 +31,13 @@ class player
 
 	bool the_end;
 
+	virtual char get_head_char() = 0;
+	virtual char get_tail_char() = 0;
+	virtual direction get_dir(keyboard& input) = 0;
+
 public:
+
+	direction dir;
 
 	size_t X;
 	size_t Y;
@@ -38,3 +49,40 @@ public:
 
 };
 
+class player1 : public player
+{
+
+public:
+
+	player1(size_t x, size_t y);
+	direction get_dir(keyboard& input);
+
+	char get_head_char()
+	{
+		return 'O';
+	}
+	char get_tail_char()
+	{
+		return 'o';
+	}
+
+};
+
+class player2 : public player
+{
+
+public:
+
+	player2(size_t x, size_t y);
+	direction get_dir(keyboard& input);
+
+	char get_head_char()
+	{
+		return 'Q';
+	}
+	char get_tail_char()
+	{
+		return 'q';
+	}
+
+};

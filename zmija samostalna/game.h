@@ -11,19 +11,14 @@ class game
 
 	in_the_back back;
 	map mapp;
-	player snake;
+	player* snake1;
+	player* snake2;
 	keyboard button;
 	fruit cash;
 
 public:
 	
-	game(size_t w, size_t h)
-		: mapp(h, w)
-		, back(h, w)
-		, snake(h, w)
-		, cash(h, w)
-	{
-	}
+	game(size_t w, size_t h);
 
 	game(const game&) = delete;
 	void print_in_the_back();

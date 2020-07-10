@@ -3,10 +3,14 @@
 enum class key
 {
 	none,
-	left,
-	right,
-	up,
-	down
+	left1,
+	right1,
+	up1,
+	down1,
+	left2,
+	right2,
+	up2,
+	down2,
 };
 
 class keyboard
