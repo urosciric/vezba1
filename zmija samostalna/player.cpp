@@ -46,6 +46,7 @@ void player::body(keyboard& input,in_the_back& back)
 			one.y = oldY;
 			oldX = tempX;
 			oldY = tempY;
+			back.put_in(one.x, one.y, 'o');
 		}
 	}
 
@@ -56,6 +57,7 @@ void player::body(keyboard& input,in_the_back& back)
 		temp.y = oldY;
 		tail.push_back(temp);
 	}
+
 
 	if (back.get(X, Y) == '#')
 		the_end = true;

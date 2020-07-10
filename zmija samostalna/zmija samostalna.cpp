@@ -13,7 +13,7 @@ int main()
 
     game the_game;
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     while (!the_game.game_over())
     {
 

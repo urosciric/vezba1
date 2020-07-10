@@ -14,6 +14,7 @@ void game::print_in_the_back()
 void game::move_player()
 {
 
+	cash.fruit_position(back);
 	snake.body(button,back);
 
 }
@@ -23,7 +24,6 @@ void game::fill_in_the_back()
 
 	mapp.print(back);
 	snake.print(back);
-	cash.fruit_position(back);
 
 }
 

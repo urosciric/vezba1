@@ -18,18 +18,20 @@ class game
 public:
 	
 	game()
-		: mapp(40, 40)
-		, back(40, 40)
-		, snake(40, 40)
-		, cash(40, 40)
+		: mapp(30, 30)
+		, back(30, 30)
+		, snake(30, 30)
+		, cash(30, 30)
 	{
 	}
 
+	game(const game&) = delete;
 	void print_in_the_back();
 	void move_player();
 	void fill_in_the_back();
 	void read_keys();
 	bool game_over();
+	void clear_disp();
 
 };
 

@@ -8,7 +8,7 @@ class fruit
 	size_t width;
 	size_t fruitX;
 	size_t fruitY;
-	size_t temp=0;
+	size_t temp;
 
 public:
 
