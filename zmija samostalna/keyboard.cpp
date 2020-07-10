@@ -8,6 +8,18 @@ void keyboard::getch()
 	{
 		switch(_getch())
 		{
+		case 'A':
+			pressed = key::left;
+			break;
+		case 'D':
+			pressed = key::right;
+			break;
+		case 'W':
+			pressed = key::up;
+			break;
+		case 'S':
+			pressed = key::down;
+			break;
 		case 'a':
 			pressed = key::left;
 			break;

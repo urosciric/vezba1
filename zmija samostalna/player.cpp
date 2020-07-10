@@ -9,6 +9,9 @@ player::player(size_t x, size_t y)
 
 	X = x / 2;
 	Y = y / 2;
+	height = x;
+	width = y;
+	the_end = false;
 
 }
 
@@ -59,7 +62,7 @@ void player::body(keyboard& input,in_the_back& back)
 	}
 
 
-	if (back.get(X, Y) == '#')
+	if (X == 0 || Y == 0 || X == height - 1 || Y == width - 1)
 		the_end = true;
 
 }

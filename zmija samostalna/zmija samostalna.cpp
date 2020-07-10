@@ -17,14 +17,18 @@ int main()
     while (!the_game.game_over())
     {
 
+        system("cls");
+
         the_game.read_keys();
 
         the_game.print_in_the_back();
         the_game.move_player();
         the_game.fill_in_the_back();
 
-        system("cls");
-
     }
+
+    std::cout << "jbg" << "\r\n";
+
+    system("pause");
 
 }

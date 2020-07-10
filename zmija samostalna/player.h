@@ -17,6 +17,9 @@ class player
 	size_t X;
 	size_t Y;
 
+	size_t height;
+	size_t width;
+
 	size_t tail_size = 0;
 
 	size_t tempX;
@@ -24,9 +27,9 @@ class player
 
 	std::vector<cords> tail;
 
-public:
+	bool the_end;
 
-	bool the_end = false;
+public:
 
 	player(size_t x, size_t y);
 	void body(keyboard& input, in_the_back& back);
