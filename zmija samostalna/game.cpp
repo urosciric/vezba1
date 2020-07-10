@@ -32,6 +32,7 @@ void game::fill_in_the_back()
 {
 
 	mapp.print(back);
+	mapp.explosive(back);
 	snake1->print(back);
 	snake2->print(back);
 
