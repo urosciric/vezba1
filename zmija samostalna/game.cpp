@@ -14,7 +14,7 @@ void game::print_in_the_back()
 void game::move_player()
 {
 
-	cash.fruit_position(back);
+	cash.fruit_position(back,snake);
 	snake.body(button,back);
 
 }

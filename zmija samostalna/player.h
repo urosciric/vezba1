@@ -14,9 +14,6 @@ struct cords
 class player
 {
 
-	size_t X;
-	size_t Y;
-
 	size_t height;
 	size_t width;
 
@@ -30,6 +27,9 @@ class player
 	bool the_end;
 
 public:
+
+	size_t X;
+	size_t Y;
 
 	player(size_t x, size_t y);
 	void body(keyboard& input, in_the_back& back);

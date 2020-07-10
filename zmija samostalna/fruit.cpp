@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "fruit.h"
+#include "player.h"
 
 fruit::fruit(size_t x, size_t y)
 {
@@ -10,7 +11,7 @@ fruit::fruit(size_t x, size_t y)
 
 }
 
-void fruit::fruit_position(in_the_back& back)
+void fruit::fruit_position(in_the_back& back,player& snake)
 {
 
 	if (temp == 0)
@@ -21,7 +22,7 @@ void fruit::fruit_position(in_the_back& back)
 		temp=1;
 	}
 
-	if (back.get(fruitX, fruitY) == 'O')
+	if (fruitX==snake.X&&fruitY==snake.Y)
 		temp = 0;
 
 	back.put_in(fruitX, fruitY, '$');

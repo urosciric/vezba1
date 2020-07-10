@@ -1,5 +1,6 @@
 #pragma once
 #include "in_the_back.h"
+class player;
 
 class fruit
 {
@@ -13,7 +14,7 @@ class fruit
 public:
 
 	fruit(size_t x, size_t y);
-	void fruit_position(in_the_back& back);
+	void fruit_position(in_the_back& back, player& snake);
 
 };
 
