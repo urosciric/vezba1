@@ -11,6 +11,8 @@ int main(int argc, char* argv[])
     size_t height = 20;
     size_t width = 20;
 
+    size_t fast_foward = 0;
+
     /////////////////////////////////////////////////////////////
     if (argc > 1)
     {
@@ -22,7 +24,8 @@ int main(int argc, char* argv[])
             std::cout << "You can type number between 4 and 50!" << "\r\n";
             std::cout << "If you type just one number map's height and width will be that walue!" << "\r\n";
             std::cout << "if you type more numbers your last number needs to be less than number of them and then height and width will be the number that is on position that is declared with last number!" << "\r\n";
-            std::cout << "You cant type words amogn help or height and width will automaticly be 3!" << "\r\n";
+            std::cout << "You can't type words amogn help or height and width will automaticly be 3!" << "\r\n";
+            fast_foward++;
             system("pause");
 
         }
@@ -30,6 +33,7 @@ int main(int argc, char* argv[])
         else if (atoi(argv[1]) > 50 && atoi(argv[1]) < 4)
         {
             std::cout << "Out of bounce!" << "\r\n" << "For more info type help." << "\r\n";
+            fast_foward++;
             system("pause");
         }
 
@@ -48,28 +52,27 @@ int main(int argc, char* argv[])
 
                 height = width = 3;
                 std::cout << "Out of bounce!" << "\r\n" << "For more info type help." << "\r\n";
+                fast_foward++;
                 system("pause");
 
             }
 
         }
 
-        else if (argc > 3 && atoi(argv[argc]) < argc)
+        else if (argc > 3 && atoi(argv[argc - 1]) < argc)
         {
 
             size_t temp = 0;
 
-            for (int i = 4; i <= 50; i++)
-                if (atoi(argv[argc-1]) == i)
-                    temp++;
-
-            if (temp != 0)
-                height = width = atoi(argv[argc - 1]);
+            
+            if (atoi(argv[atoi(argv[argc - 1])]) <= 50 && atoi(argv[atoi(argv[argc - 1])]) >= 4)
+                height = width = atoi(argv[atoi(argv[argc - 1])]);
             else
             {
 
                 height = width = 3;
                 std::cout << "Out of bounce!" << "\r\n" << "For more info type help." << "\r\n";
+                fast_foward++;
                 system("pause");
 
             }
@@ -82,24 +85,28 @@ int main(int argc, char* argv[])
     }
     /////////////////////////////////////////////////////////////
 
-    game the_game(width, height);
-
-    srand((unsigned int)time(NULL));
-    while (!the_game.game_over())
+    if (fast_foward == 0)
     {
 
-        system("cls");
+        game the_game(width, height);
 
-        the_game.read_keys();
+        srand((unsigned int)time(NULL));
+        while (!the_game.game_over())
+        {
 
-        the_game.print_in_the_back();
-        the_game.move_player();
-        the_game.fill_in_the_back();
+            system("cls");
 
+            the_game.read_keys();
+
+            the_game.print_in_the_back();
+            the_game.move_player();
+            the_game.fill_in_the_back();
+
+        }
+
+        std::cout << "jbg" << "\r\n";
+
+        system("pause");
     }
-
-    std::cout << "jbg" << "\r\n";
-
-    system("pause");
 
 }
