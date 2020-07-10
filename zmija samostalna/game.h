@@ -17,11 +17,11 @@ class game
 
 public:
 	
-	game()
-		: mapp(30, 30)
-		, back(30, 30)
-		, snake(30, 30)
-		, cash(30, 30)
+	game(size_t w, size_t h)
+		: mapp(h, w)
+		, back(h, w)
+		, snake(h, w)
+		, cash(h, w)
 	{
 	}
 

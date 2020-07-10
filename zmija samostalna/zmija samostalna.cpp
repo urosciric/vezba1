@@ -5,13 +5,19 @@
 #include "player.h"
 #include "keyboard.h"
 
-const size_t height = 20;
-const size_t width = 20;
 
-int main()
+int main(int argc, char* argv[])
 {
+    size_t height = 20;
+    size_t width = 20;
 
-    game the_game;
+    if (argc > 1 && strcmp(argv[1], "zika") == 0)
+    {
+        width = 40;
+        height = 40;
+    }
+
+    game the_game(width, height);
 
     srand((unsigned int)time(NULL));
     while (!the_game.game_over())
