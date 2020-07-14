@@ -18,7 +18,9 @@ class game
 
 public:
 	
-	game(size_t w, size_t h);
+	game();
+
+	bool init_game(size_t w, size_t h);
 
 	game(const game&) = delete;
 	void print_in_the_back();

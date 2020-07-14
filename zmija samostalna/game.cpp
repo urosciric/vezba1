@@ -2,13 +2,19 @@
 #include "game.h"
 
 
-game::game(size_t w, size_t h)
+game::game()
 	: mapp(h, w)
 	, back(h, w)
 	, cash(h, w)
 {
+	
+}
+bool game::init_game(size_t w, size_t h)
+{
 	snake1 = new player1(h, w);
 	snake2 = new player2(h, w);
+
+	return true;
 }
 void game::print_in_the_back()
 {

@@ -56,6 +56,9 @@ void player::body(keyboard& input,in_the_back& back)
 			oldX = tempX;
 			oldY = tempY;
 
+			if (back.get(one.x, one.y) != ' ' && back.get(one.x, one.y) != '$')
+				the_end = true;
+
 			back.put_in(one.x, one.y, get_tail_char());
 
 		}

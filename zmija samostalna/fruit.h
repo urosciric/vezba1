@@ -5,6 +5,8 @@ class player;
 class fruit
 {
 
+protected:
+
 	size_t height;
 	size_t width;
 	size_t fruitX;

@@ -16,10 +16,12 @@ void fruit::fruit_position(in_the_back& back,player& snake)
 
 	if (temp == 0)
 	{
+		
 		fruitX = rand() % (height - 2) + 1;
 		fruitY = rand() % (width - 2) + 1;
 
 		temp=1;
+
 	}
 
 	if (fruitX==snake.X&&fruitY==snake.Y)

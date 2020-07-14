@@ -88,29 +88,36 @@ int main(int argc, char* argv[])
     if (fast_foward == 0)
     {
 
-        game the_game(width, height);
+        game the_game;
 
-        srand((unsigned int)time(NULL));
-        while (!the_game.game_over())
+        if (the_game.init_game(width, height))
         {
+            srand((unsigned int)time(NULL));
+            while (!the_game.game_over())
+            {
+
+                system("cls");
+
+                the_game.read_keys();
+
+                the_game.print_in_the_back();
+                the_game.fill_in_the_back();
+                the_game.move_player();
+
+            }
 
             system("cls");
 
-            the_game.read_keys();
-
             the_game.print_in_the_back();
-            the_game.fill_in_the_back();
-            the_game.move_player();
 
+            std::cout << "jbg" << "\r\n";
+
+            system("pause");
         }
-
-        system("cls");
-
-        the_game.print_in_the_back();
-
-        std::cout << "jbg" << "\r\n";
-
-        system("pause");
+    }
+    else
+    {
+        std::cout << "greska\r\n";
     }
 
 }
