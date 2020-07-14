@@ -22,8 +22,8 @@ public:
 
 	game(const game&) = delete;
 	void print_in_the_back();
-	void move_player();
 	void fill_in_the_back();
+	void move_player();
 	void read_keys();
 	bool game_over();
 	void clear_disp();

@@ -10,11 +10,11 @@ map::map(size_t he,size_t wi)
 
 	x1 = 1;
 	x2 = height - 1;
-	x3 = 0;
+	x3 = 1;
 	x4 = height - 1;
 	y1 = 1;
-	y2 = width - 1;
-	y3 = 0;
+	y2 = 1;
+	y3 = width - 1;
 	y4 = width - 1;
 
 }
@@ -26,11 +26,11 @@ void map::explosive(in_the_back& back)
 	{
 		x1 = 1;
 		x2 = height - 1;
-		x3 = 0;
+		x3 = 1;
 		x4 = height - 1;
 		y1 = 1;
-		y2 = width - 1;
-		y3 = 0;
+		y2 = 1;
+		y3 = width - 1;
 		y4 = width - 1;
 	}
 	else
@@ -38,12 +38,12 @@ void map::explosive(in_the_back& back)
 
 		x1++;
 		x2--;
-		x3--;
-		x4++;
+		x3++;
+		x4--;
 		y1++;
-		y2--;
+		y2++;
 		y3--;
-		y4++;
+		y4--;
 		
 	}
 

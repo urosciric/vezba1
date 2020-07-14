@@ -48,15 +48,21 @@ void player::body(keyboard& input,in_the_back& back)
 	{
 		for (auto& one : tail)
 		{
+
 			tempX = one.x;
 			tempY = one.y;
 			one.x = oldX;
 			one.y = oldY;
 			oldX = tempX;
 			oldY = tempY;
+
 			back.put_in(one.x, one.y, get_tail_char());
+
 		}
 	}
+
+	if (back.get(X, Y) != ' ' && back.get(X, Y) != '$')
+		the_end = true;
 
 	if (back.get(X, Y) == '$')
 	{
@@ -65,10 +71,6 @@ void player::body(keyboard& input,in_the_back& back)
 		temp.y = oldY;
 		tail.push_back(temp);
 	}
-
-
-	if (X == 0 || Y == 0 || X == height - 1 || Y == width - 1)
-		the_end = true;
 
 }
 
@@ -90,7 +92,7 @@ player1::player1(size_t x, size_t y)
 	: player(x, y)
 {
 
-	this->X = height / 3;
+	this->X = height / 3 + 1;
 	this->Y = width / 3;
 
 }
@@ -118,7 +120,7 @@ player2::player2(size_t x, size_t y)
 	: player(x, y)
 {
 
-	this->X = height / 3 * 2;
+	this->X = height / 3 * 2 + 1;
 	this->Y = width / 3 * 2;
 
 }

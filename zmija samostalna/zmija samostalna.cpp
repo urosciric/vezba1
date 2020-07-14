@@ -99,10 +99,14 @@ int main(int argc, char* argv[])
             the_game.read_keys();
 
             the_game.print_in_the_back();
-            the_game.move_player();
             the_game.fill_in_the_back();
+            the_game.move_player();
 
         }
+
+        system("cls");
+
+        the_game.print_in_the_back();
 
         std::cout << "jbg" << "\r\n";
 

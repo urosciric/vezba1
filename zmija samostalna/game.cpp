@@ -25,6 +25,8 @@ void game::move_player()
 	cash.fruit_position(back, *snake2);
 	snake1->body(button, back);
 	snake2->body(button, back);
+	snake1->print(back);
+	snake2->print(back);
 
 }
 
@@ -33,8 +35,8 @@ void game::fill_in_the_back()
 
 	mapp.print(back);
 	mapp.explosive(back);
-	snake1->print(back);
-	snake2->print(back);
+	/*snake1->print(back);
+	snake2->print(back);*/
 
 }
 
