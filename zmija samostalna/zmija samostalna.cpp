@@ -125,7 +125,10 @@ int main(int argc, char* argv[])
 
                 pause(1);
 
-                milsecs--;
+                if (milsecs != 100)
+                    milsecs--;
+                else
+                    milsecs = 1000;
 
             }
 
