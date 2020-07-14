@@ -4,6 +4,7 @@
 #include "in_the_back.h"
 #include "player.h"
 #include "keyboard.h"
+#include "game_display.h"
 
 
 int main(int argc, char* argv[])
@@ -89,6 +90,9 @@ int main(int argc, char* argv[])
     {
 
         game the_game;
+        game_display display;
+
+        display.initialize_dsplay();
 
         if (the_game.init_game(width, height))
         {
@@ -96,7 +100,7 @@ int main(int argc, char* argv[])
             while (!the_game.game_over())
             {
 
-                system("cls");
+                display.reset_coordinates();
 
                 the_game.read_keys();
 
@@ -106,13 +110,14 @@ int main(int argc, char* argv[])
 
             }
 
-            system("cls");
 
             the_game.print_in_the_back();
 
             std::cout << "jbg" << "\r\n";
 
             system("pause");
+
+            display.clear();
         }
     }
     else
