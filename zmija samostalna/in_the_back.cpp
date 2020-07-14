@@ -5,6 +5,7 @@ in_the_back::in_the_back()
 {
 	height = 0;
 	width = 0;
+	what = ' ';
 }
 bool in_the_back::init_back(size_t x, size_t y)
 {

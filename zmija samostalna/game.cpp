@@ -5,6 +5,8 @@
 game::game()
 {
 	
+	snake1 = snake2 = nullptr;
+
 }
 bool game::init_game(size_t w, size_t h)
 {

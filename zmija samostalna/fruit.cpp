@@ -8,6 +8,8 @@ fruit::fruit()
 {
 	width = 0;
 	height = 0;
+	fruitX = fruitY = 0;
+	temp = 0;
 }
 bool fruit::initialize(size_t x, size_t y)
 {

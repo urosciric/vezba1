@@ -7,7 +7,8 @@
 
 player::player(size_t x, size_t y)
 {
-
+	dir = direction::STOP;
+	tempX = tempY = 0;
 	X = x / 3;
 	Y = y / 3;
 	height = x;
@@ -20,7 +21,7 @@ void player::body(keyboard& input,in_the_back& back)
 {
 
 	direction temp_dir = get_dir(input);
-	if (temp_dir != STOP)
+	if (temp_dir != direction::STOP)
 		dir = temp_dir;
 
 	size_t oldX = X;
@@ -28,16 +29,16 @@ void player::body(keyboard& input,in_the_back& back)
 
 	switch (dir)
 	{
-	case LEFT:
+	case direction::LEFT:
 		Y--;
 		break;
-	case RIGHT:
+	case direction::RIGHT:
 		Y++;
 		break;
-	case UP:
+	case direction::UP:
 		X--;
 		break;
-	case DOWN:
+	case direction::DOWN:
 		X++;
 		break;
 	default:
@@ -106,15 +107,15 @@ direction player1::get_dir(keyboard& input)
 	switch (input.get_current())
 	{
 	case key::left1:
-		return LEFT;
+		return direction::LEFT;
 	case key::right1:
-		return RIGHT;
+		return direction::RIGHT;
 	case key::up1:
-		return UP;
+		return direction::UP;
 	case key::down1:
-		return DOWN;
+		return direction::DOWN;
 	default:
-		return STOP;
+		return direction::STOP;
 	}
 
 }
@@ -135,15 +136,15 @@ direction player2::get_dir(keyboard& input)
 	switch (input.get_current())
 	{
 	case key::left2:
-		return LEFT;
+		return direction::LEFT;
 	case key::right2:
-		return RIGHT;
+		return direction::RIGHT;
 	case key::up2:
-		return UP;
+		return direction::UP;
 	case key::down2:
-		return DOWN;
+		return direction::DOWN;
 	default:
-		return STOP;
+		return direction::STOP;
 	}
 
 }
