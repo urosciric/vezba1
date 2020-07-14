@@ -11,8 +11,8 @@ class in_the_back
 	char what;
 
 public:
-
-	in_the_back(size_t width, size_t height);
+	in_the_back();
+	bool init_back(size_t width, size_t height);
 	void put_in(size_t x, size_t y, char shape);
 	char get(size_t x, size_t y);
 	void clear();

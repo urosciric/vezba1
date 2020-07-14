@@ -2,7 +2,13 @@
 #include "map.h"
 #include "in_the_back.h"
 
-map::map(size_t he,size_t wi)
+
+map::map()
+{
+	height = 0;
+	width = 0;
+}
+bool map::init_map(size_t he,size_t wi)
 {
 
 	height = he;
@@ -16,6 +22,8 @@ map::map(size_t he,size_t wi)
 	y2 = 1;
 	y3 = width - 1;
 	y4 = width - 1;
+
+	return true;
 
 }
 

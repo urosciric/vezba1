@@ -14,7 +14,7 @@ class game
 	player* snake1;
 	player* snake2;
 	keyboard button;
-	fruit cash;
+	fruit cash[2];
 
 public:
 	

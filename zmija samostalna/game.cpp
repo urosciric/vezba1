@@ -3,14 +3,20 @@
 
 
 game::game()
-	: mapp(h, w)
-	, back(h, w)
-	, cash(h, w)
 {
 	
 }
 bool game::init_game(size_t w, size_t h)
 {
+	if (!back.init_back(w, h))
+		return false;
+	if (!mapp.init_map(w, h))
+		return false;
+	for (size_t i = 0; i < sizeof(cash) / sizeof(cash[0]); i++)
+	{
+		if (!cash[i].initialize(w, h))
+			return false;
+	}
 	snake1 = new player1(h, w);
 	snake2 = new player2(h, w);
 
@@ -26,9 +32,11 @@ void game::print_in_the_back()
 
 void game::move_player()
 {
-
-	cash.fruit_position(back,*snake1);
-	cash.fruit_position(back, *snake2);
+	for (size_t i = 0; i < sizeof(cash) / sizeof(cash[0]); i++)
+	{
+		cash[i].fruit_position(back, *snake1);
+		cash[i].fruit_position(back, *snake2);
+	}
 	snake1->body(button, back);
 	snake2->body(button, back);
 	snake1->print(back);
@@ -57,5 +65,9 @@ bool game::game_over()
 {
 
 	return snake1->end_game() || snake2->end_game();
+
+}
+void game::clear_disp()
+{
 
 }

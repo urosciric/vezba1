@@ -14,8 +14,8 @@ protected:
 	size_t temp;
 
 public:
-
-	fruit(size_t x, size_t y);
+	fruit();
+	bool initialize(size_t x, size_t y);
 	void fruit_position(in_the_back& back, player& snake);
 
 };

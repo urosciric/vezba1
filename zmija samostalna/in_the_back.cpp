@@ -1,12 +1,18 @@
 #include "pch.h"
 #include "in_the_back.h"
 
-in_the_back::in_the_back(size_t x, size_t y)
+in_the_back::in_the_back()
+{
+	height = 0;
+	width = 0;
+}
+bool in_the_back::init_back(size_t x, size_t y)
 {
 
 	height = x;
 	width = y;
 	draw.assign(width * height, ' ');
+	return true;
 }
 
 void in_the_back::put_in(size_t X, size_t Y, char shap)

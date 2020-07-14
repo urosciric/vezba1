@@ -2,12 +2,19 @@
 #include "fruit.h"
 #include "player.h"
 
-fruit::fruit(size_t x, size_t y)
-{
 
+
+fruit::fruit()
+{
+	width = 0;
+	height = 0;
+}
+bool fruit::initialize(size_t x, size_t y)
+{
 	height = x;
 	width = y;
 	temp = 0;
+	return true;
 
 }
 

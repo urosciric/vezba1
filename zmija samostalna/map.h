@@ -20,8 +20,8 @@ protected:
 
 
 public:
-
-	map(size_t height, size_t width);
+	map();
+	bool init_map(size_t height, size_t width);
 	void explosive(in_the_back& back);
 	void print(in_the_back& back);
 
