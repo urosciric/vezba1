@@ -6,15 +6,10 @@
 #include "keyboard.h"
 #include "game_display.h"
 
+size_t milsecs = 1000;
 
-int main(int argc, char* argv[])
+void args(int argc, char* argv[], size_t& height, size_t& width, size_t& fast_foward)
 {
-    size_t height = 20;
-    size_t width = 20;
-
-    size_t fast_foward = 0;
-
-    /////////////////////////////////////////////////////////////
     if (argc > 1)
     {
 
@@ -65,7 +60,7 @@ int main(int argc, char* argv[])
 
             size_t temp = 0;
 
-            
+
             if (atoi(argv[atoi(argv[argc - 1])]) <= 50 && atoi(argv[atoi(argv[argc - 1])]) >= 4)
                 height = width = atoi(argv[atoi(argv[argc - 1])]);
             else
@@ -84,6 +79,26 @@ int main(int argc, char* argv[])
             height = width = 3;
 
     }
+
+}
+
+void pause(size_t dur)
+{
+    clock_t wait = dur * milsecs / 10 + clock(); 
+    while (wait > clock()) continue;
+}
+
+
+int main(int argc, char* argv[])
+{
+    system("pause");
+    size_t height = 20;
+    size_t width = 20;
+
+    size_t fast_foward = 0;
+
+    /////////////////////////////////////////////////////////////
+    args(argc, argv, height, width, fast_foward);
     /////////////////////////////////////////////////////////////
 
     if (fast_foward == 0)
@@ -108,7 +123,13 @@ int main(int argc, char* argv[])
                 the_game.fill_in_the_back();
                 the_game.move_player();
 
+                pause(1);
+
+                milsecs--;
+
             }
+
+            system("cls");
 
 
             the_game.print_in_the_back();
@@ -118,6 +139,7 @@ int main(int argc, char* argv[])
             system("pause");
 
             display.clear();
+
         }
     }
     else
