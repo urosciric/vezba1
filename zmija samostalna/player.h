@@ -12,7 +12,7 @@ struct cords
 
 };
 
-enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+enum class direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
 class player
 {
