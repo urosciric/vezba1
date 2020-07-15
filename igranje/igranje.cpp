@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 
 	if (!file_name.empty())
 	{
-		std::ifstream fajl("imenik.txt");
+		std::ifstream fajl(file_name);
 
 		if (!fajl.bad())
 		{
