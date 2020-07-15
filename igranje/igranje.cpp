@@ -1,18 +1,26 @@
-#include <iostream>
-#include <map>
-#include <vector>
-#include <functional>
-#include <string>
-#include <fstream>
-#include "telefonski_imenik.h"
+#include "pch.h"
+#include "special_commands.h"
+#include "help_note.h"
 
 int main(int argc, char* argv[])
 {
-	telefonski_imenik imenik;
-	string file_name;
 
+	std::cout<<"Ime     Prezime     Ulica     Broj Ulice     0 ili 1 za musko/zensko     Broj"<<"\r\n";
+
+	help_note help;
+	special_commands my_commands(argc, argv);
+	my_commands.check(help);
+
+
+
+
+	/*telefonski_imenik imenik;
+	string file_name, command;
 	if (argc > 1)
+	{
 		file_name = argv[1];
+		command = argv[2];
+	}
 
 	if (!file_name.empty())
 	{
@@ -25,32 +33,18 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		imenik_data temp;
-		temp.ime = "Uros";
-		temp.prezime = "Ciric";
-		temp.ulica = "Zagorska";
-		temp.broj = 48;
-		temp.musko = true;
-		temp.telefon = "1345678";
-
-		imenik.dodaj(temp);
-
-		temp.ime = "Zrna";
-		temp.musko = false;
-		temp.telefon = "987654";
-
-		imenik.dodaj(temp);
+		
 	}
-
+	
 	imenik.snimi(std::cout);
 
-	std::ofstream fajl("imenik.txt");
+	std::ofstream fajl(argv[1]);
 
 	if (!fajl.bad())
 	{
 		imenik.snimi(fajl);
 		fajl.flush();
 		fajl.close();
-	}
+	}*/
 
 }

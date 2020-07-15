@@ -1,7 +1,9 @@
 #include "telefonski_imenik.h"
+#include "special_commands.h"
 #include <ostream>
 #include <istream>
 #include <sstream>
+#include "pch.h"
 
 
 string telefonski_imenik::kreiraj_kljuc(string ime, string prezime)
@@ -81,4 +83,24 @@ void telefonski_imenik::ucitaj(std::istream& in)
         if(podaci_imaju_smisla(data))
             dodaj(data);
     }
+}
+
+void telefonski_imenik::upisi()
+{
+    imenik_data data;
+    std::cin >> data.ime;
+    std::cin >> data.prezime;
+    std::cin >> data.ulica;
+    std::cin >> data.broj;
+    std::cin >> data.musko;
+    std::cin >> data.telefon;
+    if (podaci_imaju_smisla(data))
+        dodaj(data);
+    if (kreiraj_kljuc(data.ime+data.prezime)==dod.comands[2])
+
+}
+
+void telefonski_imenik::ispis_broja()
+{
+
 }

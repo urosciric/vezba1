@@ -140,10 +140,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="help_note.cpp" />
     <ClCompile Include="igranje.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="dodavanje.cpp" />
+    <ClCompile Include="special_commands.cpp" />
+    <ClCompile Include="telefon.cpp" />
     <ClCompile Include="telefonski_imenik.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="help_note.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="dodavanje.h" />
+    <ClInclude Include="special_commands.h" />
+    <ClInclude Include="telefon.h" />
     <ClInclude Include="telefonski_imenik.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

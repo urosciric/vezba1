@@ -21,9 +21,39 @@
     <ClCompile Include="telefonski_imenik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="help_note.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="special_commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dodavanje.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="telefon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="telefonski_imenik.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="help_note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="special_commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dodavanje.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="telefon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
