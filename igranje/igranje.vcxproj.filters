@@ -18,5 +18,13 @@
     <ClCompile Include="igranje.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="telefonski_imenik.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="telefonski_imenik.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
