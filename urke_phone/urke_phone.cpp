@@ -1,20 +1,61 @@
-// urke_phone.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "pch.h"
+#include "storage.h"
+#include "phone_book.h"
+#include "commands.h"
+#include "commands_manager.h"
+#include "list_command.h"
 
-#include <iostream>
-
-int main()
+void register_commands()
 {
-    std::cout << "Hello World!\n";
+    // add commands
+    commands_manager::instance().register_command(new help_command());
+    commands_manager::instance().register_command(new list_command());
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main(int argc, char* argv[])
+{
+    storage fajl("data");
+    phone_book dbase;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    register_commands();
+
+    // handle arguments
+    string_type command_name;
+    if (argc < 2)
+        command_name = "help";
+    else
+        command_name = argv[1];
+
+    string_type arguments;
+    for (int i = 2; i < argc; i++)
+    {
+        arguments += argv[i];
+        arguments += " ";
+    }
+
+    std::istringstream in_stream(arguments);
+    // get command
+    auto command = commands_manager::instance().get_command(command_name);
+    if (command == nullptr)
+    {
+        std::cout << "E jebi ga!!!\r\n";
+        return -1;
+    }
+
+    if (fajl.load(dbase))
+    {
+        std::cout << "Ucitani podaci\r\n";
+        command->do_command(in_stream, dbase);
+
+        if (!fajl.save(dbase))
+            std::cout << "Greska pri snimanju u fajl!\r\n";
+        else
+            std::cout << "Snumljeni podaci podaci\r\n";
+    }
+    else
+    {
+        std::cout << "Greska ucitavanju iz fajla!\r\n";
+    }
+}
+
