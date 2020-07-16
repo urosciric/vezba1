@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{fda50b7a-7333-4164-949e-49b30bbaf9f4}</ProjectGuid>
-    <RootNamespace>igranje</RootNamespace>
+    <ProjectGuid>{36aa96aa-47a1-4073-bf5b-c592a3e9d276}</ProjectGuid>
+    <RootNamespace>urkephone</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,7 +116,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,23 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="help_note.cpp" />
-    <ClCompile Include="igranje.cpp" />
-    <ClCompile Include="izlistavanje.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="dodavanje.cpp" />
-    <ClCompile Include="special_commands.cpp" />
-    <ClCompile Include="telefon.cpp" />
-    <ClCompile Include="telefonski_imenik.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="help_note.h" />
-    <ClInclude Include="izlistavanje.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="dodavanje.h" />
-    <ClInclude Include="special_commands.h" />
-    <ClInclude Include="telefon.h" />
-    <ClInclude Include="telefonski_imenik.h" />
+    <ClCompile Include="urke_phone.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

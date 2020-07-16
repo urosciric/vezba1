@@ -4,6 +4,7 @@
 #include "dodavanje.h"
 #include "telefonski_imenik.h"
 #include "telefon.h"
+#include "izlistavanje.h"
 
 special_commands::special_commands(int number, char* comms[])
 {
@@ -14,6 +15,8 @@ special_commands::special_commands(int number, char* comms[])
 void special_commands::check(help_note& help)
 {
 	dod.dodaj(obj);
+	tel.tele(obj);
+	lista.list(obj);
 
 	if (obj.size() >= 2)
 	{
@@ -31,7 +34,15 @@ void special_commands::check(help_note& help)
 		{
 			fajl.close();
 				
+			tel.ispis(imenik);
 
+		}
+		//////////////////////////////////////////////////////////
+		else if (!fajl.bad() && obj[1] == "list" && obj[2] != "")
+		{
+			fajl.close();
+
+			lista.listanje(imenik);
 
 		}
 	}

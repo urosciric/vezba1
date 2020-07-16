@@ -69,7 +69,13 @@ void telefonski_imenik::snimi(std::ostream& out)
             << it->second.telefon << "\r\n";
     }
 }
-void telefonski_imenik::ucitaj(std::istream& in)
+
+/// <summary>
+/// ////////////////////////////////////////////////////////////////////////////////////
+/// </summary>
+/// <param name="in"></param>
+/// <param name="zajedno"></param>
+void telefonski_imenik::ucitaj1(std::istream& in)
 {
     while (!in.eof())
     {
@@ -82,8 +88,52 @@ void telefonski_imenik::ucitaj(std::istream& in)
         in >> data.telefon;
         if(podaci_imaju_smisla(data))
             dodaj(data);
+        
     }
 }
+
+void telefonski_imenik::ucitaj2(std::istream& in, string zajedno)
+{
+    while (!in.eof())
+    {
+        imenik_data data;
+        in >> data.ime;
+        in >> data.prezime;
+        in >> data.ulica;
+        in >> data.broj;
+        in >> data.musko;
+        in >> data.telefon;
+        if (kreiraj_kljuc(data.ime, data.prezime) == zajedno)
+            std::cout << data.telefon << "\r\n";
+        else if (zajedno == "muski")
+        {
+            if (data.musko == 1)
+            {
+                std::cout << data.ime << "\t"
+                    << data.prezime << "\t"
+                    << data.ulica << "\t"
+                    << data.broj << "\t"
+                    << data.musko << "\t"
+                    << data.telefon << "\r\n";
+            }
+        }
+        else if (zajedno == "zenski")
+        {
+            if (data.musko == 0)
+            {
+                std::cout << data.ime << "\t"
+                    << data.prezime << "\t"
+                    << data.ulica << "\t"
+                    << data.broj << "\t"
+                    << data.musko << "\t"
+                    << data.telefon << "\r\n";
+            }
+        }
+    }
+}
+/// <summary>
+/// //////////////////////////////////////////////////////////////////////////////
+/// </summary>
 
 void telefonski_imenik::upisi()
 {
@@ -96,11 +146,11 @@ void telefonski_imenik::upisi()
     std::cin >> data.telefon;
     if (podaci_imaju_smisla(data))
         dodaj(data);
-    if (kreiraj_kljuc(data.ime+data.prezime)==dod.comands[2])
-
+    
 }
 
-void telefonski_imenik::ispis_broja()
+/*void telefonski_imenik::ispis_broja(string brtel,string ime,string prezime,string zajedno)
 {
-
-}
+    if (kreiraj_kljuc(ime, prezime) == zajedno)
+        std::cout << brtel << "\r\n";
+}*/

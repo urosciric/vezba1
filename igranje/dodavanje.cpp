@@ -5,7 +5,7 @@
 
 void dodavanje::dodaj(const std::vector<std::string>& dodajmo)
 {
-	for (int i = 0; i < dodajmo.size(); i++)
+	for (unsigned int i = 0; i < dodajmo.size(); i++)
 		comands.push_back(dodajmo[i]);
 }
 
@@ -13,7 +13,7 @@ void dodavanje::pozivanje(telefonski_imenik& imenik)
 {
 	std::ifstream fajl1(comands[0]);
 
-	imenik.ucitaj(fajl1);
+	imenik.ucitaj1(fajl1);
 	fajl1.close();
 
 	imenik.upisi();

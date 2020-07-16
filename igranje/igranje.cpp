@@ -11,40 +11,4 @@ int main(int argc, char* argv[])
 	special_commands my_commands(argc, argv);
 	my_commands.check(help);
 
-
-
-
-	/*telefonski_imenik imenik;
-	string file_name, command;
-	if (argc > 1)
-	{
-		file_name = argv[1];
-		command = argv[2];
-	}
-
-	if (!file_name.empty())
-	{
-		std::ifstream fajl(file_name);
-
-		if (!fajl.bad())
-		{
-			imenik.ucitaj(fajl);
-		}
-	}
-	else
-	{
-		
-	}
-	
-	imenik.snimi(std::cout);
-
-	std::ofstream fajl(argv[1]);
-
-	if (!fajl.bad())
-	{
-		imenik.snimi(fajl);
-		fajl.flush();
-		fajl.close();
-	}*/
-
 }
