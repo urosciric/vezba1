@@ -2,6 +2,14 @@
 #include "commands.h"
 #include "commands_manager.h"
 
+string_type command_base::get_help()
+{
+	string_type ret = "Komanda ";
+	ret += get_name();
+	ret += " nema help!";
+	return ret;
+}
+
 string_type help_command::get_name()
 {
 	return "help";

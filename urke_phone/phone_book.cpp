@@ -45,4 +45,12 @@ void phone_book::load(std::istream& in)
 
     }
 }
+phone_data phone_book::find(const string_type& name, const string_type& last_name)
+{
+    auto it = data_.find(create_key(name, last_name));
+    if (it != data_.end())
+        return it->second;
+    else
+        return phone_data();
+}
 

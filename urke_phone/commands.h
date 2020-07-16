@@ -5,9 +5,9 @@ class command_base
 {
 public:
 	virtual ~command_base() = default;
-
+	
 	virtual string_type get_name() = 0;
-	virtual string_type get_help() = 0;
+	virtual string_type get_help();
 	virtual void do_command(std::istream& in, phone_book& phonedb) = 0;
 };
 

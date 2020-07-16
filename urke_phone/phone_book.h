@@ -24,5 +24,6 @@ public:
     void add(phone_data data);
     void save(std::ostream& out);
     void load(std::istream& out);
+    phone_data find(const string_type& name, const string_type& last_name);
 };
 

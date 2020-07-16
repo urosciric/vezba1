@@ -4,12 +4,16 @@
 #include "commands.h"
 #include "commands_manager.h"
 #include "list_command.h"
+#include "add_cmd.h"
+#include "finder.h"
 
 void register_commands()
 {
     // add commands
     commands_manager::instance().register_command(new help_command());
     commands_manager::instance().register_command(new list_command());
+    commands_manager::instance().register_command(new add_cmd());
+    commands_manager::instance().register_command(new finder());
 
 }
 
