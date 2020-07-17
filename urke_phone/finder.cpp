@@ -31,82 +31,116 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
 }
 bool finder::parse_command(std::istream& in, phone_query& query)
 {
-    string_type first_name;
-    string_type last_name;
-    string_type long_form = "";
+    string_type first_name = "";
+    string_type last_name = "";
+    string_type form = "";
 
-    query.all = true;
+    query.all = false;
 
     size_t temp = 0;
 
     char current;
     while (!in.eof())
     {
-        in >> current;
+        in.get(current);  
         if (current == '-')
             temp++;
         else if (current != '-' && current != ' ' && temp == 1)
         {
-            if (current == 'n')
+            while (!in.eof() && current != ' ')
             {
-                while (!in.eof() && current == ' ')
-                    in >> current;
+                form.push_back(current);
+                in.get(current);
+            }
+
+            if (form == "n")
+            {
+                first_name = "";
+                do
+                {   
+                    in.get(current);
+                } while (!in.eof() && current == ' ');
                 while (!in.eof() && current != ' ')
                 {
-                    in >> current;
                     first_name.push_back(current);
+                    in.get(current);
                 }
-                first_name.pop_back();
             }
-            else if (current == 'l')
+            else if (form == "l")
             {
-                while (!in.eof() && current == ' ')
-                    in >> current;
+                last_name = "";
+                do
+                {
+                    in.get(current);
+                } while (!in.eof() && current == ' ');
                 while (!in.eof() && current != ' ')
                 {
-                    in >> current;
                     last_name.push_back(current);
+                    in.get(current);
                 }
-                last_name.pop_back();
             }
+            else
+            {
+                std::cout << "Pogresna komanda\r\n";
+                return false;
+                break;
+            }
+            temp = 0;
+            form = "";
         }
         /////////////////////////////////////////////////////////////////////ovo su bile kratke forme
         else if (current != '-' && current != ' ' && temp == 2)
         {
             while (!in.eof() && current != ' ')
             {
-                long_form.push_back(current);
+                form.push_back(current);
                 in.get(current);         
             }
 
-            if (long_form == "name")
+            if (form == "name")
             {
+                first_name = "";
                 while (!in.eof() && current == ' ')
-                    in >> current;
+                    in.get(current);
                 while (!in.eof() && current != ' ')
                 {
-                    in >> current;
                     first_name.push_back(current);
+                    in.get(current);
                 }
-                first_name.pop_back();
             }
-            else if (long_form == "last")
+            else if (form == "last")
             {
+                last_name = "";
                 while (!in.eof() && current == ' ')
-                    in >> current;
+                    in.get(current);
                 while (!in.eof() && current != ' ')
                 {
-                    in >> current;
                     last_name.push_back(current);
+                    in.get(current);
                 }
-                last_name.pop_back();
             }
+            else
+            {
+                std::cout << "Pogresna komanda\r\n";
+                return false;
+                break;
+            }
+            temp = 0;
+            form = "";
         }
         /////////////////////////////////////////////////////////////////////ovo su bile duge forme
     }
-    
-    query.first_name = first_name;
-    query.last_name = last_name;
+
+    if (first_name=="" && last_name=="")
+    {
+        std::cout << "Nisi uneo komandu, ime ili prezime idiote\r\n";
+        return false;
+    }
+    else
+    {
+        query.first_name = first_name;
+        query.last_name = last_name;
+    }
     
     return true;
 }
