@@ -8,5 +8,7 @@ public:
 	string_type get_name() { return "find"; }
 	string_type get_help();
 	void do_command(std::istream& in, phone_book& phonedb);
+private:
+	bool parse_command(std::istream& in, phone_query& query);
 };
 

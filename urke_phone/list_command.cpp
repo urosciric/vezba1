@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "list_command.h"
+#include "phone_query.h"
 
 string_type list_command::get_help()
 {
@@ -11,14 +12,27 @@ string_type list_command::get_help()
 }
 void list_command::do_command(std::istream& in, phone_book& phonedb)
 {
-	string_type args;
-	in >> args;
-	if (!args.empty())
-	{
-		std::cout << "Ova komanda nema argumente!!!\r\n";
-		std::cout << get_help();
-		return;
-	}
+	
+    string_type first_name;
+    string_type last_name;
 
-	phonedb.save(std::cout);
+    in >> first_name;
+    in >> last_name;
+
+    phone_query query;
+    query.all = false;
+    query.first_name = first_name;
+    query.last_name = last_name;
+
+    auto result = phonedb.find(query);
+
+    for (auto& one : result)
+    {
+        std::cout << one.first_name << "\t"
+            << one.last_name << "\t"
+            << one.street << "\t"
+            << one.number << "\t"
+            << one.male << "\t"
+            << one.phone << "\r\n";
+    }
 }

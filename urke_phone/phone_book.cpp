@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "phone_book.h"
+#include "phone_query.h"
 
 
 string_type phone_book::create_key(string_type first, string_type last)
@@ -45,12 +46,57 @@ void phone_book::load(std::istream& in)
 
     }
 }
-phone_data phone_book::find(const string_type& name, const string_type& last_name)
+std::vector<phone_data> phone_book::find(const phone_query& query) const
 {
-    auto it = data_.find(create_key(name, last_name));
-    if (it != data_.end())
-        return it->second;
+    std::vector<phone_data> result;
+    for (auto& one : data_)
+    {
+        auto& one_data = one.second;
+        if (query.is_empty())
+            result.push_back(one_data);
+        else if(query.all && compare_and(one_data, query))
+            result.push_back(one_data);
+        else if (!query.all && compare_or(one_data, query))
+            result.push_back(one_data);
+    }
+    return result;
+}
+bool phone_book::compare_and(const phone_data& data, const phone_query& query) const
+{
+    if (!query.first_name.empty() && query.last_name.empty())
+    {
+        if (data.first_name == query.first_name)
+            return true;
+    }
+    else if (!query.last_name.empty() && query.first_name.empty())
+    {
+        if (data.last_name == query.last_name)
+            return true;
+    }
     else
-        return phone_data();
+    {
+        if (data.first_name == query.first_name && data.last_name == query.last_name)
+            return true;
+    }
+    return false;
+}
+bool phone_book::compare_or(const phone_data& data, const phone_query& query) const
+{
+    if (!query.first_name.empty() && query.last_name.empty())
+    {
+        if (data.first_name == query.first_name)
+            return true;
+    }
+    else if (!query.last_name.empty() && query.first_name.empty())
+    {
+        if (data.last_name == query.last_name)
+            return true;
+    }
+    else
+    {
+        if (data.first_name == query.first_name || data.last_name == query.last_name)
+            return true;
+    }
+    return false;
 }
 
