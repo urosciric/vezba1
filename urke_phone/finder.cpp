@@ -76,7 +76,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
             while (!in.eof() && current != ' ')
             {
                 long_form.push_back(current);
-                in >> current;                
+                in.get(current);         
             }
 
             if (long_form == "name")
