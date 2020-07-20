@@ -10,6 +10,11 @@ struct parser_option
 	string_type help_text;
 };
 
+struct bit_option : public parser_option
+{
+	bool* value;
+};
+
 struct int_option : public parser_option
 {
 	int* value;
@@ -23,7 +28,7 @@ struct string_option : public parser_option
 
 class parser3000
 {
-	std::vector<parser_option> bit_options;
+	std::vector<bit_option> bit_options;
 	std::vector<int_option> int_options;
 	std::vector<string_option> string_options;
 public:
