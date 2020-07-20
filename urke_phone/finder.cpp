@@ -29,6 +29,7 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
     temp_opt.value = &query.last_name;
     my_parser.add_string_option(temp_opt);
 
+
     if (my_parser.parse(in, err))
     {
         auto result = phonedb.find(query);

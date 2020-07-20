@@ -32,9 +32,9 @@ class parser3000
 	std::vector<int_option> int_options;
 	std::vector<string_option> string_options;
 public:
-	void add_bit_option(const parser_option& opt);
-	void add_int_option(const parser_option& opt);
-	void add_string_option(const parser_option& opt);
+	void add_bit_option(const bit_option& opt);
+	void add_int_option(const int_option& opt);
+	void add_string_option(const string_option& opt);
 
 	bool parse(std::istream& in, std::ostream& err);
 
