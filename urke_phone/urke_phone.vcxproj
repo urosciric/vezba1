@@ -160,6 +160,7 @@
     </ClCompile>
     <ClCompile Include="phone_book.cpp" />
     <ClCompile Include="phone_query.cpp" />
+    <ClCompile Include="query_finder_base.cpp" />
     <ClCompile Include="storage.cpp" />
     <ClCompile Include="urke_phone.cpp" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="phone_book.h" />
     <ClInclude Include="phone_query.h" />
+    <ClInclude Include="query_finder_base.h" />
     <ClInclude Include="storage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

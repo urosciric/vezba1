@@ -5,6 +5,7 @@
 phone_query::phone_query()
 {
 	all = true;
+	sex_query = sex_query_type::none;
 }
 
 bool phone_query::is_empty() const

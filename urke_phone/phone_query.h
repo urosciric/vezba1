@@ -1,4 +1,12 @@
 #pragma once
+
+enum class sex_query_type
+{
+	none = 0,
+	male=1,
+	female=2
+};
+
 struct phone_query
 {
 	bool all;
@@ -8,6 +16,8 @@ struct phone_query
 	int number = 0;
 	int sex_temp = 0;
 	bool sex = true;
+
+	sex_query_type sex_query;
 
 	phone_query();
 	

@@ -1,7 +1,21 @@
 #include "pch.h"
 #include "phone_book.h"
 #include "phone_query.h"
+#include "query_finder_base.h"
 
+phone_book::phone_book()
+{
+    // dodaj rqazne finder-e
+    finders_.push_back(new name_query_finder());
+    finders_.push_back(new last_name_query_finder());
+    // tako dodas i ostale
+}
+phone_book::~phone_book()
+{
+    //!!! obrisi findere kreirane sa new!!!
+    for (auto one : finders_)
+        delete one;
+}
 
 string_type phone_book::create_key(string_type first, string_type last)
 {
@@ -63,6 +77,11 @@ std::vector<phone_data> phone_book::find(const phone_query& query) const
 }
 bool phone_book::compare_and(const phone_data& data, const phone_query& query) const
 {
+    bool result = true; // neutrali element za and
+    for (auto one : finders_)
+        result = result & one->is_included(query, data);
+    return result;
+
     /////////////////////////////////////////////////////////////////////////////////
     if (!query.first_name.empty() && query.last_name.empty() && query.number == -1 && query.sex_temp == -1)
     {
@@ -153,6 +172,11 @@ bool phone_book::compare_and(const phone_data& data, const phone_query& query) c
 //////////////////////////////////////////////////////////////////////////////////////////////
 bool phone_book::compare_or(const phone_data& data, const phone_query& query) const
 {
+    bool result = false; // neutrali element za or
+    for (auto one : finders_)
+        result = result | one->is_included(query, data);
+    return result;
+
     if (!query.first_name.empty() && query.last_name.empty())
     {
         if (data.first_name == query.first_name)

@@ -45,6 +45,9 @@
     <ClCompile Include="phone_query.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="query_finder_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="phone_query.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="query_finder_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
