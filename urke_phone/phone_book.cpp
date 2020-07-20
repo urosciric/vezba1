@@ -109,7 +109,7 @@ bool phone_book::compare_or(const phone_data& data, const phone_query& query) co
         if (data.number == query.number)
             return true;
     }
-    if (data.male == query.sex)
+    if (query.sex_temp != -1 && data.male == query.sex)
         return true;
     return false;
 }

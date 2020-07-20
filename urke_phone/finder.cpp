@@ -41,7 +41,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
     query.all = false;
 
     size_t temp = 0;
-    size_t sex_temp = -1;
+    int sex_temp = -1;
 
     char current;
     while (!in.eof())
@@ -211,7 +211,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
         /////////////////////////////////////////////////////////////////////ovo su bile duge forme
     }
 
-    if (first_name == "" && last_name == "" && number == -1)
+    if (first_name == "" && last_name == "" && number == -1 && sex_temp == -1)
     {
         std::cout << "Nisi uneo sta treba!!!\r\n";
         return false;
