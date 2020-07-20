@@ -48,6 +48,9 @@
     <ClCompile Include="query_finder_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="parser3000.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="query_finder_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parser3000.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
