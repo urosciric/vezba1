@@ -63,30 +63,94 @@ std::vector<phone_data> phone_book::find(const phone_query& query) const
 }
 bool phone_book::compare_and(const phone_data& data, const phone_query& query) const
 {
-    if (!query.first_name.empty() && query.last_name.empty())
+    /////////////////////////////////////////////////////////////////////////////////
+    if (!query.first_name.empty() && query.last_name.empty() && query.number == -1 && query.sex_temp == -1)
     {
         if (data.first_name == query.first_name)
             return true;
     }
-    else if (!query.last_name.empty() && query.first_name.empty())
+    //samo ime
+    else if (!query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp == -1)
     {
         if (data.last_name == query.last_name)
             return true;
     }
-    else if (!query.last_name.empty() && !query.first_name.empty())
-    {
-        if (data.first_name == query.first_name && data.last_name == query.last_name)
-            return true;
-    }
-    if (query.number != -1)
+    //samo prezime
+    else if (query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
     {
         if (data.number == query.number)
             return true;
     }
-    if (data.male == query.sex)
-        return true;
+    //samo broj
+    else if (query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //samo pol
+    else if (!query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp == -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //ime i prezime
+    else if (query.last_name.empty() && !query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //ime i broj
+    else if (query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //ime i pol
+    else if (!query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //prezime i broj
+    else if (!query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //prezime i pol
+    else if (query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //broj i pol
+    else if (query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //prezime, ime i broj
+    else if (!query.last_name.empty() && !query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //prezime, ime i pol
+    else if (!query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
+    {
+        if (data.male == query.sex)
+            return true;
+    }
+    //ime, pol i broj
+    else if (!query.last_name.empty() && !query.first_name.empty() && query.number!=-1 && query.sex_temp != -1)
+    {
+        if (data.first_name == query.first_name && data.last_name == query.last_name && data.number == query.number && data.male == query.sex)
+            return true;
+    }
+    //sve
     return false;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
 bool phone_book::compare_or(const phone_data& data, const phone_query& query) const
 {
     if (!query.first_name.empty() && query.last_name.empty())
