@@ -38,7 +38,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
     string_type num = "";
     string_type form = "";
 
-    query.all = false;
+    //query.all = false;
 
     size_t temp = 0;
     int sex_temp = -1;

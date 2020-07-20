@@ -8,6 +8,8 @@ phone_book::phone_book()
     // dodaj razne finder-e
     finders_.push_back(new finders::name_query_finder());
     finders_.push_back(new finders::last_name_query_finder());
+    finders_.push_back(new finders::number_query_finder());
+    finders_.push_back(new finders::sex_query_finder());
     // tako dodas i ostale
 }
 phone_book::~phone_book()
@@ -81,93 +83,6 @@ bool phone_book::compare_and(const phone_data& data, const phone_query& query) c
     for (auto one : finders_)
         result = result & one->is_included(query, data);
     return result;
-
-    /////////////////////////////////////////////////////////////////////////////////
-    if (!query.first_name.empty() && query.last_name.empty() && query.number == -1 && query.sex_temp == -1)
-    {
-        if (data.first_name == query.first_name)
-            return true;
-    }
-    //samo ime
-    else if (!query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp == -1)
-    {
-        if (data.last_name == query.last_name)
-            return true;
-    }
-    //samo prezime
-    else if (query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
-    {
-        if (data.number == query.number)
-            return true;
-    }
-    //samo broj
-    else if (query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //samo pol
-    else if (!query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp == -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //ime i prezime
-    else if (query.last_name.empty() && !query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //ime i broj
-    else if (query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //ime i pol
-    else if (!query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //prezime i broj
-    else if (!query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //prezime i pol
-    else if (query.last_name.empty() && query.first_name.empty() && query.number != -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //broj i pol
-    else if (query.last_name.empty() && query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //prezime, ime i broj
-    else if (!query.last_name.empty() && !query.first_name.empty() && query.number != -1 && query.sex_temp == -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //prezime, ime i pol
-    else if (!query.last_name.empty() && !query.first_name.empty() && query.number == -1 && query.sex_temp != -1)
-    {
-        if (data.male == query.sex)
-            return true;
-    }
-    //ime, pol i broj
-    else if (!query.last_name.empty() && !query.first_name.empty() && query.number!=-1 && query.sex_temp != -1)
-    {
-        if (data.first_name == query.first_name && data.last_name == query.last_name && data.number == query.number && data.male == query.sex)
-            return true;
-    }
-    //sve
-    return false;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 bool phone_book::compare_or(const phone_data& data, const phone_query& query) const
@@ -176,29 +91,5 @@ bool phone_book::compare_or(const phone_data& data, const phone_query& query) co
     for (auto one : finders_)
         result = result | one->is_included(query, data);
     return result;
-
-    if (!query.first_name.empty() && query.last_name.empty())
-    {
-        if (data.first_name == query.first_name)
-            return true;
-    }
-    else if (!query.last_name.empty() && query.first_name.empty())
-    {
-        if (data.last_name == query.last_name)
-            return true;
-    }
-    else if(!query.last_name.empty() && !query.first_name.empty())
-    {
-        if (data.first_name == query.first_name || data.last_name == query.last_name)
-            return true;
-    }
-    if (query.number != -1)
-    {
-        if (data.number == query.number)
-            return true;
-    }
-    if (query.sex_temp != -1 && data.male == query.sex)
-        return true;
-    return false;
 }
 
