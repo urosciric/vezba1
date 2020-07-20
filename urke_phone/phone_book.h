@@ -1,6 +1,9 @@
 #pragma once
 struct phone_query;
+namespace finders
+{
 class query_finder_base;
+}
 
 struct phone_data
 {
@@ -15,7 +18,7 @@ struct phone_data
 class phone_book
 {
     
-    std::vector<query_finder_base*> finders_;
+    std::vector<finders::query_finder_base*> finders_;
     string_type create_key(string_type ime, string_type prezime);
     bool check_data(const phone_data& data);
 public:

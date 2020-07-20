@@ -4,6 +4,8 @@
 #include "query_finder_base.h"
 
 
+namespace finders
+{
 
 bool name_query_finder::is_included(const phone_query& query, const phone_data& data)
 {
@@ -21,3 +23,5 @@ bool last_name_query_finder::is_included(const phone_query& query, const phone_d
 	else
 		return query.first_name == data.first_name;
 }
+
+} //  namespace finders (ovaj komentar je korisno pisati ako je fajl duzi da se lakse snadjes)

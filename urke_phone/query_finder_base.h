@@ -2,6 +2,9 @@
 struct phone_query;
 struct phone_data;
 
+namespace finders
+{
+
 class query_finder_base
 {
 public:
@@ -21,4 +24,6 @@ class last_name_query_finder : public query_finder_base
 public:
 	bool is_included(const phone_query& query, const phone_data& data);
 };
+
+}
 

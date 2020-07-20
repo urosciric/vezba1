@@ -5,9 +5,9 @@
 
 phone_book::phone_book()
 {
-    // dodaj rqazne finder-e
-    finders_.push_back(new name_query_finder());
-    finders_.push_back(new last_name_query_finder());
+    // dodaj razne finder-e
+    finders_.push_back(new finders::name_query_finder());
+    finders_.push_back(new finders::last_name_query_finder());
     // tako dodas i ostale
 }
 phone_book::~phone_book()
