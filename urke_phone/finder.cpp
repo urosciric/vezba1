@@ -2,6 +2,7 @@
 #include "finder.h"
 #include "phone_book.h"
 #include "phone_query.h"
+#include "parser3000.h"
 
 void finder::do_command(std::istream& in, phone_book& phonedb)
 {
@@ -9,6 +10,46 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
 
 
     phone_query query;
+
+    std::ostringstream err;
+
+    //////////////////////////////////////////////////////////////////////////////
+    // pomoc parsera 3000
+    parser::parser3000 my_parser;
+
+    parser::string_option temp_opt;
+
+    temp_opt.short_option = 'n';
+    temp_opt.long_option = "name";
+    temp_opt.value = &query.first_name;
+    my_parser.add_string_option(temp_opt);
+
+    temp_opt.short_option = 'l';
+    temp_opt.long_option = "last";
+    temp_opt.value = &query.last_name;
+    my_parser.add_string_option(temp_opt);
+
+    if (my_parser.parse(in, err))
+    {
+        auto result = phonedb.find(query);
+
+        for (auto& one : result)
+        {
+            std::cout << one.first_name << "\t"
+                << one.last_name << "\t"
+                << one.street << "\t"
+                << one.number << "\t"
+                << one.male << "\t"
+                << one.phone << "\r\n";
+        }
+    }
+    else
+    {
+        std::cout << "Greska parsiranja:\r\n";
+        std::cout << err.str();
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
 
     if (parse_command(in, query))
     {
