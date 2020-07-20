@@ -20,7 +20,7 @@ void list_command::do_command(std::istream& in, phone_book& phonedb)
     in >> last_name;
 
     phone_query query;
-    query.all = false;
+    //query.all = false;
     query.first_name = first_name;
     query.last_name = last_name;
 

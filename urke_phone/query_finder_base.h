@@ -25,5 +25,17 @@ public:
 	bool is_included(const phone_query& query, const phone_data& data);
 };
 
+class number_query_finder : public query_finder_base
+{
+public:
+	bool is_included(const phone_query& query, const phone_data& data);
+};
+
+class sex_query_finder : public query_finder_base
+{
+public:
+	bool is_included(const phone_query& query, const phone_data& data);
+};
+
 }
 
