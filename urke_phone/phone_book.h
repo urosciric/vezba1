@@ -7,7 +7,7 @@ struct phone_data
     string_type last_name;
     string_type street;
     unsigned int number = 2;
-    bool male = 0;
+    bool male = true;
     string_type phone;
 };
 

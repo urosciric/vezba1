@@ -33,11 +33,15 @@ bool finder::parse_command(std::istream& in, phone_query& query)
 {
     string_type first_name = "";
     string_type last_name = "";
+    int number = -1;
+    bool sex = true;
+    string_type num = "";
     string_type form = "";
 
     query.all = false;
 
     size_t temp = 0;
+    size_t sex_temp = -1;
 
     char current;
     while (!in.eof())
@@ -57,7 +61,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
             {
                 first_name = "";
                 do
-                {   
+                {
                     in.get(current);
                 } while (!in.eof() && current == ' ');
                 while (!in.eof() && current != ' ')
@@ -79,12 +83,51 @@ bool finder::parse_command(std::istream& in, phone_query& query)
                     in.get(current);
                 }
             }
+            else if (form == "b")
+            {
+                do
+                {
+                    in.get(current);
+                } while (!in.eof() && current == ' ');
+                while (!in.eof() && current != ' ')
+                {
+                    num.push_back(current);
+                    in.get(current);
+                }
+                for (unsigned int i = 0; i < num.size(); i++)
+                {
+                    temp = 0;
+                    if (num[i] != '0' && num[i] != '1' && num[i] != '2' && num[i] != '3' && num[i] != '4' && num[i] != '5' && num[i] != '6' && num[i] != '7' && num[i] != '8' && num[i] != '9')
+                        temp++;
+                }
+                if (temp == 0)
+                {
+                    number = std::stoi(num);
+                }
+                else
+                {
+                    std::cout << "Ne moze slova moraju brojevi!!!\r\n";
+                    return false;
+                    break;
+                }
+            }
+            else if (form == "m")
+            {
+                sex = false;
+                sex_temp = 1;
+            }
+            else if (form == "f")
+            {
+                sex = true;
+                sex_temp = 0;
+            }
             else
             {
                 std::cout << "Pogresna komanda\r\n";
                 return false;
                 break;
             }
+            num = "";
             temp = 0;
             form = "";
         }
@@ -119,27 +162,67 @@ bool finder::parse_command(std::istream& in, phone_query& query)
                     in.get(current);
                 }
             }
+            else if (form == "broj")
+            {
+                while (!in.eof() && current == ' ')
+                    in.get(current);
+                while (!in.eof() && current != ' ')
+                {
+                    num.push_back(current);
+                    in.get(current);
+                }
+                for (unsigned int i = 0; i < num.size(); i++)
+                {
+                    temp = 0;
+                    if (num[i] != '0' && num[i] != '1' && num[i] != '2' && num[i] != '3' && num[i] != '4' && num[i] != '5' && num[i] != '6' && num[i] != '7' && num[i] != '8' && num[i] != '9')
+                        temp++;
+                }
+                if (temp == 0)
+                {
+                    number = std::stoi(num);
+                }
+                else
+                {
+                    std::cout << "Ne moze slova moraju brojevi!!!\r\n";
+                    return false;
+                    break;
+                }
+            }
+            else if (form == "male")
+            {
+                sex = false;
+                sex_temp = 1;
+            }
+            else if (form == "female")
+            {
+                sex = true;
+                sex_temp = 0;
+            }
             else
             {
                 std::cout << "Pogresna komanda\r\n";
                 return false;
                 break;
             }
+            num = "";
             temp = 0;
             form = "";
         }
         /////////////////////////////////////////////////////////////////////ovo su bile duge forme
     }
 
-    if (first_name=="" && last_name=="")
+    if (first_name == "" && last_name == "" && number == -1)
     {
-        std::cout << "Nisi uneo komandu, ime ili prezime idiote\r\n";
+        std::cout << "Nisi uneo sta treba!!!\r\n";
         return false;
     }
-    else
+    else if (first_name != "" || last_name != "" || number != -1 || sex_temp != -1)
     {
         query.first_name = first_name;
         query.last_name = last_name;
+        query.number = number;
+        query.sex_temp = sex_temp;
+        query.sex = sex;
     }
     
     return true;

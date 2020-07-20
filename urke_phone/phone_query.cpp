@@ -9,5 +9,11 @@ phone_query::phone_query()
 
 bool phone_query::is_empty() const
 {
-	return first_name.empty() && last_name.empty();
+	bool temp1 = true;
+	if (number != -1)
+		temp1 = false;
+	bool temp2 = true;
+	if (sex_temp != -1)
+		temp2 = false;
+	return first_name.empty() && last_name.empty() && temp1 && temp2;
 }

@@ -73,11 +73,18 @@ bool phone_book::compare_and(const phone_data& data, const phone_query& query) c
         if (data.last_name == query.last_name)
             return true;
     }
-    else
+    else if (!query.last_name.empty() && !query.first_name.empty())
     {
         if (data.first_name == query.first_name && data.last_name == query.last_name)
             return true;
     }
+    if (query.number != -1)
+    {
+        if (data.number == query.number)
+            return true;
+    }
+    if (data.male == query.sex)
+        return true;
     return false;
 }
 bool phone_book::compare_or(const phone_data& data, const phone_query& query) const
@@ -92,11 +99,18 @@ bool phone_book::compare_or(const phone_data& data, const phone_query& query) co
         if (data.last_name == query.last_name)
             return true;
     }
-    else
+    else if(!query.last_name.empty() && !query.first_name.empty())
     {
         if (data.first_name == query.first_name || data.last_name == query.last_name)
             return true;
     }
+    if (query.number != -1)
+    {
+        if (data.number == query.number)
+            return true;
+    }
+    if (data.male == query.sex)
+        return true;
     return false;
 }
 

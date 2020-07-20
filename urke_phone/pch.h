@@ -8,5 +8,6 @@
 #include <map>
 #include <fstream>
 #include <io.h>
+#include <stdlib.h>
 
 typedef std::string string_type;
