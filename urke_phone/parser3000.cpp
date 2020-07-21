@@ -32,17 +32,18 @@ namespace parser
 	bool parser3000::parse(std::istream& in, std::ostream& err)
 	{
 		size_t temp = 0;
-		size_t bad = 0;
 		string_type form = "";
 		string_type int_temp = "";
 		string_type uint_temp = "";
 		string_type float_temp = "";
+		size_t bool_temp = 0;
 		char current;
 		while (!in.eof())
 		{
-			bad = 0;
 			form = "";
-			in.get(current);
+			if (bool_temp == 0)
+				in.get(current);
+			bool_temp = 0;
 			if (current == '-')
 				temp++;
 			else if (current != '-' && current != ' ' && temp == 1)
@@ -58,8 +59,12 @@ namespace parser
 						continue;
 					if (form[0] == bit_options[i].short_option)
 					{
-						bad++;
 						*bit_options[i].value = true;
+						while (!in.eof() && current == ' ')
+							in.get(current);
+						if (current != '-')
+							return false;
+						bool_temp = 1;
 						break;
 					}
 				}
@@ -70,7 +75,6 @@ namespace parser
 						continue;
 					if (form[0] == int_options[i].short_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -78,10 +82,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
+							{
+								return false;
+							}
 							int_temp.push_back(current);
 							in.get(current);
 						}
+						*int_options[i].value = to_int_parser(int_temp);
 						break;
 					}
 				}
@@ -92,7 +99,6 @@ namespace parser
 						continue;
 					if (form[0] == uint_options[i].short_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -100,10 +106,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
+							{
+								return false;
+							}
 							uint_temp.push_back(current);
 							in.get(current);
 						}
+						*uint_options[i].value = to_uint_parser(int_temp);
 						break;
 					}
 				}
@@ -114,7 +123,6 @@ namespace parser
 						continue;
 					if (form[0] == float_options[i].short_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -122,10 +130,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
-							uint_temp.push_back(current);
+							{
+								return false;
+							}
+							float_temp.push_back(current);
 							in.get(current);
 						}
+						*float_options[i].value = to_float_parser(int_temp);
 						break;
 					}
 				}
@@ -136,7 +147,6 @@ namespace parser
 						continue;
 					if (form[0] == string_options[i].short_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -144,7 +154,9 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (current == '-')
-								bad++;
+							{
+								return false;
+							}	
 							string_options[i].value->push_back(current);
 							in.get(current);
 						}
@@ -152,9 +164,6 @@ namespace parser
 					}
 				}
 				//for string options
-				bad--;
-				if (bad != 0)
-					return false;
 				temp = 0;
 			}
 			//////////////////////short form
@@ -171,8 +180,12 @@ namespace parser
 						continue;
 					if (form == bit_options[i].long_option)
 					{
-						bad++;
 						*bit_options[i].value = true;
+						while (!in.eof() && current == ' ')
+							in.get(current);
+						if (current != '-')
+							return false;
+						bool_temp = 1;
 						break;
 					}
 				}
@@ -183,7 +196,6 @@ namespace parser
 						continue;
 					if (form == int_options[i].long_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -191,10 +203,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
+							{
+								return false;
+							}
 							int_temp.push_back(current);
 							in.get(current);
 						}
+						*int_options[i].value = to_int_parser(int_temp);
 						break;
 					}
 				}
@@ -205,7 +220,6 @@ namespace parser
 						continue;
 					if (form == uint_options[i].long_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -213,10 +227,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
+							{
+								return false;
+							}
 							uint_temp.push_back(current);
 							in.get(current);
 						}
+						*uint_options[i].value = to_uint_parser(int_temp);
 						break;
 					}
 				}
@@ -227,7 +244,6 @@ namespace parser
 						continue;
 					if (form == float_options[i].long_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -235,10 +251,13 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-								bad++;
-							uint_temp.push_back(current);
+							{
+								return false;
+							}
+							float_temp.push_back(current);
 							in.get(current);
 						}
+						*float_options[i].value = to_float_parser(int_temp);
 						break;
 					}
 				}
@@ -249,7 +268,6 @@ namespace parser
 						continue;
 					if (form == string_options[i].long_option)
 					{
-						bad++;
 						do
 						{
 							in.get(current);
@@ -257,7 +275,9 @@ namespace parser
 						while (!in.eof() && current != ' ')
 						{
 							if (current == '-')
-								bad++;
+							{
+								return false;
+							}	
 							string_options[i].value->push_back(current);
 							in.get(current);
 						}
@@ -265,14 +285,31 @@ namespace parser
 					}
 				}
 				//for string options
-				bad--;
-				if (bad != 0)
-					return false;
 				temp = 0;
 			}
 			//////////////////////long form
 		}
 		return true;
+	}
+
+	//////////////////////////////////////////////
+
+	int parser3000::to_int_parser(const string_type& what)
+	{
+		int converted = stoi(what);
+		return converted;
+	}
+
+	unsigned int parser3000::to_uint_parser(const string_type& what)
+	{
+		unsigned int converted = stoul(what, nullptr, 0);
+		return converted;
+	}
+
+	double parser3000::to_float_parser(const string_type& what)
+	{
+		double converted = stod(what);
+		return converted;
 	}
 
 } // parser

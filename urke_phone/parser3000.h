@@ -45,6 +45,7 @@ class parser3000
 	std::vector<uint_option> uint_options;
 	std::vector<float_option> float_options;
 	std::vector<string_option> string_options;
+
 public:
 	void add_bit_option(const bit_option& opt);
 	void add_int_option(const int_option& opt);

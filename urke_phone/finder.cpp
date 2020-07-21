@@ -17,20 +17,25 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
     // pomoc parsera 3000
     parser::parser3000 my_parser;
 
-    parser::string_option temp_opt;
+    parser::string_option temp_opt1;
+    parser::int_option temp_opt2;
 
     system("pause");
 
-    temp_opt.short_option = 'n';
-    temp_opt.long_option = "name";
-    temp_opt.value = &query.first_name;
-    my_parser.add_string_option(temp_opt);
+    temp_opt1.short_option = 'n';
+    temp_opt1.long_option = "name";
+    temp_opt1.value = &query.first_name;
+    my_parser.add_string_option(temp_opt1);
 
-    temp_opt.short_option = 'l';
-    temp_opt.long_option = "last";
-    temp_opt.value = &query.last_name;
-    my_parser.add_string_option(temp_opt);
+    temp_opt1.short_option = 'l';
+    temp_opt1.long_option = "last";
+    temp_opt1.value = &query.last_name;
+    my_parser.add_string_option(temp_opt1);
 
+    temp_opt2.short_option = 'b';
+    temp_opt2.long_option = "broj";
+    temp_opt2.value = &query.number;
+    my_parser.add_int_option(temp_opt2);
 
     if (my_parser.parse(in, err))
     {
