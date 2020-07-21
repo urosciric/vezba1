@@ -19,6 +19,8 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
 
     parser::string_option temp_opt;
 
+    system("pause");
+
     temp_opt.short_option = 'n';
     temp_opt.long_option = "name";
     temp_opt.value = &query.first_name;
@@ -49,6 +51,7 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
         std::cout << "Greska parsiranja:\r\n";
         std::cout << err.str();
     }
+    system("pause");
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +89,7 @@ bool finder::parse_command(std::istream& in, phone_query& query)
     int sex_temp = -1;
 
     char current;
+    
     while (!in.eof())
     {
         in.get(current);  
