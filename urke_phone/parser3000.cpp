@@ -88,16 +88,20 @@ namespace parser
 							in.get(current);
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
-						{
-							if (!(current >= '0' && current <= '9'))
-							{
-								err << "You need to put in integer as an argument in integer option!\r\n";
-								return false;
-							}
+						{							
 							int_temp.push_back(current);
 							in.get(current);
 						}
-						*int_options[i].value = to_int_parser(int_temp);
+						int val;
+						if (to_int_parser(int_temp, val))
+						{
+							*int_options[i].value = val;
+						}
+						else
+						{
+							err << "Unable to convert " << int_temp << " to integer value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -231,16 +235,20 @@ namespace parser
 							in.get(current);
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
-						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-							{
-								err << "You need to put in integer as an argument in integer option!\r\n";
-								return false;
-							}
+						{							
 							int_temp.push_back(current);
 							in.get(current);
 						}
-						*int_options[i].value = to_int_parser(int_temp);
+						int val;
+						if (to_int_parser(int_temp, val))
+						{
+							*int_options[i].value = val;
+						}
+						else
+						{
+							err << "Unable to convert " << int_temp << " to integer value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -344,10 +352,20 @@ namespace parser
 
 	//////////////////////////////////////////////
 
-	int parser3000::to_int_parser(const string_type& what)
+	bool parser3000::to_int_parser(const string_type& what, int& val)
 	{
-		int converted = stoi(what);
-		return converted;
+		errno = 0;
+		char* endptr = nullptr;
+		long converted = strtol(what.c_str(), &endptr, 10);
+		if (errno != 0)
+		{
+			return false;
+		}
+		else
+		{
+			val = (int)converted;
+			return true;
+		}
 	}
 
 	unsigned int parser3000::to_uint_parser(const string_type& what)
