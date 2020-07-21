@@ -58,8 +58,10 @@ public:
 	
 private:
 	bool to_int_parser(const string_type& what, int& val);
-	unsigned int to_uint_parser(const string_type& what);
-	double to_float_parser(const string_type& what);
+	bool to_uint_parser(const string_type& what, unsigned int& val);
+	bool to_float_parser(const string_type& what, double& val);
+
+
 };
 
 

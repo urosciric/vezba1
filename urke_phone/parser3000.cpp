@@ -37,7 +37,12 @@ namespace parser
 		string_type uint_temp = "";
 		string_type float_temp = "";
 		size_t bool_temp = 0;
+
 		char current;
+
+		int val1;
+		unsigned int val2;
+		double val3;
 
 		bool wrong = true;
 
@@ -68,7 +73,7 @@ namespace parser
 							in.get(current);
 						if (current != '-')
 						{
-							err << "Bit option cant have argument!\r\n";
+							err << "Bit option cant have argument!";
 							return false;
 						}
 						bool_temp = 1;
@@ -92,10 +97,9 @@ namespace parser
 							int_temp.push_back(current);
 							in.get(current);
 						}
-						int val;
-						if (to_int_parser(int_temp, val))
+						if (to_int_parser(int_temp, val1))
 						{
-							*int_options[i].value = val;
+							*int_options[i].value = val1;
 						}
 						else
 						{
@@ -119,15 +123,18 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current >= '0' && current <= '9'))
-							{
-								err << "You need to put in unsigned integer as an argument in unsigned integer option!\r\n";
-								return false;
-							}
 							uint_temp.push_back(current);
 							in.get(current);
 						}
-						*uint_options[i].value = to_uint_parser(int_temp);
+						if (to_uint_parser(int_temp, val2))
+						{
+							*uint_options[i].value = val2;
+						}
+						else
+						{
+							err << "Unable to convert " << uint_temp << " to unsigned integer value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -145,15 +152,18 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-							{
-								err << "You need to put in double float as an argument in float option!\r\n";
-								return false;
-							}
 							float_temp.push_back(current);
 							in.get(current);
 						}
-						*float_options[i].value = to_float_parser(int_temp);
+						if (to_float_parser(int_temp, val3))
+						{
+							*float_options[i].value = val3;
+						}
+						else
+						{
+							err << "Unable to convert " << float_temp << " to double value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -171,14 +181,14 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						if (in.eof())
 						{
-							err << "String option needs an argument!\r\n";
+							err << "String option needs an argument!";
 							return false;
 						}
 						while (!in.eof() && current != ' ')
 						{
 							if (current == '-' || in.eof())
 							{
-								err << "String option needs an argument!\r\n";
+								err << "String option needs an argument!";
 								return false;
 							}	
 							string_options[i].value->push_back(current);
@@ -190,7 +200,7 @@ namespace parser
 				//for string options
 				if (wrong)
 				{
-					err << "Unknown command!\r\n";
+					err << "Unknown command!";
 					return false;
 				}
 				temp = 0;
@@ -215,7 +225,7 @@ namespace parser
 							in.get(current);
 						if (current != '-')
 						{
-							err << "Bit option cant have argument!\r\n";
+							err << "Bit option cant have argument!";
 							return false;
 						}
 						bool_temp = 1;
@@ -266,15 +276,18 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-							{
-								err << "You need to put in unsigned integer as an argument in unsigned integer option!\r\n";
-								return false;
-							}
 							uint_temp.push_back(current);
 							in.get(current);
 						}
-						*uint_options[i].value = to_uint_parser(int_temp);
+						if (to_uint_parser(int_temp, val2))
+						{
+							*uint_options[i].value = val2;
+						}
+						else
+						{
+							err << "Unable to convert " << uint_temp << " to unsigned integer value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -292,15 +305,18 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
-							{
-								err << "You need to put in double float as an argument in float option!\r\n";
-								return false;
-							}
 							float_temp.push_back(current);
 							in.get(current);
 						}
-						*float_options[i].value = to_float_parser(int_temp);
+						if (to_float_parser(int_temp, val3))
+						{
+							*float_options[i].value = val3;
+						}
+						else
+						{
+							err << "Unable to convert " << float_temp << " to double value!";
+							return false;
+						}
 						break;
 					}
 				}
@@ -318,14 +334,14 @@ namespace parser
 						} while (!in.eof() && current == ' ');
 						if (in.eof())
 						{
-							err << "String option needs an argument!\r\n";
+							err << "String option needs an argument!";
 							return false;
 						}
 						while (!in.eof() && current != ' ')
 						{
 							if (current == '-')
 							{
-								err << "String option needs an argument!\r\n";
+								err << "String option needs an argument!";
 								return false;
 							}	
 							string_options[i].value->push_back(current);
@@ -337,7 +353,7 @@ namespace parser
 				//for string options
 				if (wrong)
 				{
-					err << "Unknown command!\r\n";
+					err << "Unknown command!";
 					return false;
 				}
 				temp = 0;
@@ -345,9 +361,14 @@ namespace parser
 			//////////////////////long form
 		}
 		if (wrong)
-			err << "You didnt put enything!\r\n";
+		{
+			err << "You didnt put enything!";
+			return false;
+		}
 		else
+		{
 			return true;
+		}
 	}
 
 	//////////////////////////////////////////////
@@ -368,16 +389,36 @@ namespace parser
 		}
 	}
 
-	unsigned int parser3000::to_uint_parser(const string_type& what)
+	bool parser3000::to_uint_parser(const string_type& what, unsigned int& val)
 	{
-		unsigned int converted = stoul(what, nullptr, 0);
-		return converted;
+		errno = 0;
+		char* endptr = nullptr;
+		unsigned long converted = strtoul(what.c_str(), &endptr, 10);
+		if (errno != 0)
+		{
+			return false;
+		}
+		else
+		{
+			val = (unsigned int)converted;
+			return true;
+		}
 	}
 
-	double parser3000::to_float_parser(const string_type& what)
+	bool parser3000::to_float_parser(const string_type& what, double& val)
 	{
-		double converted = stod(what);
-		return converted;
+		errno = 0;
+		char* endptr = nullptr;
+		double converted = strtod(what.c_str(), &endptr);
+		if (errno != 0)
+		{
+			return false;
+		}
+		else
+		{
+			val = converted;
+			return true;
+		}
 	}
 
 } // parser
