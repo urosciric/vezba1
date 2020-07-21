@@ -57,7 +57,7 @@ public:
 	bool parse(std::istream& in, std::ostream& err);
 	
 private:
-	int to_int_parser(const string_type& what);
+	bool to_int_parser(const string_type& what, int& val);
 	unsigned int to_uint_parser(const string_type& what);
 	double to_float_parser(const string_type& what);
 };

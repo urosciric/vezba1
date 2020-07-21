@@ -38,6 +38,9 @@ namespace parser
 		string_type float_temp = "";
 		size_t bool_temp = 0;
 		char current;
+
+		bool wrong = true;
+
 		while (!in.eof())
 		{
 			form = "";
@@ -59,11 +62,15 @@ namespace parser
 						continue;
 					if (form[0] == bit_options[i].short_option)
 					{
+						wrong = false;
 						*bit_options[i].value = true;
 						while (!in.eof() && current == ' ')
 							in.get(current);
 						if (current != '-')
+						{
+							err << "Bit option cant have argument!\r\n";
 							return false;
+						}
 						bool_temp = 1;
 						break;
 					}
@@ -75,14 +82,16 @@ namespace parser
 						continue;
 					if (form[0] == int_options[i].short_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
+							if (!(current >= '0' && current <= '9'))
 							{
+								err << "You need to put in integer as an argument in integer option!\r\n";
 								return false;
 							}
 							int_temp.push_back(current);
@@ -99,14 +108,16 @@ namespace parser
 						continue;
 					if (form[0] == uint_options[i].short_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
 						} while (!in.eof() && current == ' ');
 						while (!in.eof() && current != ' ')
 						{
-							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
+							if (!(current >= '0' && current <= '9'))
 							{
+								err << "You need to put in unsigned integer as an argument in unsigned integer option!\r\n";
 								return false;
 							}
 							uint_temp.push_back(current);
@@ -123,6 +134,7 @@ namespace parser
 						continue;
 					if (form[0] == float_options[i].short_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
@@ -131,6 +143,7 @@ namespace parser
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
 							{
+								err << "You need to put in double float as an argument in float option!\r\n";
 								return false;
 							}
 							float_temp.push_back(current);
@@ -147,14 +160,21 @@ namespace parser
 						continue;
 					if (form[0] == string_options[i].short_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
 						} while (!in.eof() && current == ' ');
+						if (in.eof())
+						{
+							err << "String option needs an argument!\r\n";
+							return false;
+						}
 						while (!in.eof() && current != ' ')
 						{
-							if (current == '-')
+							if (current == '-' || in.eof())
 							{
+								err << "String option needs an argument!\r\n";
 								return false;
 							}	
 							string_options[i].value->push_back(current);
@@ -164,6 +184,11 @@ namespace parser
 					}
 				}
 				//for string options
+				if (wrong)
+				{
+					err << "Unknown command!\r\n";
+					return false;
+				}
 				temp = 0;
 			}
 			//////////////////////short form
@@ -180,11 +205,15 @@ namespace parser
 						continue;
 					if (form == bit_options[i].long_option)
 					{
+						wrong = false;
 						*bit_options[i].value = true;
 						while (!in.eof() && current == ' ')
 							in.get(current);
 						if (current != '-')
+						{
+							err << "Bit option cant have argument!\r\n";
 							return false;
+						}
 						bool_temp = 1;
 						break;
 					}
@@ -196,6 +225,7 @@ namespace parser
 						continue;
 					if (form == int_options[i].long_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
@@ -204,6 +234,7 @@ namespace parser
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
 							{
+								err << "You need to put in integer as an argument in integer option!\r\n";
 								return false;
 							}
 							int_temp.push_back(current);
@@ -220,6 +251,7 @@ namespace parser
 						continue;
 					if (form == uint_options[i].long_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
@@ -228,6 +260,7 @@ namespace parser
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
 							{
+								err << "You need to put in unsigned integer as an argument in unsigned integer option!\r\n";
 								return false;
 							}
 							uint_temp.push_back(current);
@@ -244,6 +277,7 @@ namespace parser
 						continue;
 					if (form == float_options[i].long_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
@@ -252,6 +286,7 @@ namespace parser
 						{
 							if (!(current == '0' || current == '1' || current == '2' || current == '3' || current == '4' || current == '5' || current == '6' || current == '7' || current == '8' || current == '9'))
 							{
+								err << "You need to put in double float as an argument in float option!\r\n";
 								return false;
 							}
 							float_temp.push_back(current);
@@ -268,14 +303,21 @@ namespace parser
 						continue;
 					if (form == string_options[i].long_option)
 					{
+						wrong = false;
 						do
 						{
 							in.get(current);
 						} while (!in.eof() && current == ' ');
+						if (in.eof())
+						{
+							err << "String option needs an argument!\r\n";
+							return false;
+						}
 						while (!in.eof() && current != ' ')
 						{
 							if (current == '-')
 							{
+								err << "String option needs an argument!\r\n";
 								return false;
 							}	
 							string_options[i].value->push_back(current);
@@ -285,11 +327,19 @@ namespace parser
 					}
 				}
 				//for string options
+				if (wrong)
+				{
+					err << "Unknown command!\r\n";
+					return false;
+				}
 				temp = 0;
 			}
 			//////////////////////long form
 		}
-		return true;
+		if (wrong)
+			err << "You didnt put enything!\r\n";
+		else
+			return true;
 	}
 
 	//////////////////////////////////////////////

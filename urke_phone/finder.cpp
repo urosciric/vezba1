@@ -58,6 +58,7 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
     }
     system("pause");
 
+
     //////////////////////////////////////////////////////////////////////////////
 
     if (parse_command(in, query))
