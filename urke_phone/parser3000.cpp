@@ -65,13 +65,13 @@ namespace parser
 				{
 					if (bit_options[i].short_option == '\0')
 						continue;
-					if (form[0] == bit_options[i].short_option)
+					if (form[form.size()-1] == bit_options[i].short_option)
 					{
 						wrong = false;
 						*bit_options[i].value = true;
 						while (!in.eof() && current == ' ')
 							in.get(current);
-						if (current != '-')
+						if (current != '-' && !in.eof())
 						{
 							err << "Bit option cant have argument!";
 							return false;
@@ -85,7 +85,7 @@ namespace parser
 				{
 					if (int_options[i].short_option == '\0')
 						continue;
-					if (form[0] == int_options[i].short_option)
+					if (form[form.size() - 1] == int_options[i].short_option)
 					{
 						wrong = false;
 						do
@@ -114,7 +114,7 @@ namespace parser
 				{
 					if (uint_options[i].short_option == '\0')
 						continue;
-					if (form[0] == uint_options[i].short_option)
+					if (form[form.size() - 1] == uint_options[i].short_option)
 					{
 						wrong = false;
 						do
@@ -143,7 +143,7 @@ namespace parser
 				{
 					if (float_options[i].short_option == '\0')
 						continue;
-					if (form[0] == float_options[i].short_option)
+					if (form[form.size() - 1] == float_options[i].short_option)
 					{
 						wrong = false;
 						do
@@ -172,7 +172,7 @@ namespace parser
 				{
 					if (string_options[i].short_option == '\0')
 						continue;
-					if (form[0] == string_options[i].short_option)
+					if (form[form.size() - 1] == string_options[i].short_option)
 					{
 						wrong = false;
 						do
@@ -223,7 +223,7 @@ namespace parser
 						*bit_options[i].value = true;
 						while (!in.eof() && current == ' ')
 							in.get(current);
-						if (current != '-')
+						if (current != '-' && !in.eof())
 						{
 							err << "Bit option cant have argument!";
 							return false;
