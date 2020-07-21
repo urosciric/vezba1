@@ -378,7 +378,7 @@ namespace parser
 		errno = 0;
 		char* endptr = nullptr;
 		long converted = strtol(what.c_str(), &endptr, 10);
-		if (errno != 0)
+		if (endptr==nullptr || *endptr != '\0' || errno != 0)
 		{
 			return false;
 		}
