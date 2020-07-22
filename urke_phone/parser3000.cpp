@@ -9,6 +9,34 @@ namespace parser
 		bit_options.emplace_back(opt);
 	}
 
+	void parser3000::add_bit_option(char opt, bool* value, const char* help)
+	{
+		bit_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = nullptr;
+		temp.value = value;
+		add_bit_option(temp);
+	}
+	void parser3000::add_bit_option(const char* opt, bool* value, const char* help)
+	{
+		bit_option temp;
+		temp.help_text = help;
+		temp.short_option = '\0';
+		temp.long_option = opt;
+		temp.value = value;
+		add_bit_option(temp);
+	}
+	void parser3000::add_bit_option(char opt, const char* opt_long, bool* value, const char* help)
+	{
+		bit_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = opt_long;
+		temp.value = value;
+		add_bit_option(temp);
+	}
+
 	void parser3000::add_int_option(const int_option& opt)
 	{
 		int_options.emplace_back(opt);
