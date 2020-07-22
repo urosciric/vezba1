@@ -47,12 +47,16 @@ class parser3000
 	std::vector<string_option> string_options;
 
 public:
+	// full options
 	void add_bit_option(const bit_option& opt);
 	void add_int_option(const int_option& opt);
 	void add_uint_option(const uint_option& opt);
 	void add_float_option(const float_option& opt);
 	void add_string_option(const string_option& opt);
-
+	// fast bit options
+	void add_bit_option(char opt, bool* value, const char* help = nullptr);
+	void add_bit_option(const char* opt, bool* value, const char* help = nullptr);
+	void add_bit_option(char opt, const char* opt_long, bool* value, const char* help = nullptr);
 
 	bool parse(std::istream& in, std::ostream& err);
 	
