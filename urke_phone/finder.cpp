@@ -19,6 +19,7 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
 
     parser::string_option temp_opt1;
     parser::int_option temp_opt2;
+    parser::bit_option temp_opt3;
 
     system("pause");
 
@@ -36,6 +37,11 @@ void finder::do_command(std::istream& in, phone_book& phonedb)
     temp_opt2.long_option = "broj";
     temp_opt2.value = &query.number;
     my_parser.add_int_option(temp_opt2);
+
+    temp_opt3.short_option = 'm';
+    temp_opt3.long_option = "male";
+    temp_opt3.value = &query.sex;
+    my_parser.add_bit_option(temp_opt3);
 
     if (my_parser.parse(in, err))
     {

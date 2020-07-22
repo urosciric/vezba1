@@ -36,7 +36,7 @@ bool number_query_finder::is_included(const phone_query& query, const phone_data
 
 bool sex_query_finder::is_included(const phone_query& query, const phone_data& data)
 {
-	if (query.sex_temp == -1)
+	if (query.sex_temp == 0)
 		return true;
 	else
 		return query.sex == data.male;
