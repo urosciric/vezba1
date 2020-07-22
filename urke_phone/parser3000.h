@@ -54,9 +54,20 @@ public:
 	void add_float_option(const float_option& opt);
 	void add_string_option(const string_option& opt);
 	// fast bit options
+	////////////////////////////////////
 	void add_bit_option(char opt, bool* value, const char* help = nullptr);
 	void add_bit_option(const char* opt, bool* value, const char* help = nullptr);
 	void add_bit_option(char opt, const char* opt_long, bool* value, const char* help = nullptr);
+
+	void add_int_option(char opt, int* value, const char* help = nullptr);
+	void add_int_option(const char* opt, int* value, const char* help = nullptr);
+	void add_int_option(char opt, const char* opt_long, int* value, const char* help = nullptr);
+
+	void add_string_option(char opt, string_type* value, const char* help = nullptr);
+	void add_string_option(const char* opt, string_type* value, const char* help = nullptr);
+	void add_string_option(char opt, const char* opt_long, string_type* value, const char* help = nullptr);
+	////////////////////////////////////
+
 
 	bool parse(std::istream& in, std::ostream& err);
 	

@@ -37,9 +37,41 @@ namespace parser
 		add_bit_option(temp);
 	}
 
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+
 	void parser3000::add_int_option(const int_option& opt)
 	{
 		int_options.emplace_back(opt);
+	}
+
+	void parser3000::add_int_option(char opt, int* value, const char* help)
+	{
+		int_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = nullptr;
+		temp.value = value;
+		add_int_option(temp);
+	}
+	void parser3000::add_int_option(const char* opt, int* value, const char* help)
+	{
+		int_option temp;
+		temp.help_text = help;
+		temp.short_option = '\0';
+		temp.long_option = opt;
+		temp.value = value;
+		add_int_option(temp);
+	}
+	void parser3000::add_int_option(char opt, const char* opt_long, int* value, const char* help)
+	{
+		int_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = opt_long;
+		temp.value = value;
+		add_int_option(temp);
 	}
 
 	void parser3000::add_uint_option(const uint_option& opt)
@@ -55,6 +87,34 @@ namespace parser
 	void parser3000::add_string_option(const string_option& opt)
 	{
 		string_options.emplace_back(opt);
+	}
+
+	void parser3000::add_string_option(char opt, string_type* value, const char* help)
+	{
+		string_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = nullptr;
+		temp.value = value;
+		add_string_option(temp);
+	}
+	void parser3000::add_string_option(const char* opt, string_type* value, const char* help)
+	{
+		string_option temp;
+		temp.help_text = help;
+		temp.short_option = '\0';
+		temp.long_option = opt;
+		temp.value = value;
+		add_string_option(temp);
+	}
+	void parser3000::add_string_option(char opt, const char* opt_long, string_type* value, const char* help)
+	{
+		string_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = opt_long;
+		temp.value = value;
+		add_string_option(temp);
 	}
 	/////////////////////////////////////////////////////////////////////////
 	bool parser3000::parse(std::istream& in, std::ostream& err)
@@ -82,9 +142,9 @@ namespace parser
 			bool_temp = 0;
 			if (current == '-')
 				temp++;
-			else if (current != '-' && current != ' ' && temp == 1)
+			else if (current != '-' && current != ' ' && current != '	' && temp == 1)
 			{
-				while (!in.eof() && current != ' ')
+				while (!in.eof() && current != ' ' && current != '	')
 				{
 					form.push_back(current);
 					in.get(current);
@@ -93,19 +153,26 @@ namespace parser
 				{
 					if (bit_options[i].short_option == '\0')
 						continue;
-					if (form[form.size()-1] == bit_options[i].short_option)
+					for (int j = 0; j < form.size(); j++)
 					{
-						wrong = false;
-						*bit_options[i].value = true;
-						while (!in.eof() && current == ' ')
-							in.get(current);
-						if (current != '-' && !in.eof())
+						if (form[j] == bit_options[i].short_option)
 						{
-							err << "Bit option cant have argument!";
-							return false;
+							wrong = false;
+							if (*bit_options[i].value == true)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							*bit_options[i].value = true;
+							while (!in.eof() && (current == ' ' || current == '	'))
+								in.get(current);
+							if (current != '-' && !in.eof())
+							{
+								err << "Bit option cant have argument!";
+								return false;
+							}
+							bool_temp = 1;
 						}
-						bool_temp = 1;
-						break;
 					}
 				}
 				//for bit options
@@ -119,14 +186,24 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{							
 							int_temp.push_back(current);
 							in.get(current);
 						}
 						if (to_int_parser(int_temp, val1))
 						{
+							if (*int_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (int_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*int_options[i].value = val1;
 						}
 						else
@@ -137,6 +214,7 @@ namespace parser
 						break;
 					}
 				}
+				int_temp = "";
 				//for int options
 				for (unsigned int i = 0; i < uint_options.size(); i++)
 				{
@@ -148,14 +226,24 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							uint_temp.push_back(current);
 							in.get(current);
 						}
 						if (to_uint_parser(int_temp, val2))
 						{
+							if (*uint_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (int_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*uint_options[i].value = val2;
 						}
 						else
@@ -166,6 +254,7 @@ namespace parser
 						break;
 					}
 				}
+				uint_temp = "";
 				//for unsigned int options
 				for (unsigned int i = 0; i < float_options.size(); i++)
 				{
@@ -177,14 +266,24 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							float_temp.push_back(current);
 							in.get(current);
 						}
 						if (to_float_parser(int_temp, val3))
 						{
+							if (*float_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (int_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*float_options[i].value = val3;
 						}
 						else
@@ -195,6 +294,7 @@ namespace parser
 						break;
 					}
 				}
+				float_temp = "";
 				//for double options
 				for (unsigned int i = 0; i < string_options.size(); i++)
 				{
@@ -206,13 +306,13 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
+						} while (!in.eof() && (current == ' ' || current == '	'));
 						if (in.eof())
 						{
 							err << "String option needs an argument!";
 							return false;
 						}
-						while (!in.eof() && current != ' ')
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							if (current == '-' || in.eof())
 							{
@@ -234,9 +334,9 @@ namespace parser
 				temp = 0;
 			}
 			//////////////////////short form
-			else if (current != '-' && current != ' ' && temp == 2)
+			else if (current != '-' && current != ' ' && current != '	' && temp == 2)
 			{
-				while (!in.eof() && current != ' ')
+				while (!in.eof() && current != ' ' && current != '	')
 				{
 					form.push_back(current);
 					in.get(current);
@@ -248,8 +348,13 @@ namespace parser
 					if (form == bit_options[i].long_option)
 					{
 						wrong = false;
+						if (*bit_options[i].value == true)
+						{
+							err << "You cant put samo command 2 times!";
+							return false;
+						}
 						*bit_options[i].value = true;
-						while (!in.eof() && current == ' ')
+						while (!in.eof() && (current == ' ' || current == '	'))
 							in.get(current);
 						if (current != '-' && !in.eof())
 						{
@@ -271,8 +376,8 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{							
 							int_temp.push_back(current);
 							in.get(current);
@@ -280,6 +385,16 @@ namespace parser
 						int val;
 						if (to_int_parser(int_temp, val))
 						{
+							if (*int_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (int_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*int_options[i].value = val;
 						}
 						else
@@ -290,6 +405,7 @@ namespace parser
 						break;
 					}
 				}
+				int_temp = "";
 				//for int options
 				for (unsigned int i = 0; i < uint_options.size(); i++)
 				{
@@ -301,14 +417,24 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							uint_temp.push_back(current);
 							in.get(current);
 						}
 						if (to_uint_parser(int_temp, val2))
 						{
+							if (*uint_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (uint_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*uint_options[i].value = val2;
 						}
 						else
@@ -319,6 +445,7 @@ namespace parser
 						break;
 					}
 				}
+				uint_temp = "";
 				//for unsigned int options
 				for (unsigned int i = 0; i < float_options.size(); i++)
 				{
@@ -330,14 +457,24 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
-						while (!in.eof() && current != ' ')
+						} while (!in.eof() && (current == ' ' || current == '	'));
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							float_temp.push_back(current);
 							in.get(current);
 						}
 						if (to_float_parser(int_temp, val3))
 						{
+							if (*float_options[i].value != 0)
+							{
+								err << "You cant put samo command 2 times!";
+								return false;
+							}
+							if (float_temp.empty())
+							{
+								err << "There is no argument";
+								return false;
+							}
 							*float_options[i].value = val3;
 						}
 						else
@@ -348,6 +485,7 @@ namespace parser
 						break;
 					}
 				}
+				float_temp = "";
 				//for double options
 				for (unsigned int i = 0; i < string_options.size(); i++)
 				{
@@ -359,13 +497,13 @@ namespace parser
 						do
 						{
 							in.get(current);
-						} while (!in.eof() && current == ' ');
+						} while (!in.eof() && (current == ' ' || current == '	'));
 						if (in.eof())
 						{
 							err << "String option needs an argument!";
 							return false;
 						}
-						while (!in.eof() && current != ' ')
+						while (!in.eof() && current != ' ' && current != '	')
 						{
 							if (current == '-')
 							{
@@ -375,6 +513,7 @@ namespace parser
 							string_options[i].value->push_back(current);
 							in.get(current);
 						}
+
 						break;
 					}
 				}
@@ -391,7 +530,7 @@ namespace parser
 		if (wrong)
 		{
 			err << "You didnt put enything!";
-			return false;
+			return true;
 		}
 		else
 		{
