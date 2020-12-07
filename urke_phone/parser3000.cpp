@@ -38,7 +38,7 @@ namespace parser
 	}
 
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////for bit options
 	
 
 	void parser3000::add_int_option(const int_option& opt)
@@ -74,15 +74,81 @@ namespace parser
 		add_int_option(temp);
 	}
 
+	/////////////////////////////////////////////////////////////////////////for int options
+
 	void parser3000::add_uint_option(const uint_option& opt)
 	{
 		uint_options.emplace_back(opt);
 	}
 
+	void parser3000::add_uint_option(char opt, unsigned int* value, const char* help)
+	{
+		uint_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = nullptr;
+		temp.value = value;
+		add_uint_option(temp);
+	}
+
+	void parser3000::add_uint_option(const char* opt, unsigned int* value, const char* help)
+	{
+		uint_option temp;
+		temp.help_text = help;
+		temp.short_option = '\0';
+		temp.long_option = opt;
+		temp.value = value;
+		add_uint_option(temp);
+	}
+
+	void parser3000::add_uint_option(char opt, const char* opt_long, unsigned int* value, const char* help)
+	{
+		uint_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = opt_long;
+		temp.value = value;
+		add_uint_option(temp);
+	}
+
+	/////////////////////////////////////////////////////////////////////////for unsigned int options
+
 	void parser3000::add_float_option(const float_option& opt)
 	{
 		float_options.emplace_back(opt);
 	}
+
+	void parser3000::add_float_option(char opt, double* value, const char* help)
+	{
+		float_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = nullptr;
+		temp.value = value;
+		add_float_option(temp);
+	}
+
+	void parser3000::add_float_option(const char* opt, double* value, const char* help)
+	{
+		float_option temp;
+		temp.help_text = help;
+		temp.short_option = '\0';
+		temp.long_option = opt;
+		temp.value = value;
+		add_float_option(temp);
+	}
+
+	void parser3000::add_float_option(char opt, const char* opt_long, double* value, const char* help)
+	{
+		float_option temp;
+		temp.help_text = help;
+		temp.short_option = opt;
+		temp.long_option = opt_long;
+		temp.value = value;
+		add_float_option(temp);
+	}
+
+	/////////////////////////////////////////////////////////////////////////for double options
 
 	void parser3000::add_string_option(const string_option& opt)
 	{
@@ -116,7 +182,7 @@ namespace parser
 		temp.value = value;
 		add_string_option(temp);
 	}
-	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////for string options
 	bool parser3000::parse(std::istream& in, std::ostream& err)
 	{
 		size_t temp = 0;
@@ -160,7 +226,7 @@ namespace parser
 							wrong = false;
 							if (*bit_options[i].value == true)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
 							*bit_options[i].value = true;
@@ -196,7 +262,7 @@ namespace parser
 						{
 							if (*int_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
 							if (int_temp.empty())
@@ -232,14 +298,14 @@ namespace parser
 							uint_temp.push_back(current);
 							in.get(current);
 						}
-						if (to_uint_parser(int_temp, val2))
+						if (to_uint_parser(uint_temp, val2))
 						{
 							if (*uint_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
-							if (int_temp.empty())
+							if (uint_temp.empty())
 							{
 								err << "There is no argument";
 								return false;
@@ -272,14 +338,14 @@ namespace parser
 							float_temp.push_back(current);
 							in.get(current);
 						}
-						if (to_float_parser(int_temp, val3))
+						if (to_float_parser(float_temp, val3))
 						{
 							if (*float_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
-							if (int_temp.empty())
+							if (float_temp.empty())
 							{
 								err << "There is no argument";
 								return false;
@@ -312,15 +378,24 @@ namespace parser
 							err << "String option needs an argument!";
 							return false;
 						}
-						while (!in.eof() && current != ' ' && current != '	')
+						if (*string_options[i].value == "")
 						{
-							if (current == '-' || in.eof())
+							while (!in.eof() && current != ' ' && current != '	')
 							{
-								err << "String option needs an argument!";
-								return false;
-							}	
-							string_options[i].value->push_back(current);
-							in.get(current);
+								if (current == '-' || in.eof())
+								{
+									err << "String option needs an argument!";
+									return false;
+								}
+
+								string_options[i].value->push_back(current);
+								in.get(current);
+							}
+						}
+						else
+						{
+							err << "You can't put 2 same commands!";
+							return false;
 						}
 						break;
 					}
@@ -350,7 +425,7 @@ namespace parser
 						wrong = false;
 						if (*bit_options[i].value == true)
 						{
-							err << "You cant put samo command 2 times!";
+							err << "You can't put 2 same commands!";
 							return false;
 						}
 						*bit_options[i].value = true;
@@ -387,7 +462,7 @@ namespace parser
 						{
 							if (*int_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
 							if (int_temp.empty())
@@ -423,11 +498,11 @@ namespace parser
 							uint_temp.push_back(current);
 							in.get(current);
 						}
-						if (to_uint_parser(int_temp, val2))
+						if (to_uint_parser(uint_temp, val2))
 						{
 							if (*uint_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
 							if (uint_temp.empty())
@@ -463,11 +538,11 @@ namespace parser
 							float_temp.push_back(current);
 							in.get(current);
 						}
-						if (to_float_parser(int_temp, val3))
+						if (to_float_parser(float_temp, val3))
 						{
 							if (*float_options[i].value != 0)
 							{
-								err << "You cant put samo command 2 times!";
+								err << "You can't put 2 same commands!";
 								return false;
 							}
 							if (float_temp.empty())
@@ -503,15 +578,23 @@ namespace parser
 							err << "String option needs an argument!";
 							return false;
 						}
-						while (!in.eof() && current != ' ' && current != '	')
+						if (*string_options[i].value == "")
 						{
-							if (current == '-')
+							while (!in.eof() && current != ' ' && current != '	')
 							{
-								err << "String option needs an argument!";
-								return false;
-							}	
-							string_options[i].value->push_back(current);
-							in.get(current);
+								if (current == '-')
+								{
+									err << "String option needs an argument!";
+									return false;
+								}
+								string_options[i].value->push_back(current);
+								in.get(current);
+							}
+						}
+						else
+						{
+							err << "You cant put samo command 2 times!";
+							return false;
 						}
 
 						break;

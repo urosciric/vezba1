@@ -63,6 +63,14 @@ public:
 	void add_int_option(const char* opt, int* value, const char* help = nullptr);
 	void add_int_option(char opt, const char* opt_long, int* value, const char* help = nullptr);
 
+	void add_uint_option(char opt, unsigned int* value, const char* help = nullptr);
+	void add_uint_option(const char* opt, unsigned int* value, const char* help = nullptr);
+	void add_uint_option(char opt, const char* opt_long, unsigned int* value, const char* help = nullptr);
+
+	void add_float_option(char opt, double* value, const char* help = nullptr);
+	void add_float_option(const char* opt, double* value, const char* help = nullptr);
+	void add_float_option(char opt, const char* opt_long, double* value, const char* help = nullptr);
+
 	void add_string_option(char opt, string_type* value, const char* help = nullptr);
 	void add_string_option(const char* opt, string_type* value, const char* help = nullptr);
 	void add_string_option(char opt, const char* opt_long, string_type* value, const char* help = nullptr);

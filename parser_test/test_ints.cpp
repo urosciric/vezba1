@@ -26,7 +26,7 @@ void test_int_short_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1!=123 || option2!=34 || option3==0)
+    else if (option1!=123 || option2!=34 || option3!=0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -38,6 +38,7 @@ void test_int_short_options(test_context& ctx)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+
     option1 = 0;
     option2 = 0;
     option3 = 0;
@@ -76,7 +77,7 @@ void test_int_short_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1 != 123 || option2 == 0 || option3 == 0)
+    else if (option1 != 123 || option2 != 0 || option3 != 0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -115,7 +116,7 @@ void test_int_long_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1 != 123 || option2 != 128 || option3 == 0)
+    else if (option1 != 123 || option2 != 128 || option3 != 0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -165,7 +166,7 @@ void test_int_long_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1 != 123 || option2 == 0 || option3 == 0)
+    else if (option1 != 123 || option2 != 0 || option3 != 0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -254,7 +255,7 @@ void test_int_combined_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1 != 76 || option2 == 0 || option3 == 0)
+    else if (option1 != 76 || option2 != 0 || option3 != 0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
