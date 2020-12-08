@@ -215,6 +215,41 @@ namespace parser
 					form.push_back(current);
 					in.get(current);
 				}
+				////////////////////////////////////////
+				if (form == "h")
+				{
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << bit_options[i].short_option
+							<< "	--" << bit_options[i].long_option
+							<< "	" << bit_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << int_options[i].short_option
+							<< "	" << int_options[i].long_option
+							<< "	" << int_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << uint_options[i].short_option
+							<< "	" << uint_options[i].long_option
+							<< "	" << uint_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << float_options[i].short_option
+							<< "	" << float_options[i].long_option
+							<< "	" << float_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << string_options[i].short_option
+							<< "	" << string_options[i].long_option
+							<< "	" << string_options[i].help_text;
+					}
+				}
+				////////////////////////////////////////help short option
 				for (unsigned int i = 0; i < bit_options.size(); i++)
 				{
 					if (bit_options[i].short_option == '\0')
@@ -416,6 +451,41 @@ namespace parser
 					form.push_back(current);
 					in.get(current);
 				}
+				////////////////////////////////////////
+				if (form == "help")
+				{
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << bit_options[i].short_option
+							<< "	--" << bit_options[i].long_option
+							<< "	" << bit_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << int_options[i].short_option
+							<< "	" << int_options[i].long_option
+							<< "	" << int_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << uint_options[i].short_option
+							<< "	" << uint_options[i].long_option
+							<< "	" << uint_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << float_options[i].short_option
+							<< "	" << float_options[i].long_option
+							<< "	" << float_options[i].help_text;
+					}
+					for (int i = 0; i < bit_options.size(); i++)
+					{
+						std::cout << "-" << string_options[i].short_option
+							<< "	" << string_options[i].long_option
+							<< "	" << string_options[i].help_text;
+					}
+				}
+				////////////////////////////////////////help long option
 				for (unsigned int i = 0; i < bit_options.size(); i++)
 				{
 					if (bit_options[i].long_option == nullptr)
