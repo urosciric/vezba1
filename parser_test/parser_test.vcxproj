@@ -162,6 +162,7 @@
     </ClCompile>
     <ClCompile Include="test_bits.cpp" />
     <ClCompile Include="test_combined.cpp" />
+    <ClCompile Include="test_common.cpp" />
     <ClCompile Include="test_floats.cpp" />
     <ClCompile Include="test_ints.cpp" />
     <ClCompile Include="test_strings.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="..\urkeapi\parser3000.h" />
     <ClInclude Include="parser_helpers.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="test_common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

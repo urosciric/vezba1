@@ -45,6 +45,9 @@
     <ClCompile Include="..\urkeapi\parser3000.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\urkeapi\parser3000.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

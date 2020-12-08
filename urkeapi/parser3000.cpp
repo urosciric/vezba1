@@ -184,15 +184,18 @@ namespace parser
 		add_string_option(temp);
 	}
 	/////////////////////////////////////////////////////////////////////////for string options
-	void parser3000::print_help(string_type& str, std::ostream& help)
+	void parser3000::print_help(const string_type& str, std::ostream& help)
 	{
 		help << "Usage:\n" << "   " << str << "   [OPTIONS...]\n\n";
 		string_type max = "";
 		string_type pom;
 		for (int i = 0; i < bit_options.size(); i++)
 		{
-			pom = bit_options[i].long_option;
-			if (pom.size() > max.size()) max = pom;
+			if (bit_options[i].long_option != nullptr)
+			{
+				pom = bit_options[i].long_option;
+				if (pom.size() > max.size()) max = pom;
+			}
 		}
 		for (int i = 0; i < int_options.size(); i++)
 		{
@@ -220,7 +223,10 @@ namespace parser
 			help << "   ";
 			if (bit_options[i].short_option == '\0') help << "     ";
 			else help << bit_options[i].short_option << "   ";
-			if (bit_options[i].long_option == nullptr) help << max.size() << "   ";
+			if (bit_options[i].long_option == nullptr)
+			{
+				help << max.size() << "   ";
+			}
 			else
 			{
 				help << ANSI_COLOR_RED ANSI_COLOR_BOLD , bit_options[i].long_option;
@@ -228,7 +234,8 @@ namespace parser
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
 			}
-			help << bit_options[i].help_text << "\n";
+			if(bit_options[i].help_text)
+				help << bit_options[i].help_text << "\n";
 		}
 		///////////print for bit
 		for (int i = 0; i < int_options.size(); i++)

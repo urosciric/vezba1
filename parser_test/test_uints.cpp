@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "parser_helpers.h"
+#include "test_common.h"
 
 void test_uint_short_options(test_context& ctx)
 {
