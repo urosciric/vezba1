@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "parser3000.h"
+#include "ansi_codes.h"
 
 namespace parser
 {
@@ -222,7 +223,7 @@ namespace parser
 			if (bit_options[i].long_option == nullptr) help << max.size() << "   ";
 			else
 			{
-				help << bit_options[i].long_option;
+				help << ANSI_COLOR_RED ANSI_COLOR_BOLD , bit_options[i].long_option;
 				pom = bit_options[i].long_option;
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
