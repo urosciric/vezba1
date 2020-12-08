@@ -199,107 +199,145 @@ namespace parser
 		}
 		for (int i = 0; i < int_options.size(); i++)
 		{
-			pom = int_options[i].long_option;
-			if (pom.size() > max.size()) max = pom;
+			if (int_options[i].long_option != nullptr)
+			{
+				pom = int_options[i].long_option;
+				if (pom.size() > max.size()) max = pom;
+			}
 		}
 		for (int i = 0; i < uint_options.size(); i++)
 		{
-			pom = uint_options[i].long_option;
-			if (pom.size() > max.size()) max = pom;
+			if (uint_options[i].long_option != nullptr)
+			{
+				pom = uint_options[i].long_option;
+				if (pom.size() > max.size()) max = pom;
+			}
 		}
-		for (int i = 0; i < uint_options.size(); i++)
+		for (int i = 0; i < float_options.size(); i++)
 		{
-			pom = uint_options[i].long_option;
-			if (pom.size() > max.size()) max = pom;
+			if (float_options[i].long_option != nullptr)
+			{
+				pom = float_options[i].long_option;
+				if (pom.size() > max.size()) max = pom;
+			}
 		}
-		for (int i = 0; i < uint_options.size(); i++)
+		for (int i = 0; i < string_options.size(); i++)
 		{
-			pom = uint_options[i].long_option;
-			if (pom.size() > max.size()) max = pom;
+			if (string_options[i].long_option != nullptr)
+			{
+				pom = string_options[i].long_option;
+				if (pom.size() > max.size()) max = pom;
+			}
 		}
 		/////////////////////searching for biggest long option by size
 		for (int i = 0; i < bit_options.size(); i++)
 		{
 			help << "   ";
 			if (bit_options[i].short_option == '\0') help << "     ";
-			else help << bit_options[i].short_option << "   ";
+			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << bit_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (bit_options[i].long_option == nullptr)
 			{
-				help << max.size() << "   ";
+				for (int i = 0; i < max.size(); i++) help << " ";
+				help << "   ";
 			}
 			else
 			{
-				help << ANSI_COLOR_RED ANSI_COLOR_BOLD , bit_options[i].long_option;
+				help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << bit_options[i].long_option << ANSI_COLOR_RESET;
 				pom = bit_options[i].long_option;
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
 			}
 			if(bit_options[i].help_text)
-				help << bit_options[i].help_text << "\n";
+				help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << bit_options[i].help_text << ANSI_COLOR_RESET;
+			help << "\n";
 		}
 		///////////print for bit
 		for (int i = 0; i < int_options.size(); i++)
 		{
 			help << "   ";
 			if (int_options[i].short_option == '\0') help << "     ";
-			else help << int_options[i].short_option << "   ";
-			if (int_options[i].long_option == nullptr) help << max.size() << "   ";
+			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << int_options[i].short_option << ANSI_COLOR_RESET << "   ";
+			if (int_options[i].long_option == nullptr)
+			{
+				for (int i = 0; i < max.size(); i++) help << " ";
+				help << "   ";
+			}
 			else
 			{
-				help << int_options[i].long_option;
+				help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD<< "--" << int_options[i].long_option << ANSI_COLOR_RESET;
 				pom = int_options[i].long_option;
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
 			}
-			help << int_options[i].help_text << "\n";
+			if (int_options[i].help_text)
+				help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << int_options[i].help_text << ANSI_COLOR_RESET;
+			help << "\n";
 		}
 		///////////print for int
 		for (int i = 0; i < uint_options.size(); i++)
 		{
 			help << "   ";
 			if (uint_options[i].short_option == '\0') help << "     ";
-			else help << uint_options[i].short_option << "   ";
-			if (uint_options[i].long_option == nullptr) help << max.size() << "   ";
+			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << uint_options[i].short_option << ANSI_COLOR_RESET << "   ";
+			if (uint_options[i].long_option == nullptr)
+			{
+				for (int i = 0; i < max.size(); i++) help << " ";
+				help << "   ";
+			}
 			else
 			{
-				help << uint_options[i].long_option;
+				help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << uint_options[i].long_option << ANSI_COLOR_RESET;
 				pom = uint_options[i].long_option;
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
 			}
-			help << uint_options[i].help_text << "\n";
+			if (uint_options[i].help_text)
+				help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << uint_options[i].help_text << ANSI_COLOR_RESET;
+			help << "\n";
 		}
 		///////////print for uint
-		for (int i = 0; i < uint_options.size(); i++)
+		for (int i = 0; i < float_options.size(); i++)
 		{
 			help << "   ";
 			if (float_options[i].short_option == '\0') help << "     ";
-			else help << float_options[i].short_option << "   ";
-			if (float_options[i].long_option == nullptr) help << max.size() << "   ";
-			else
+			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << float_options[i].short_option << ANSI_COLOR_RESET << "   ";
+			if (float_options[i].long_option == nullptr)
 			{
-				help << float_options[i].long_option;
-				pom = float_options[i].long_option;
-				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				for (int j = 0; j < max.size(); j++) help << " ";
 				help << "   ";
 			}
-			help << float_options[i].help_text << "\n";
+			else
+			{
+				help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << float_options[i].long_option << ANSI_COLOR_RESET;
+				pom = float_options[i].long_option;
+				for (int j = 0; j < max.size() - pom.size(); j++) help << " ";
+				help << "   ";
+			}
+			if (float_options[i].help_text)
+				help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << float_options[i].help_text << ANSI_COLOR_RESET;
+			help << "\n";
 		}
 		///////////print for float
-		for (int i = 0; i < uint_options.size(); i++)
+		for (int i = 0; i < string_options.size(); i++)
 		{
 			help << "   ";
 			if (string_options[i].short_option == '\0') help << "     ";
-			else help << string_options[i].short_option << "   ";
-			if (string_options[i].long_option == nullptr) help << max.size() << "   ";
+			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << string_options[i].short_option << ANSI_COLOR_RESET << "   ";
+			if (string_options[i].long_option == nullptr)
+			{
+				for (int i = 0; i < max.size(); i++) help << " ";
+				help << "   ";
+			}
 			else
 			{
-				help << string_options[i].long_option;
+				help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << string_options[i].long_option << ANSI_COLOR_RESET;
 				pom = string_options[i].long_option;
 				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 				help << "   ";
 			}
-			help << string_options[i].help_text << "\n";
+			if (string_options[i].help_text)
+				help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << string_options[i].help_text << ANSI_COLOR_RESET;
+			help << "\n";
 		}
 		///////////print for string
 		/////////////////////printing help

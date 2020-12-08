@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "parser_helpers.h"
+#include "ansi_codes.h"
 
 void test_int_short_options(test_context& ctx)
 {
@@ -34,7 +35,7 @@ void test_int_short_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +61,7 @@ void test_int_short_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +86,7 @@ void test_int_short_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +125,7 @@ void test_int_long_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +150,7 @@ void test_int_long_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,7 +175,7 @@ void test_int_long_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,7 +214,7 @@ void test_int_combined_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -238,7 +239,7 @@ void test_int_combined_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,7 +264,7 @@ void test_int_combined_options(test_context& ctx)
     }
     else
     {
-        std::cout << "Option " << option_str << OK_TEXT "\r\n";
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
