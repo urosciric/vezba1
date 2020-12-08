@@ -465,5 +465,4 @@ void test_string_options(test_context & ctx)
     test_string_combined_options(ctx);
 
     std::cout << "Testing string options done!!!\r\n";
-
 }

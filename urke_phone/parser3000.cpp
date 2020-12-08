@@ -183,6 +183,120 @@ namespace parser
 		add_string_option(temp);
 	}
 	/////////////////////////////////////////////////////////////////////////for string options
+	void parser3000::print_help(string_type& str, std::ostream& help)
+	{
+		help << "Usage:\n" << "   " << str << "   [OPTIONS...]\n\n";
+		string_type max = "";
+		string_type pom;
+		for (int i = 0; i < bit_options.size(); i++)
+		{
+			pom = bit_options[i].long_option;
+			if (pom.size() > max.size()) max = pom;
+		}
+		for (int i = 0; i < int_options.size(); i++)
+		{
+			pom = int_options[i].long_option;
+			if (pom.size() > max.size()) max = pom;
+		}
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			pom = uint_options[i].long_option;
+			if (pom.size() > max.size()) max = pom;
+		}
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			pom = uint_options[i].long_option;
+			if (pom.size() > max.size()) max = pom;
+		}
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			pom = uint_options[i].long_option;
+			if (pom.size() > max.size()) max = pom;
+		}
+		/////////////////////searching for biggest long option by size
+		for (int i = 0; i < bit_options.size(); i++)
+		{
+			help << "   ";
+			if (bit_options[i].short_option == '\0') help << "     ";
+			else help << bit_options[i].short_option << "   ";
+			if (bit_options[i].long_option == nullptr) help << max.size() << "   ";
+			else
+			{
+				help << bit_options[i].long_option;
+				pom = bit_options[i].long_option;
+				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				help << "   ";
+			}
+			help << bit_options[i].help_text << "\n";
+		}
+		///////////print for bit
+		for (int i = 0; i < int_options.size(); i++)
+		{
+			help << "   ";
+			if (int_options[i].short_option == '\0') help << "     ";
+			else help << int_options[i].short_option << "   ";
+			if (int_options[i].long_option == nullptr) help << max.size() << "   ";
+			else
+			{
+				help << int_options[i].long_option;
+				pom = int_options[i].long_option;
+				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				help << "   ";
+			}
+			help << int_options[i].help_text << "\n";
+		}
+		///////////print for int
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			help << "   ";
+			if (uint_options[i].short_option == '\0') help << "     ";
+			else help << uint_options[i].short_option << "   ";
+			if (uint_options[i].long_option == nullptr) help << max.size() << "   ";
+			else
+			{
+				help << uint_options[i].long_option;
+				pom = uint_options[i].long_option;
+				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				help << "   ";
+			}
+			help << uint_options[i].help_text << "\n";
+		}
+		///////////print for uint
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			help << "   ";
+			if (float_options[i].short_option == '\0') help << "     ";
+			else help << float_options[i].short_option << "   ";
+			if (float_options[i].long_option == nullptr) help << max.size() << "   ";
+			else
+			{
+				help << float_options[i].long_option;
+				pom = float_options[i].long_option;
+				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				help << "   ";
+			}
+			help << float_options[i].help_text << "\n";
+		}
+		///////////print for float
+		for (int i = 0; i < uint_options.size(); i++)
+		{
+			help << "   ";
+			if (string_options[i].short_option == '\0') help << "     ";
+			else help << string_options[i].short_option << "   ";
+			if (string_options[i].long_option == nullptr) help << max.size() << "   ";
+			else
+			{
+				help << string_options[i].long_option;
+				pom = string_options[i].long_option;
+				for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
+				help << "   ";
+			}
+			help << string_options[i].help_text << "\n";
+		}
+		///////////print for string
+		/////////////////////printing help
+	}
+	/////////////////////////////////////////////////////////////////////////for help
 	bool parser3000::parse(std::istream& in, std::ostream& err)
 	{
 		size_t temp = 0;
@@ -215,41 +329,6 @@ namespace parser
 					form.push_back(current);
 					in.get(current);
 				}
-				////////////////////////////////////////
-				if (form == "h")
-				{
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << bit_options[i].short_option
-							<< "	--" << bit_options[i].long_option
-							<< "	" << bit_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << int_options[i].short_option
-							<< "	" << int_options[i].long_option
-							<< "	" << int_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << uint_options[i].short_option
-							<< "	" << uint_options[i].long_option
-							<< "	" << uint_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << float_options[i].short_option
-							<< "	" << float_options[i].long_option
-							<< "	" << float_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << string_options[i].short_option
-							<< "	" << string_options[i].long_option
-							<< "	" << string_options[i].help_text;
-					}
-				}
-				////////////////////////////////////////help short option
 				for (unsigned int i = 0; i < bit_options.size(); i++)
 				{
 					if (bit_options[i].short_option == '\0')
@@ -451,41 +530,6 @@ namespace parser
 					form.push_back(current);
 					in.get(current);
 				}
-				////////////////////////////////////////
-				if (form == "help")
-				{
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << bit_options[i].short_option
-							<< "	--" << bit_options[i].long_option
-							<< "	" << bit_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << int_options[i].short_option
-							<< "	" << int_options[i].long_option
-							<< "	" << int_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << uint_options[i].short_option
-							<< "	" << uint_options[i].long_option
-							<< "	" << uint_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << float_options[i].short_option
-							<< "	" << float_options[i].long_option
-							<< "	" << float_options[i].help_text;
-					}
-					for (int i = 0; i < bit_options.size(); i++)
-					{
-						std::cout << "-" << string_options[i].short_option
-							<< "	" << string_options[i].long_option
-							<< "	" << string_options[i].help_text;
-					}
-				}
-				////////////////////////////////////////help long option
 				for (unsigned int i = 0; i < bit_options.size(); i++)
 				{
 					if (bit_options[i].long_option == nullptr)

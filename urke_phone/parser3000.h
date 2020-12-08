@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 
 namespace parser
 {
@@ -76,6 +77,7 @@ public:
 	void add_string_option(char opt, const char* opt_long, string_type* value, const char* help = nullptr);
 	////////////////////////////////////
 
+	void print_help(string_type& str, std::ostream& help);
 
 	bool parse(std::istream& in, std::ostream& err);
 	
