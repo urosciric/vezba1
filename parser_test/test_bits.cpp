@@ -14,9 +14,9 @@ void test_bit_short_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_bit_option('a', &option1);
-    parser.add_bit_option('b', &option2);
-    parser.add_bit_option('c', &option3);
+    parser.add_bit_option('a', &option1, "fussssss");
+    parser.add_bit_option('b', &option2, "zdrava hrana teretana");
+    parser.add_bit_option('c', &option3, "stotkica iz benca");
 
     string_type error;
     string_type option_str;

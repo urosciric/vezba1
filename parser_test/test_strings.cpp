@@ -11,9 +11,9 @@ void test_string_short_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_string_option('g', &option1);
-    parser.add_string_option('h', &option2);
-    parser.add_string_option('i', &option3);
+    parser.add_string_option('g', &option1, "malo help vamo malo onamo");
+    parser.add_string_option('h', &option2, "prijateljiiii");
+    parser.add_string_option('i', &option3, "how i met your mother");
 
     string_type error;
     string_type option_str;
@@ -206,9 +206,9 @@ void test_string_long_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_string_option("gg", &option1);
-    parser.add_string_option("hh", &option2);
-    parser.add_string_option("ii", &option3);
+    parser.add_string_option("gg", &option1, "prosidba");
+    parser.add_string_option("hh", &option2, "crkva");
+    parser.add_string_option("ii", &option3, "tesla je otkrio struju");
 
     string_type error;
     string_type option_str;
@@ -375,9 +375,9 @@ void test_string_combined_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_string_option('g', "gg", &option1);
-    parser.add_string_option('h', "hh", &option2);
-    parser.add_string_option('i', "ii", &option3);
+    parser.add_string_option('g', "gg", &option1, "kompijuter");
+    parser.add_string_option('h', "hh", &option2, "opcije");
+    parser.add_string_option('i', "ii", &option3, "limuzina je veeeeeeliki auto jel kapiras ti to");
 
     string_type error;
     string_type option_str;

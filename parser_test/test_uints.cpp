@@ -12,9 +12,9 @@ void test_uint_short_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_uint_option('j', &option1);
-    parser.add_uint_option('k', &option2);
-    parser.add_uint_option('l', &option3);
+    parser.add_uint_option('j', &option1, "ajmoooooo");
+    parser.add_uint_option('k', &option2, "sirimo noge a ne ljuabv");
+    parser.add_uint_option('l', &option3, "uzivanje");
 
     string_type error;
     string_type option_str;

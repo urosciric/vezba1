@@ -10,9 +10,9 @@ void test_float_short_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_float_option('m', &option1);
-    parser.add_float_option('n', &option2);
-    parser.add_float_option('o', &option3);
+    parser.add_float_option('m', &option1, "mama hocu kuci");
+    parser.add_float_option('n', &option2, "samo jako");
+    parser.add_float_option('o', &option3, "just do it");
 
     string_type error;
     string_type option_str;
@@ -178,9 +178,9 @@ void test_float_long_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_float_option("mm", &option1);
-    parser.add_float_option("nn", &option2);
-    parser.add_float_option("oo", &option3);
+    parser.add_float_option("mm", &option1, "tako je bre");
+    parser.add_float_option("nn", &option2, "samo jako");
+    parser.add_float_option("oo", &option3, "zato sto sam ti majka eto zasto");
 
     string_type error;
     string_type option_str;
@@ -321,9 +321,9 @@ void test_float_combined_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_float_option('m', "mm", &option1);
-    parser.add_float_option('n', "nn", &option2);
-    parser.add_float_option('o', "oo", &option3);
+    parser.add_float_option('m', "mm", &option1, "lagano");
+    parser.add_float_option('n', "nn", &option2, "vazi se samo na kratko");
+    parser.add_float_option('o', "oo", &option3, "ocemo pare");
 
     string_type error;
     string_type option_str;

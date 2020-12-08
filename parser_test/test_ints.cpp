@@ -11,9 +11,9 @@ void test_int_short_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_int_option('d', &option1);
-    parser.add_int_option('e', &option2);
-    parser.add_int_option('f', &option3);
+    parser.add_int_option('d', &option1, "mama voli bebu najvise na svetu");
+    parser.add_int_option('e', &option2, "tata pusi pljugu");
+    parser.add_int_option('f', &option3, "seka me nervira");
 
     string_type error;
     string_type option_str;

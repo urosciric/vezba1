@@ -22,21 +22,21 @@ void test_combined_all_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_bit_option('a', "aa", &option1);
-    parser.add_bit_option('b', "bb", &option2);
-    parser.add_bit_option('c', "cc", &option3);
-    parser.add_int_option('d', "dd", &option4);
-    parser.add_int_option('e', "ee", &option5);
-    parser.add_int_option('f', "ff", &option6);
-    parser.add_uint_option('g', "gg", &option7);
-    parser.add_uint_option('h', "hh", &option8);
-    parser.add_uint_option('i', "ii", &option9);
-    parser.add_float_option('j', "jj", &option10);
-    parser.add_float_option('k', "kk", &option11);
-    parser.add_float_option('l', "ll", &option12);
-    parser.add_string_option('m', "mm", &option13);
-    parser.add_string_option('n', "nn", &option14);
-    parser.add_string_option('o', "oo", &option15);
+    parser.add_bit_option('a', "aa", &option1, "ovo je bas lepo");
+    parser.add_bit_option('b', "bb", &option2, "bas je ruznjikavo vise bre");
+    parser.add_bit_option('c', "cc", &option3, "ma boje zemuna breeeee");
+    parser.add_int_option('d', "dd", &option4, "bidza samo jako");
+    parser.add_int_option('e', "ee", &option5, "cucanj tona bre");
+    parser.add_int_option('f', "ff", &option6, "gas");
+    parser.add_uint_option('g', "gg", &option7, "vodica bato");
+    parser.add_uint_option('h', "hh", &option8, "sveta vodica");
+    parser.add_uint_option('i', "ii", &option9, "ljuabv za kevu");
+    parser.add_float_option('j', "jj", &option10, "ensako najjaci");
+    parser.add_float_option('k', "kk", &option11, "britanski naglasak");
+    parser.add_float_option('l', "ll", &option12, "slon je pao");
+    parser.add_string_option('m', "mm", &option13, "sta ti treba");
+    parser.add_string_option('n', "nn", &option14, "karte");
+    parser.add_string_option('o', "oo", &option15, "samo teg jednu kilu nikako vise");
 
     string_type error;
     string_type option_str;

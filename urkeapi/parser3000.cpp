@@ -237,7 +237,7 @@ namespace parser
 			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << bit_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (bit_options[i].long_option == nullptr)
 			{
-				for (int i = 0; i < max.size(); i++) help << " ";
+				for (int i = 0; i < max.size() + 2; i++) help << " ";
 				help << "   ";
 			}
 			else
@@ -259,7 +259,7 @@ namespace parser
 			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << int_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (int_options[i].long_option == nullptr)
 			{
-				for (int i = 0; i < max.size(); i++) help << " ";
+				for (int i = 0; i < max.size() + 2; i++) help << " ";
 				help << "   ";
 			}
 			else
@@ -281,7 +281,7 @@ namespace parser
 			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << uint_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (uint_options[i].long_option == nullptr)
 			{
-				for (int i = 0; i < max.size(); i++) help << " ";
+				for (int i = 0; i < max.size() + 2; i++) help << " ";
 				help << "   ";
 			}
 			else
@@ -303,7 +303,7 @@ namespace parser
 			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << float_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (float_options[i].long_option == nullptr)
 			{
-				for (int j = 0; j < max.size(); j++) help << " ";
+				for (int j = 0; j < max.size() + 2; j++) help << " ";
 				help << "   ";
 			}
 			else
@@ -325,7 +325,7 @@ namespace parser
 			else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << string_options[i].short_option << ANSI_COLOR_RESET << "   ";
 			if (string_options[i].long_option == nullptr)
 			{
-				for (int i = 0; i < max.size(); i++) help << " ";
+				for (int i = 0; i < max.size() + 2; i++) help << " ";
 				help << "   ";
 			}
 			else
