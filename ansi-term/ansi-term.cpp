@@ -12,7 +12,7 @@ int main()
     //out_mode &= ~ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(out_handle, out_mode);
 
-    std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
+    //std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
 
     urke::rx_table_type tabela(2);
     
@@ -30,6 +30,16 @@ int main()
     
 
     tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true);
+    tabela[1][2].prefix = ANSI_COLOR_GREEN ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true);
+    tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true);
+    tabela[1][0].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
+    system("pause");
 
     urke::rx_dump_table(tabela, std::cout, true, true);
 

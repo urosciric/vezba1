@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "term_table.h"
+#include "ansi_codes.h"
 
 namespace urke
 {
@@ -10,6 +11,8 @@ void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_na
 		return;
 
 	const size_t col_diff = 2;
+
+	out << ANSI_CUR(0, 0);
 
 	size_t columns_number = 0;
 	for (const auto& row : table)
@@ -73,12 +76,12 @@ void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_na
 			for (size_t i = 0; i < columns_number; i++)
 				total_width += (widths[i] + col_diff);
 			string_type rest(total_width, '=');
-			out << rest;
+			out << ANSI_COLOR_GRAY << rest << ANSI_COLOR_RESET;
 			column_names = false;
 		}
 	}
 
-	out << "\r\n";
+	out << "\r\n" << ANSI_CUR(tabela.size(), 0);
 }
 
 } //urke
