@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ansi_codes.h"
+#include "term_table.h"
 
 int main()
 {
@@ -12,4 +13,25 @@ int main()
     SetConsoleMode(out_handle, out_mode);
 
     std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
+
+    urke::rx_table_type tabela(2);
+    
+    tabela[0].emplace_back("kol1");
+    tabela[0].emplace_back("kol2 dugacka");
+    tabela[0].emplace_back("kol3");
+    tabela[0].emplace_back("kol4 nesto duza");
+
+    tabela[1].emplace_back("Val1");
+    tabela[1].emplace_back("Val2");
+    tabela[1].emplace_back("Val3  sgsdgsadgsdgsdgsdg");
+    tabela[1].emplace_back("Val4", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
+
+    urke::rx_dump_table(tabela, std::cout, true, true);
+    
+
+    tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
+
+    urke::rx_dump_table(tabela, std::cout, true, true);
+
+
 }
