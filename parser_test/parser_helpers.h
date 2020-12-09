@@ -4,6 +4,8 @@
 #define ERROR_TEXT "****ERROR****"
 #define OK_TEXT "SUCCESS"
 
+using namespace urke;
+
 using namespace parser;
 
 struct test_context

@@ -1,8 +1,8 @@
 #pragma once
 #include "pch.h"
 
-//namespace urke
-//{
+namespace urke
+{
 
 	namespace parser
 	{
@@ -95,4 +95,4 @@
 
 	} // parser
 
-//} // urke
+} // urke
