@@ -25,7 +25,7 @@ typedef std::vector<rx_table_cell_struct> rx_row_type;
 typedef std::vector<rx_row_type> rx_table_type;
 
 
-void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_names, bool dot_lines);
+void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_names, bool dot_lines, const char table_frame);
 
 
 } //urke
