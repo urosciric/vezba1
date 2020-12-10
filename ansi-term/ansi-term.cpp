@@ -3,6 +3,90 @@
 #include "term_table.h"
 
 
+void test_client()
+{
+
+    // initialize winsock
+
+    WSADATA wsDATA;
+    WORD ver = MAKEWORD(2, 2);
+
+    int WSOK = WSAStartup(ver, &wsDATA);
+    if (WSOK != 0)
+    {
+        std::cerr << "Can't initialize winsock! Quitting" << std::endl;
+        return;
+    }
+
+    // create socket
+
+    SOCKET conn = socket(AF_INET, SOCK_STREAM, 0);
+    if (conn == INVALID_SOCKET)
+    {
+        std::cerr << "Can't create a socket! Quitting" << std::endl;
+        return;
+    }
+
+    // bind the ip adress and port to a socket
+
+    sockaddr_in svr_addr;
+    memset(&svr_addr, 0, sizeof(svr_addr));
+    svr_addr.sin_family = AF_INET;
+    svr_addr.sin_port = htons(54000);
+    svr_addr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+
+    auto ret_val = connect(conn, (sockaddr*)&svr_addr, sizeof(svr_addr));
+    if (ret_val != NO_ERROR)
+    {
+        std::cerr << "Can't connect a socket! Quitting" << std::endl;
+        return;
+
+    }
+
+
+
+    // while loop: accept and echo message back to client
+
+    char buf[4096];
+
+    while (true)
+    {
+        // Echo message back to client
+        string_type line;
+        std::getline(std::cin, line);
+
+        send(conn, line.c_str() + 1, line.size(), 0);
+
+        ZeroMemory(buf, 4096);
+
+        // Wait for client to send data
+
+        int bytesRecieved = recv(conn, buf, 4096, 0);
+
+        if (bytesRecieved == SOCKET_ERROR)
+        {
+            std::cerr << "Error in recv().  Quitting" << std::endl;
+            break;
+        }
+
+        else if (bytesRecieved == 0)
+        {
+            std::cout << "Client disconnected" << std::endl;
+            break;
+        }
+
+
+    }
+
+    // close the socket
+
+    closesocket(conn);
+
+    // cleanup winsock
+
+    WSACleanup();
+}
+
 void test_socket()
 {
 
@@ -30,6 +114,7 @@ void test_socket()
     // bind the ip adress and port to a socket
 
     sockaddr_in hint;
+    memset(&hint, 0, sizeof(hint));
     hint.sin_family = AF_INET;
     hint.sin_port = htons(54000);
     hint.sin_addr.S_un.S_addr = INADDR_ANY;
@@ -96,10 +181,13 @@ void test_socket()
             std::cout << "Client disconnected" << std::endl;
             break;
         }
+        std::cout << "\r\n" << buf << "\r\n";
 
         // Echo message back to client
 
-        send(clientSocket, buf, bytesRecieved + 1, 0);
+        string_type odgovor("OK");
+
+        send(clientSocket, odgovor.c_str(), odgovor.size() + 1, 0);
 
     }
 
@@ -112,9 +200,18 @@ void test_socket()
     WSACleanup();
 }
 
-int main()
+int main(int argc , char* args[])
 {
+    string_type arg1;
+    if (argc > 1)
+        arg1 = args[1];
 
+    if (arg1 == "client")
+        test_client();
+    else
+        test_socket();
+
+    return 0;
 
     auto out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD out_mode = 0;

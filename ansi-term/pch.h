@@ -1,5 +1,7 @@
 #pragma once
 
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
 #include <iostream>
 #include <string>
 #include <sstream>
