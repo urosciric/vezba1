@@ -11,4 +11,6 @@
 
 typedef std::string string_type;
 
+
+#include <ws2tcpip.h>
 #include <Windows.h>
