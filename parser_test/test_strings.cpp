@@ -5,7 +5,7 @@
 void test_string_short_options(test_context& ctx)
 {
 
-    string_type option1 = "";
+    string_type option1 = "rew";
     string_type option2 = "";
     string_type option3 = "";
 
@@ -19,7 +19,7 @@ void test_string_short_options(test_context& ctx)
     string_type option_str;
 
     ctx.tests++;
-    option_str = " -g ihfjru";
+    option_str = " -g i";
     bool result = do_parse(option_str, parser, error);
     if (!result)
     {
@@ -27,7 +27,7 @@ void test_string_short_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1!="ihfjru")
+    else if (option1!="i")
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str

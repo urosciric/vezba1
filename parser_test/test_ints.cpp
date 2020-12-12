@@ -5,9 +5,9 @@
 void test_int_short_options(test_context& ctx)
 {
 
-    int option1 = 0;
-    int option2 = 0;
-    int option3 = 0;
+    int option1 = 40;
+    int option2 = 65;
+    int option3 = 13;
 
     parser3000 parser;
 
@@ -27,7 +27,7 @@ void test_int_short_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1!=123 || option2!=34 || option3!=0)
+    else if (option1!=123 || option2!=34 || option3!=13)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str

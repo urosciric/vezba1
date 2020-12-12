@@ -527,6 +527,7 @@ namespace urke
 								err << "String option needs an argument!";
 								return false;
 							}
+							string_options[i].value->clear();
 							while (!in.eof() && current != ' ' && current != '	')
 							{
 								if (current == '-' || in.eof())
@@ -703,6 +704,7 @@ namespace urke
 								err << "String option needs an argument!";
 								return false;
 							}
+							string_options[i].value->clear();
 							while (!in.eof() && current != ' ' && current != '	')
 							{
 								if (current == '-')

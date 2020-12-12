@@ -6,7 +6,7 @@
 void test_uint_short_options(test_context& ctx)
 {
 
-    unsigned int option1 = 0;
+    unsigned int option1 = 1;
     unsigned int option2 = 0;
     unsigned int option3 = 0;
 

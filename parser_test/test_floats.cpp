@@ -4,7 +4,7 @@
 
 void test_float_short_options(test_context& ctx)
 {
-    double option1 = 0;
+    double option1 = 5;
     double option2 = 0;
     double option3 = 0;
 
