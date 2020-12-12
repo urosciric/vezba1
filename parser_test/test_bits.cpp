@@ -319,6 +319,32 @@ void test_bit_short_options(test_context& ctx)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    option1 = false;
+    option2 = false;
+    option3 = false;
+
+    ctx.tests++;
+    option_str = " -a -x";
+    result = do_parse(option_str, parser, error);
+    if (!result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (!option1 || !option2 || !option3)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are valid\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void test_bit_long_options(test_context& ctx)

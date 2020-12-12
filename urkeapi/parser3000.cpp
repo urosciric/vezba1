@@ -365,6 +365,7 @@ namespace urke
 
 			while (!in.eof())
 			{
+				wrong = true;
 				form = "";
 				if (bool_temp == 0)
 					in.get(current);
@@ -423,11 +424,6 @@ namespace urke
 							}
 							if (to_int_parser(int_temp, val1))
 							{
-								if (*int_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (int_temp.empty())
 								{
 									err << "There is no argument";
@@ -463,11 +459,6 @@ namespace urke
 							}
 							if (to_uint_parser(uint_temp, val2))
 							{
-								if (*uint_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (uint_temp.empty())
 								{
 									err << "There is no argument";
@@ -503,11 +494,6 @@ namespace urke
 							}
 							if (to_float_parser(float_temp, val3))
 							{
-								if (*float_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (float_temp.empty())
 								{
 									err << "There is no argument";
@@ -541,24 +527,15 @@ namespace urke
 								err << "String option needs an argument!";
 								return false;
 							}
-							if (*string_options[i].value == "")
+							while (!in.eof() && current != ' ' && current != '	')
 							{
-								while (!in.eof() && current != ' ' && current != '	')
+								if (current == '-' || in.eof())
 								{
-									if (current == '-' || in.eof())
-									{
-										err << "String option needs an argument!";
-										return false;
-									}
-
-									string_options[i].value->push_back(current);
-									in.get(current);
+									err << "String option needs an argument!";
+									return false;
 								}
-							}
-							else
-							{
-								err << "You can't put 2 same commands!";
-								return false;
+								string_options[i].value->push_back(current);
+								in.get(current);
 							}
 							break;
 						}
@@ -623,11 +600,6 @@ namespace urke
 							int val;
 							if (to_int_parser(int_temp, val))
 							{
-								if (*int_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (int_temp.empty())
 								{
 									err << "There is no argument";
@@ -663,11 +635,6 @@ namespace urke
 							}
 							if (to_uint_parser(uint_temp, val2))
 							{
-								if (*uint_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (uint_temp.empty())
 								{
 									err << "There is no argument";
@@ -703,11 +670,6 @@ namespace urke
 							}
 							if (to_float_parser(float_temp, val3))
 							{
-								if (*float_options[i].value != 0)
-								{
-									err << "You can't put 2 same commands!";
-									return false;
-								}
 								if (float_temp.empty())
 								{
 									err << "There is no argument";
@@ -741,23 +703,15 @@ namespace urke
 								err << "String option needs an argument!";
 								return false;
 							}
-							if (*string_options[i].value == "")
+							while (!in.eof() && current != ' ' && current != '	')
 							{
-								while (!in.eof() && current != ' ' && current != '	')
+								if (current == '-')
 								{
-									if (current == '-')
-									{
-										err << "String option needs an argument!";
-										return false;
-									}
-									string_options[i].value->push_back(current);
-									in.get(current);
+									err << "String option needs an argument!";
+									return false;
 								}
-							}
-							else
-							{
-								err << "You cant put samo command 2 times!";
-								return false;
+								string_options[i].value->push_back(current);
+								in.get(current);
 							}
 
 							break;
