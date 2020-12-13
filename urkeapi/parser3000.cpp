@@ -237,7 +237,7 @@ namespace urke
 			{
 				help << "   ";
 				if (bit_options[i].short_option == '\0') help << "     ";
-				else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << bit_options[i].short_option << ANSI_COLOR_RESET << "   ";
+				else help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "-" << bit_options[i].short_option << ANSI_COLOR_RESET << "   ";
 				if (bit_options[i].long_option == nullptr)
 				{
 					for (int i = 0; i < max.size() + 2; i++) help << " ";
@@ -245,13 +245,13 @@ namespace urke
 				}
 				else
 				{
-					help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << bit_options[i].long_option << ANSI_COLOR_RESET;
+					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "--" << bit_options[i].long_option << ANSI_COLOR_RESET;
 					pom = bit_options[i].long_option;
 					for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 					help << "   ";
 				}
 				if (bit_options[i].help_text)
-					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << bit_options[i].help_text << ANSI_COLOR_RESET;
+					help << bit_options[i].help_text;
 				help << "\r\n";
 			}
 			///////////print for bit
@@ -259,7 +259,7 @@ namespace urke
 			{
 				help << "   ";
 				if (int_options[i].short_option == '\0') help << "     ";
-				else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << int_options[i].short_option << ANSI_COLOR_RESET << "   ";
+				else help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "-" << int_options[i].short_option << ANSI_COLOR_RESET << "   ";
 				if (int_options[i].long_option == nullptr)
 				{
 					for (int i = 0; i < max.size() + 2; i++) help << " ";
@@ -267,13 +267,13 @@ namespace urke
 				}
 				else
 				{
-					help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << int_options[i].long_option << ANSI_COLOR_RESET;
+					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "--" << int_options[i].long_option << ANSI_COLOR_RESET;
 					pom = int_options[i].long_option;
 					for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 					help << "   ";
 				}
 				if (int_options[i].help_text)
-					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << int_options[i].help_text << ANSI_COLOR_RESET;
+					help << int_options[i].help_text;
 				help << "\r\n";
 			}
 			///////////print for int
@@ -281,7 +281,7 @@ namespace urke
 			{
 				help << "   ";
 				if (uint_options[i].short_option == '\0') help << "     ";
-				else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << uint_options[i].short_option << ANSI_COLOR_RESET << "   ";
+				else help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "-" << uint_options[i].short_option << ANSI_COLOR_RESET << "   ";
 				if (uint_options[i].long_option == nullptr)
 				{
 					for (int i = 0; i < max.size() + 2; i++) help << " ";
@@ -289,13 +289,13 @@ namespace urke
 				}
 				else
 				{
-					help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << uint_options[i].long_option << ANSI_COLOR_RESET;
+					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "--" << uint_options[i].long_option << ANSI_COLOR_RESET;
 					pom = uint_options[i].long_option;
 					for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 					help << "   ";
 				}
 				if (uint_options[i].help_text)
-					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << uint_options[i].help_text << ANSI_COLOR_RESET;
+					help << uint_options[i].help_text;
 				help << "\r\n";
 			}
 			///////////print for uint
@@ -303,7 +303,7 @@ namespace urke
 			{
 				help << "   ";
 				if (float_options[i].short_option == '\0') help << "     ";
-				else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << float_options[i].short_option << ANSI_COLOR_RESET << "   ";
+				else help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "-" << float_options[i].short_option << ANSI_COLOR_RESET << "   ";
 				if (float_options[i].long_option == nullptr)
 				{
 					for (int j = 0; j < max.size() + 2; j++) help << " ";
@@ -311,13 +311,13 @@ namespace urke
 				}
 				else
 				{
-					help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << float_options[i].long_option << ANSI_COLOR_RESET;
+					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "--" << float_options[i].long_option << ANSI_COLOR_RESET;
 					pom = float_options[i].long_option;
 					for (int j = 0; j < max.size() - pom.size(); j++) help << " ";
 					help << "   ";
 				}
 				if (float_options[i].help_text)
-					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << float_options[i].help_text << ANSI_COLOR_RESET;
+					help << float_options[i].help_text;
 				help << "\r\n";
 			}
 			///////////print for float
@@ -325,7 +325,7 @@ namespace urke
 			{
 				help << "   ";
 				if (string_options[i].short_option == '\0') help << "     ";
-				else help << ANSI_COLOR_GREEN ANSI_COLOR_BOLD << "-" << string_options[i].short_option << ANSI_COLOR_RESET << "   ";
+				else help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "-" << string_options[i].short_option << ANSI_COLOR_RESET << "   ";
 				if (string_options[i].long_option == nullptr)
 				{
 					for (int i = 0; i < max.size() + 2; i++) help << " ";
@@ -333,13 +333,13 @@ namespace urke
 				}
 				else
 				{
-					help << ANSI_COLOR_BLUE ANSI_COLOR_BOLD << "--" << string_options[i].long_option << ANSI_COLOR_RESET;
+					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << "--" << string_options[i].long_option << ANSI_COLOR_RESET;
 					pom = string_options[i].long_option;
 					for (int i = 0; i < max.size() - pom.size(); i++) help << " ";
 					help << "   ";
 				}
 				if (string_options[i].help_text)
-					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << string_options[i].help_text << ANSI_COLOR_RESET;
+					help << string_options[i].help_text;
 				help << "\r\n";
 			}
 			///////////print for string
