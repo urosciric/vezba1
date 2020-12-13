@@ -144,7 +144,7 @@ void test_string_short_options(test_context& ctx)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    option1 = "";
+   /* option1 = "";
     option2 = "";
     option3 = "";
 
@@ -166,11 +166,11 @@ void test_string_short_options(test_context& ctx)
     else
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
-    }
+    }*/
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    option1 = "";
+   /* option1 = "";
     option2 = "";
     option3 = "";
 
@@ -193,7 +193,7 @@ void test_string_short_options(test_context& ctx)
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
-
+    */
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -435,7 +435,7 @@ void test_string_combined_options(test_context& ctx)
     option3 = "";
 
     ctx.tests++;
-    option_str = "-g ww --hh oo -i pp --gg gg";
+    option_str = "-g ww --hh oo -i pp --xx 345";
     result = do_parse(option_str, parser, error);
     if (result)
     {

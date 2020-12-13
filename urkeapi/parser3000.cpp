@@ -189,7 +189,7 @@ namespace urke
 		/////////////////////////////////////////////////////////////////////////for string options
 		void parser3000::print_help(const string_type& str, std::ostream& help)
 		{
-			help << "Usage:\n" << "   " << str << "   [OPTIONS...]\n\n";
+			help << "Usage:\r\n" << "   " << str << "   [OPTIONS...]\r\n\r\n";
 			string_type max = "";
 			string_type pom;
 			for (int i = 0; i < bit_options.size(); i++)
@@ -252,7 +252,7 @@ namespace urke
 				}
 				if (bit_options[i].help_text)
 					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << bit_options[i].help_text << ANSI_COLOR_RESET;
-				help << "\n";
+				help << "\r\n";
 			}
 			///////////print for bit
 			for (int i = 0; i < int_options.size(); i++)
@@ -274,7 +274,7 @@ namespace urke
 				}
 				if (int_options[i].help_text)
 					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << int_options[i].help_text << ANSI_COLOR_RESET;
-				help << "\n";
+				help << "\r\n";
 			}
 			///////////print for int
 			for (int i = 0; i < uint_options.size(); i++)
@@ -296,7 +296,7 @@ namespace urke
 				}
 				if (uint_options[i].help_text)
 					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << uint_options[i].help_text << ANSI_COLOR_RESET;
-				help << "\n";
+				help << "\r\n";
 			}
 			///////////print for uint
 			for (int i = 0; i < float_options.size(); i++)
@@ -318,7 +318,7 @@ namespace urke
 				}
 				if (float_options[i].help_text)
 					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << float_options[i].help_text << ANSI_COLOR_RESET;
-				help << "\n";
+				help << "\r\n";
 			}
 			///////////print for float
 			for (int i = 0; i < string_options.size(); i++)
@@ -340,7 +340,7 @@ namespace urke
 				}
 				if (string_options[i].help_text)
 					help << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << string_options[i].help_text << ANSI_COLOR_RESET;
-				help << "\n";
+				help << "\r\n";
 			}
 			///////////print for string
 			/////////////////////printing help
@@ -355,6 +355,8 @@ namespace urke
 			string_type float_temp = "";
 			size_t bool_temp = 0;
 
+			size_t pom_for_bit_options = 0;
+
 			char current;
 
 			int val1;
@@ -366,6 +368,7 @@ namespace urke
 			while (!in.eof())
 			{
 				wrong = true;
+				pom_for_bit_options = 0;
 				form = "";
 				if (bool_temp == 0)
 					in.get(current);
@@ -402,7 +405,13 @@ namespace urke
 									return false;
 								}
 								bool_temp = 1;
+								pom_for_bit_options++;
 							}
+						}
+						if (i == bit_options.size() - 1 && pom_for_bit_options != form.size() && !wrong)
+						{
+							err << "Unknown command " << form << "!";
+							return false;
 						}
 					}
 					//for bit options
@@ -544,7 +553,7 @@ namespace urke
 					//for string options
 					if (wrong)
 					{
-						err << "Unknown command!";
+						err << "Unknown command " << form << "!";
 						return false;
 					}
 					temp = 0;
@@ -722,7 +731,7 @@ namespace urke
 					//for string options
 					if (wrong)
 					{
-						err << "Unknown command!";
+						err << "Unknown command " << form << "!";
 						return false;
 					}
 					temp = 0;

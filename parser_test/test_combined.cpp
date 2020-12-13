@@ -22,7 +22,7 @@ void test_combined_all_options(test_context& ctx)
 
     parser3000 parser;
 
-    parser.add_bit_option('a', "aaaaa", &option1, "ovo je bas lepo");
+    parser.add_bit_option('a', "aa", &option1, "ovo je bas lepo");
     parser.add_bit_option('b', "bb", &option2, "bas je ruznjikavo vise bre");
     parser.add_bit_option('c', "cc", &option3, "ma boje zemuna breeeee");
     parser.add_int_option('d', "dd", &option4, "bidza samo jako");
@@ -42,7 +42,7 @@ void test_combined_all_options(test_context& ctx)
     string_type option_str;
 
     ctx.tests++;
-    option_str = "--aaaaa  -b  --cc -d 12 -e    55 --ff 7 -g 1 --hh 2 -i 4  --jj 5.9 -k 7 --ll 76  -m aaa --nn bbb --oo ccc";
+    option_str = "--aa -b  --cc -d 12 -e    55 --ff 7 -g 1 --hh 2 -i 4  --jj 5.9 -k 7 --ll 76  -m aaa --nn bbb --oo ccc";
     bool result = do_parse(option_str, parser, error);
     if (!result)
     {

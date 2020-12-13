@@ -235,7 +235,7 @@ void test_uint_long_options(test_context& ctx)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    option1 = 0;
+  /*  option1 = 0;
     option2 = 0;
     option3 = 0;
 
@@ -257,7 +257,7 @@ void test_uint_long_options(test_context& ctx)
     else
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
-    }
+    }*/
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
@@ -299,7 +299,7 @@ void test_uint_combined_options(test_context& ctx)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    option1 = 0;
+  /*  option1 = 0;
     option2 = 0;
     option3 = 0;
 
@@ -322,7 +322,7 @@ void test_uint_combined_options(test_context& ctx)
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
-
+    */
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 

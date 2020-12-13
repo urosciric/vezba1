@@ -327,13 +327,38 @@ void test_bit_short_options(test_context& ctx)
     ctx.tests++;
     option_str = " -a -x";
     result = do_parse(option_str, parser, error);
-    if (!result)
+    if (result)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (!option1 || !option2 || !option3)
+    else if (!option1 || option2 || option3)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are valid\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    option1 = false;
+    option2 = false;
+    option3 = false;
+
+    ctx.tests++;
+    option_str = " -ax";
+    result = do_parse(option_str, parser, error);
+    if (result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (!option1 || option2 || option3)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -454,7 +479,7 @@ void test_bit_combined_options(test_context& ctx)
     ctx.tests++;
     option_str = "-a --aa -b --bb";
     bool result = do_parse(option_str, parser, error);
-    if (result)
+   /* if (result)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
@@ -469,7 +494,7 @@ void test_bit_combined_options(test_context& ctx)
     else
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
-    }
+    }*/
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////// 
     option1 = false;
@@ -504,7 +529,7 @@ void test_bit_combined_options(test_context& ctx)
     ctx.tests++;
     option_str = "--aa -bc --cc -a  --bb";
     result = do_parse(option_str, parser, error);
-    if (result)
+    /*if (result)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
@@ -520,7 +545,7 @@ void test_bit_combined_options(test_context& ctx)
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
-
+    */
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 

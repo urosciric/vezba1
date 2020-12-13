@@ -65,7 +65,7 @@ void test_int_short_options(test_context& ctx)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    option1 = 0;
+  /*  option1 = 0;
     option2 = 0;
     option3 = 0;
 
@@ -88,7 +88,7 @@ void test_int_short_options(test_context& ctx)
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
-
+    */
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -248,7 +248,7 @@ void test_int_combined_options(test_context& ctx)
     option3 = 0;
 
     ctx.tests++;
-    option_str = "-d 76 --dd 123 -e 64 --ee 978 --ff 4223 -f 12";
+    option_str = "-d 76  --ee 978 --xx 343";
     result = do_parse(option_str, parser, error);
     if (result)
     {
@@ -256,7 +256,7 @@ void test_int_combined_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (option1 != 76 || option2 != 0 || option3 != 0)
+    else if (option1 != 76 || option2 != 978 || option3 != 0)
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
@@ -266,7 +266,7 @@ void test_int_combined_options(test_context& ctx)
     {
         std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
     }
-
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
