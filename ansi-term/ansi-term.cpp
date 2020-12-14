@@ -3,7 +3,7 @@
 #include "term_table.h"
 
 
-void test_client()
+/*void test_client()
 {
 
     // initialize winsock
@@ -33,7 +33,7 @@ void test_client()
     memset(&svr_addr, 0, sizeof(svr_addr));
     svr_addr.sin_family = AF_INET;
     svr_addr.sin_port = htons(54000);
-    svr_addr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+    svr_addr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");///////////////////////////////////////////////////////////////////////////////////
 
     auto ret_val = connect(conn, (sockaddr*)&svr_addr, sizeof(svr_addr));
     if (ret_val != NO_ERROR)
@@ -198,11 +198,11 @@ void test_socket()
     // cleanup winsock
 
     WSACleanup();
-}
+}*/
 
 int main(int argc , char* args[])
 {
-    string_type arg1;
+   /* string_type arg1;
     if (argc > 1)
         arg1 = args[1];
 
@@ -211,7 +211,7 @@ int main(int argc , char* args[])
     else
         test_socket();
 
-    return 0;
+    return 0;*/
 
     auto out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD out_mode = 0;
@@ -222,7 +222,7 @@ int main(int argc , char* args[])
 
     //std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
 
-    urke::rx_table_type tabela(3);
+    urke::rx_table_type tabela(6);
     
     tabela[0].emplace_back("kol1");
     tabela[0].emplace_back("kol2 dugacka");
@@ -239,6 +239,21 @@ int main(int argc , char* args[])
     tabela[2].emplace_back("Val7  sgsdgsadgsdg");
     tabela[2].emplace_back("Val8", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
+    tabela[3].emplace_back("Val9");
+    tabela[3].emplace_back("Val10 ");
+    tabela[3].emplace_back("Val11  jakoo");
+    tabela[3].emplace_back("Val12", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
+
+    tabela[4].emplace_back("Val13");
+    tabela[4].emplace_back("Val14 kosovo je deo srbije breee");
+    tabela[4].emplace_back("Val15  sgsdgsadgsdg");
+    tabela[4].emplace_back("Val16", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
+
+    tabela[5].emplace_back("Val17 ajoj");
+    tabela[5].emplace_back("Val18");
+    tabela[5].emplace_back("Val19   ");
+    tabela[5].emplace_back("Val20 tesko batoo", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
+
     urke::rx_dump_table(tabela, std::cout, true, true, '-');
     
 
@@ -254,6 +269,9 @@ int main(int argc , char* args[])
     tabela[1][0].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, '-');
-
-
+    
+    /*tabela[0].emplace_back("a");
+    tabela[0].emplace_back("b");
+    tabela[0].emplace_back("ccc");
+    urke::rx_dump_table(tabela, std::cout, true, true, '-');*/
 }
