@@ -10,6 +10,7 @@
 #include <fstream>
 #include <io.h>
 #include <stdlib.h>
+#include <algorithm>
 
 typedef std::string string_type;
 

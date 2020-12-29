@@ -3,7 +3,7 @@
 #include "term_table.h"
 
 
-/*void test_client()
+void test_client()
 {
 
     // initialize winsock
@@ -22,7 +22,7 @@
 
     SOCKET conn = socket(AF_INET, SOCK_STREAM, 0);
     if (conn == INVALID_SOCKET)
-    {
+    { 
         std::cerr << "Can't create a socket! Quitting" << std::endl;
         return;
     }
@@ -198,11 +198,11 @@ void test_socket()
     // cleanup winsock
 
     WSACleanup();
-}*/
+}
 
 int main(int argc , char* args[])
 {
-   /* string_type arg1;
+    /*string_type arg1;
     if (argc > 1)
         arg1 = args[1];
 
@@ -221,6 +221,8 @@ int main(int argc , char* args[])
     SetConsoleMode(out_handle, out_mode);
 
     //std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
+
+    size_t max_width = 50;
 
     urke::rx_table_type tabela(6);
     
@@ -252,24 +254,33 @@ int main(int argc , char* args[])
     tabela[5].emplace_back("Val17 ajoj");
     tabela[5].emplace_back("Val18");
     tabela[5].emplace_back("Val19   ");
-    tabela[5].emplace_back("Val20 tesko batoo", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
+    tabela[5].emplace_back("Val20  eeeeeeeeeeeee", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
-    urke::rx_dump_table(tabela, std::cout, true, true, '-');
-    
+  /*  urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 0);
+    system("pause");
 
     tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
     system("pause");
-    urke::rx_dump_table(tabela, std::cout, true, true, '=');
+    urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width, 1);
     tabela[1][2].prefix = ANSI_COLOR_GREEN ANSI_COLOR_BOLD;
-    system("pause");
-    urke::rx_dump_table(tabela, std::cout, true, false, ' ');
+    system("pause");*/
+    urke::rx_dump_table(tabela, std::cout, true, false, ' ', max_width, 2);
     tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
     system("pause");
-    urke::rx_dump_table(tabela, std::cout, true, true, '=');
+    urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width, 2);
     tabela[1][0].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
     system("pause");
-    urke::rx_dump_table(tabela, std::cout, true, true, '-');
-    
+    urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 1);
+    tabela[4][3].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width * 5, 2);
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width * 2, 1);
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width - 3, 0);
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width * 4, 2);
+    system("pause");
     /*tabela[0].emplace_back("a");
     tabela[0].emplace_back("b");
     tabela[0].emplace_back("ccc");

@@ -4,6 +4,31 @@
 namespace urke
 {
 
+	enum class justify_style
+	{
+		left,
+		center,
+		right
+	};
+
+	enum class border_style
+	{
+		full_grid,
+		header_only,
+		none
+	};
+
+	struct table_stype
+	{
+		int screen_width;
+		border_style border;
+		justify_style style;
+		bool use_ellipsis;
+		bool multiline;
+
+	};
+
+
 struct rx_table_cell_struct
 {
 	rx_table_cell_struct(const string_type& vvalue)
@@ -25,7 +50,8 @@ typedef std::vector<rx_table_cell_struct> rx_row_type;
 typedef std::vector<rx_row_type> rx_table_type;
 
 
-void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_names, bool dot_lines, const char table_frame);
+//void rx_dump_table(const rx_table_type& table, std::ostream& out, const table_stype& settings);
+void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_names, bool dot_lines, const char table_frame, size_t max_width, size_t options);
 
 
 } //urke
