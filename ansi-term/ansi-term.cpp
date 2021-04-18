@@ -263,7 +263,7 @@ int main(int argc , char* args[])
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width, 1);
     tabela[1][2].prefix = ANSI_COLOR_GREEN ANSI_COLOR_BOLD;
-    system("pause");*/
+    system("pause");
     urke::rx_dump_table(tabela, std::cout, true, false, ' ', max_width, 2);
     tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
     system("pause");
@@ -272,9 +272,9 @@ int main(int argc , char* args[])
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 1);
     tabela[4][3].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
-    system("pause");
+    system("pause");  
     urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width * 5, 2);
-    system("pause");
+    system("pause");*/
     urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width * 2, 1);
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width - 3, 0);

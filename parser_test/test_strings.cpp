@@ -144,6 +144,57 @@ void test_string_short_options(test_context& ctx)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    option1 = "";
+    option2 = "";
+    option3 = "";
+
+    ctx.tests++;
+    option_str = " -g \"ihf\"\"jru\" -h sdfd";
+    result = do_parse(option_str, parser, error);
+    if (!result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (option1 != "ihf\"jru" || option2 != "sdfd")
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are true\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    option1 = "";
+    option2 = "";
+    option3 = "";
+
+    ctx.tests++;
+    option_str = " -g \"ihfjru\" -h \"sdfd\"";
+    result = do_parse(option_str, parser, error);
+    if (!result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (option1 != "ihfjru" || option2 != "sdfd")
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are true\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
    /* option1 = "";
     option2 = "";
     option3 = "";
@@ -275,6 +326,32 @@ void test_string_long_options(test_context& ctx)
             << error << "\r\n";
     }
     else if (option1 != "ww" || option2 != "jjj")
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are true\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    option1 = "";
+    option2 = "";
+    option3 = "";
+
+    ctx.tests++;
+    option_str = "--gg \"ww w\" --hh \"jjj\"";
+    result = do_parse(option_str, parser, error);
+    if (!result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (option1 != "ww w" || option2 != "jjj")
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str

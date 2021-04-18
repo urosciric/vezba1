@@ -356,6 +356,8 @@ namespace urke
 			size_t bool_temp = 0;
 
 			size_t pom_for_bit_options = 0;
+			size_t pom_for_string_options = 0;
+			bool quotes = false;
 
 			char current;
 
@@ -537,19 +539,32 @@ namespace urke
 								return false;
 							}
 							string_options[i].value->clear();
-							while (!in.eof() && current != ' ' && current != '	')
+							while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)))
 							{
 								if (current == '-' || in.eof())
 								{
 									err << "String option needs an argument!";
 									return false;
 								}
-								string_options[i].value->push_back(current);
+								if (current == '"')
+								{
+									quotes = true;
+									if (pom_for_string_options == 2 && current == '"')
+									{
+										pom_for_string_options--;
+										string_options[i].value->push_back(current);
+									}
+									else pom_for_string_options++;
+								}
+								if (pom_for_string_options == 2 && current != '"') break;
+								if (current != '"') string_options[i].value->push_back(current);
 								in.get(current);
 							}
 							break;
 						}
 					}
+					pom_for_string_options = 0;
+					quotes = false;
 					//for string options
 					if (wrong)
 					{
@@ -714,20 +729,32 @@ namespace urke
 								return false;
 							}
 							string_options[i].value->clear();
-							while (!in.eof() && current != ' ' && current != '	')
+							while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)))
 							{
 								if (current == '-')
 								{
 									err << "String option needs an argument!";
 									return false;
 								}
-								string_options[i].value->push_back(current);
+								if (current == '"')
+								{
+									quotes = true;
+									if (pom_for_string_options == 2 && current == '"')
+									{
+										pom_for_string_options--;
+										string_options[i].value->push_back(current);
+									}
+									else pom_for_string_options++;
+								}
+								if (pom_for_string_options == 2 && current != '"') break;
+								if (current != '"') string_options[i].value->push_back(current);
 								in.get(current);
 							}
-
 							break;
 						}
 					}
+					pom_for_string_options = 0;
+					quotes = false;
 					//for string options
 					if (wrong)
 					{

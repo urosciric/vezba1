@@ -7,6 +7,7 @@ namespace urke
 {
 
 	size_t niz_pom[MAXN];
+	size_t niz_max[MAXN];
 
 	void rx_dump_table(const rx_table_type& table, std::ostream& out, bool column_names, bool dot_lines, const char table_frame, size_t max_width, size_t options)
 	//void rx_dump_table(const rx_table_type& table, std::ostream& out, const table_stype& settings)
@@ -94,15 +95,14 @@ namespace urke
 				remember_pom = true;
 				for (size_t j = 0; j < widths.size(); j++)
 				{
-					if (widths[pom_max] <= widths[i])
+					if (widths[pom_max] <= widths[j])
 					{
 						for (size_t m = 0; m < remember; m++)
-							if (niz_pom[m] == widths[i])
+							if (niz_max[m] == widths[i])
 								remember_pom = false;
 						if (!remember_pom)
 						{
 							pom_max = i;
-							remember++;
 						}
 						else
 						{
@@ -111,7 +111,7 @@ namespace urke
 
 					}
 				}
-				if (widths[pom_max] - pom + max_width >= 3)
+				if ((int)(widths[pom_max] - pom + max_width) >= 6)
 				{
  					widths[pom_max] -= pom - max_width;
 					
@@ -119,11 +119,15 @@ namespace urke
 				}
 				else
 				{
-					widths[pom_max] = 3;
-					pom -= widths[pom_max] + 3;
+
+					pom -= widths[pom_max] + 6;
+					widths[pom_max] = 6;
+					
 				}
+				niz_max[remember] = widths[pom_max];
 			}
 		}
+
 		//////////////
 		//////////////
 		//////////////
@@ -132,7 +136,7 @@ namespace urke
 	
 		for (size_t i = 0; i < columns_number; i++)
 		{
-			length_for_clear += (widths[i] + col_diff + 3);
+			length_for_clear += (niz_pom[i] + col_diff + 3);
 
 			pom_length+= (widths[i] + col_diff + 3);
 			
@@ -214,6 +218,8 @@ namespace urke
 		width_pom = 0;
 		max_width_pom = false;
 
+		size_t length = 0;
+
 		for (const auto& row : table)
 		{
 			if (!first)
@@ -233,9 +239,14 @@ namespace urke
 						out << "|";
 					}
 
-					string_type rest(widths[i] + col_diff - row[i].value.size() + niz_pom[i] - widths[i],
+					if (row[i].value.size() > widths[i] - 2) length = widths[i] - 2;
+					else length = row[i].value.size();
+
+					string_type rest(widths[i] + col_diff - length,
 						i == columns_number - 1 || first || row[i].value.empty()
 						? ' ' : empty_char);
+
+					
 					
 					if (!row[i].prefix.empty())
 						out << row[i].prefix;
@@ -245,10 +256,10 @@ namespace urke
 					{
 						if (row[i].value.size() >= widths[i])
 						{
-							for (size_t j = 0; j < row[i].value.size() - 3; j++)
+							for (size_t j = 0; j < length - 3; j++)
 							{
 								out << row[i].value[j];
-								if (j == niz_pom[i] - widths[i] - 4)
+								if (j == widths[i] - 4)
 								{
 									j = row[i].value.size();
 								}
@@ -257,10 +268,10 @@ namespace urke
 						}
 						else if (row[i].value.size() == widths[i] - 1)
 						{
-							for (size_t j = 0; j < row[i].value.size() - 2; j++)
+							for (size_t j = 0; j < length - 2; j++)
 							{
 								out << row[i].value[j];
-								if (j == niz_pom[i] - widths[i] - 4)
+								if (j == widths[i] - 4)
 								{
 									j = row[i].value.size();
 								}
@@ -284,13 +295,13 @@ namespace urke
 								for (size_t j = 0; j < rest.size() - 2; j++)
 									out << '.';
 							}
-							else if (widths[i] == niz_pom[i] && row[i].value.size() >= widths[i])
+							/*else if (widths[i] == niz_pom[i] && row[i].value.size() >= widths[i])
 							{
 								out << "";
-							}
+							}*/
 							else
 							{
-								for (size_t j = 0; j < rest.size() - niz_pom[i] + widths[i] - 2; j++)
+								for (size_t j = 0; j < rest.size() - 2; j++)
 									out << '.';
 							}
 							//if (i != columns_number - 1) out << "  ";
@@ -299,7 +310,7 @@ namespace urke
 						{
 							if (widths[i] <= niz_pom[i])
 							{
-								for (size_t j = 0; j < rest.size() - 2; j++)
+								for (size_t j = 0; j < rest.size() - 2 - niz_pom[i] + widths[i]; j++)
 									out << ' ';
 							}
 							else if (widths[i] > max_width && row[i].value.size() >= max_width)
@@ -308,7 +319,7 @@ namespace urke
 							}
 							else
 							{
-								for (size_t j = 0; j < rest.size() - niz_pom[i] + widths[i]; j++)
+								for (size_t j = 0; j < rest.size() - widths[i]; j++)
 									out << ' ';
 							}
 							//if (i != columns_number - 1) out << "  ";
@@ -332,7 +343,7 @@ namespace urke
 							}
 							else
 							{
-								for (size_t j = 0; j < rest.size() - niz_pom[i] + widths[i] - 2; j++)
+								for (size_t j = 0; j < rest.size() - 2; j++)
 									out << '.';
 							}
 						
@@ -358,7 +369,7 @@ namespace urke
 						if (row[i].value.size() >= widths[i])
 						{
 							out << "...";
-							for (size_t j = 3; j < row[i].value.size(); j++)
+							for (size_t j = 3; j < length; j++)
 							{
 								out << row[i].value[j];
 								if (j == widths[i] - 4 + 3)
@@ -371,7 +382,7 @@ namespace urke
 						else if (row[i].value.size() == widths[i] - 1)
 						{
 							out << "..";
-							for (size_t j = 2; j < row[i].value.size(); j++)
+							for (size_t j = 2; j < length; j++)
 							{
 								out << row[i].value[j];
 								if (j == widths[i] - 4 + 2)
@@ -412,14 +423,15 @@ namespace urke
 										out << '.';
 								}
 							}
-							else if (widths[i] > niz_pom[i] && row[i].value.size() >= niz_pom[i])
+							/*else if (widths[i] > niz_pom[i] && row[i].value.size() >= niz_pom[i])
 							{
 								out << "";
-							}
+							}*/
 							else
 							{
-								for (size_t j = 0; j < (rest.size() - widths[i] - 2) / 2; j++)
+								for (size_t j = 0; j < (rest.size() - 2) / 2; j++)
 									out << '.';
+								if (rest.size() % 2 != 0) out << " ";
 							}
 
 						}
@@ -430,20 +442,20 @@ namespace urke
 								for (size_t j = 0; j < (rest.size() - 2) / 2; j++)
 									out << ' ';
 							}
-							else if (widths[i] > niz_pom[i] && row[i].value.size() >= niz_pom[i])
+							/*else if (widths[i] > niz_pom[i] && row[i].value.size() >= niz_pom[i])
 							{
 								out << "";
-							}
+							}*/
 							else
 							{
-								for (size_t j = 0; j < (rest.size() - widths[i]) / 2; j++)
+								for (size_t j = 0; j < (rest.size()) / 2; j++)
 									out << ' ';
 							}
 						}
 						////////////////////////////////////////////////////////////////////
 						if (row[i].value.size() >= widths[i])
 						{
-							for (size_t j = 0; j < row[i].value.size() - 3; j++)
+							for (size_t j = 0; j < length - 3; j++)
 							{
 								out << row[i].value[j];
 								if (j == widths[i] - 4)
@@ -455,7 +467,7 @@ namespace urke
 						}
 						else if (row[i].value.size() == widths[i] - 1)
 						{
-							for (size_t j = 0; j < row[i].value.size() - 2; j++)
+							for (size_t j = 0; j < length - 2; j++)
 							{
 								out << row[i].value[j];
 								if (j == widths[i] - 4)
@@ -478,18 +490,19 @@ namespace urke
 						{
 							if (widths[i] <= niz_pom[i])
 							{
-								//if((rest.size() - 2) / 2 != 0)
+								if(rest.size() - 2 != 1)
 									for (size_t j = 0; j < (rest.size() - 2) / 2; j++)
 										out << '.';
+									//if (rest.size() % 2 != 0) out << " ";
 						
 							}
-							else if (widths[i] > niz_pom[i] && row[i].value.size() >= widths[i])
+						/*	else if (widths[i] > niz_pom[i] && row[i].value.size() >= widths[i])
 							{
 								out << "";
-							}
+							}*/
 							else
 							{
-								for (size_t j = 0; j < (rest.size() - widths[i] - 2) / 2 + 1; j++)
+								for (size_t j = 0; j < (rest.size() - 2) / 2 + 1; j++)
 									out << '.';
 							}
 
@@ -500,15 +513,17 @@ namespace urke
 							{
 								for (size_t j = 0; j < (rest.size() - 2) / 2; j++)
 									out << ' ';
+								if (rest.size() % 2 != 0) out << " ";
 							}
-							else if (widths[i] > niz_pom[i] && row[i].value.size() >= widths[i])
+					/*		else if (widths[i] > niz_pom[i] && row[i].value.size() >= widths[i])
 							{
 								out << " ";
-							}
+							}*/
 							else
 							{
-								for (size_t j = 0; j < (rest.size() - widths[i]) / 2; j++)
+								for (size_t j = 0; j < (rest.size()) / 2; j++)
 									out << ' ';
+								if (rest.size() % 2 != 0) out << " ";
 							}
 						}
 
