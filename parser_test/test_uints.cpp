@@ -46,7 +46,7 @@ void test_uint_short_options(test_context& ctx)
     option3 = 0;
 
     ctx.tests++;
-    option_str = "-j 123    -k 99";
+    option_str = "-j123    -k 99";
     result = do_parse(option_str, parser, error);
     if (!result)
     {

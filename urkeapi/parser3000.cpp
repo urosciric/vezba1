@@ -359,6 +359,8 @@ namespace urke
 			size_t pom_for_string_options = 0;
 			bool quotes = false;
 
+			size_t pom_for_all = 0;
+
 			char current;
 
 			int val1;
@@ -379,13 +381,14 @@ namespace urke
 					temp++;
 				else if (current != '-' && current != ' ' && current != '	' && temp == 1)
 				{
-					while (!in.eof() && current != ' ' && current != '	')
-					{
+					/*while (!in.eof() && current != ' ' && current != '	')
+					{*/
 						form.push_back(current);
 						in.get(current);
-					}
+				//	}
 					for (unsigned int i = 0; i < bit_options.size(); i++)
 					{
+						
 						if (bit_options[i].short_option == '\0')
 							continue;
 						for (unsigned int j = 0; j < form.size(); j++)
@@ -400,15 +403,29 @@ namespace urke
 								}
 								*bit_options[i].value = true;
 								while (!in.eof() && (current == ' ' || current == '	'))
+								{
 									in.get(current);
-								if (current != '-' && !in.eof())
+									pom_for_all++;
+								}
+								if ((j!=0 || pom_for_all!=0) && (current != '-' && !in.eof()))
 								{
 									err << "Bit option cant have argument!";
 									return false;
 								}
 								bool_temp = 1;
 								pom_for_bit_options++;
+
+								if (j == 0)
+								{
+									while (!in.eof() && current != ' ' && current != '	' && current != '-')
+									{
+										form.push_back(current);
+										in.get(current);
+									}
+									///
+								}
 							}
+							
 						}
 						if (i == bit_options.size() - 1 && pom_for_bit_options != form.size() && !wrong)
 						{
@@ -416,6 +433,7 @@ namespace urke
 							return false;
 						}
 					}
+					pom_for_all = 0;
 					//for bit options
 					for (unsigned int i = 0; i < int_options.size(); i++)
 					{
@@ -424,10 +442,11 @@ namespace urke
 						if (form[form.size() - 1] == int_options[i].short_option)
 						{
 							wrong = false;
-							do
+							//do
+							while (!in.eof() && (current == ' ' || current == '	'))
 							{
 								in.get(current);
-							} while (!in.eof() && (current == ' ' || current == '	'));
+							} //while (!in.eof() && (current == ' ' || current == '	'));
 							while (!in.eof() && current != ' ' && current != '	')
 							{
 								int_temp.push_back(current);
@@ -459,10 +478,11 @@ namespace urke
 						if (form[form.size() - 1] == uint_options[i].short_option)
 						{
 							wrong = false;
-							do
+							//do
+							while (!in.eof() && (current == ' ' || current == '	'))
 							{
 								in.get(current);
-							} while (!in.eof() && (current == ' ' || current == '	'));
+							} //while (!in.eof() && (current == ' ' || current == '	'));
 							while (!in.eof() && current != ' ' && current != '	')
 							{
 								uint_temp.push_back(current);
@@ -494,10 +514,11 @@ namespace urke
 						if (form[form.size() - 1] == float_options[i].short_option)
 						{
 							wrong = false;
-							do
+							//do
+							while (!in.eof() && (current == ' ' || current == '	'))
 							{
 								in.get(current);
-							} while (!in.eof() && (current == ' ' || current == '	'));
+							} //while (!in.eof() && (current == ' ' || current == '	'));
 							while (!in.eof() && current != ' ' && current != '	')
 							{
 								float_temp.push_back(current);
@@ -529,10 +550,11 @@ namespace urke
 						if (form[form.size() - 1] == string_options[i].short_option)
 						{
 							wrong = false;
-							do
+							//do
+							while (!in.eof() && (current == ' ' || current == '	'))
 							{
 								in.get(current);
-							} while (!in.eof() && (current == ' ' || current == '	'));
+							} //while (!in.eof() && (current == ' ' || current == '	'));
 							if (in.eof())
 							{
 								err << "String option needs an argument!";

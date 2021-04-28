@@ -45,7 +45,7 @@ void test_int_short_options(test_context& ctx)
     option3 = 0;
 
     ctx.tests++;
-    option_str = "-d 123 -e 34 -f 479";
+    option_str = "-d 123 -e34 -f 479";
     result = do_parse(option_str, parser, error);
     if (!result)
     {

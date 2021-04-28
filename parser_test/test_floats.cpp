@@ -44,7 +44,7 @@ void test_float_short_options(test_context& ctx)
     option3 = 0;
 
     ctx.tests++;
-    option_str = "-m 123.73 ";
+    option_str = "-m123.73 ";
     result = do_parse(option_str, parser, error);
     if (!result)
     {

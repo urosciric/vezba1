@@ -123,7 +123,7 @@ void test_string_short_options(test_context& ctx)
     option3 = "";
 
     ctx.tests++;
-    option_str = " -g ihfjru -h sdfd     -i qqq";
+    option_str = " -gihfjru -h sdfd     -i qqq";
     result = do_parse(option_str, parser, error);
     if (!result)
     {

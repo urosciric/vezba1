@@ -42,7 +42,7 @@ void test_combined_all_options(test_context& ctx)
     string_type option_str;
 
     ctx.tests++;
-    option_str = "--aa -b  --cc -d 12 -e    55 --ff 7 -g 1 --hh 2 -i 4  --jj 5.9 -k 7 --ll 76  -m aaa --nn \"bbb\" --oo ccc";
+    option_str = "--aa -b  --cc -d12 -e    55 --ff 7 -g1 --hh 2 -i 4  --jj 5.9 -k 7 --ll 76  -m aaa --nn \"bbb\" --oo ccc";
     bool result = do_parse(option_str, parser, error);
     if (!result)
     {
