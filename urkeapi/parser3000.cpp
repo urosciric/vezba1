@@ -357,6 +357,7 @@ namespace urke
 
 			size_t pom_for_bit_options = 0;
 			size_t pom_for_string_options = 0;
+			bool pom_if_together = true;
 			bool quotes = false;
 
 			size_t pom_for_all = 0;
@@ -427,10 +428,11 @@ namespace urke
 							}
 							
 						}
-						if (i == bit_options.size() - 1 && pom_for_bit_options != form.size() && !wrong)
+						if (i == bit_options.size() - 1 && pom_for_bit_options != form.size() && !wrong && ((current != ' ' && current != '	')/* && pom_for_bit_options == 0*/))
 						{
-							err << "Unknown command " << form << "!";
-							return false;
+							/*err << "Unknown command " << form << "!";
+							return false;*/
+							pom_if_together = false;
 						}
 					}
 					pom_for_all = 0;
@@ -439,7 +441,7 @@ namespace urke
 					{
 						if (int_options[i].short_option == '\0')
 							continue;
-						if (form[form.size() - 1] == int_options[i].short_option)
+						if (form[pom_for_bit_options] == int_options[i].short_option)
 						{
 							wrong = false;
 							//do
@@ -452,6 +454,15 @@ namespace urke
 								int_temp.push_back(current);
 								in.get(current);
 							}
+							//
+							if (int_temp.empty())
+							{
+								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								{
+									int_temp.push_back(form[q]);
+								}
+							}
+							//
 							if (to_int_parser(int_temp, val1))
 							{
 								if (int_temp.empty())
@@ -466,6 +477,7 @@ namespace urke
 								err << "Unable to convert " << int_temp << " to integer value!";
 								return false;
 							}
+							if (pom_if_together == false) pom_if_together = true;
 							break;
 						}
 					}
@@ -475,7 +487,7 @@ namespace urke
 					{
 						if (uint_options[i].short_option == '\0')
 							continue;
-						if (form[form.size() - 1] == uint_options[i].short_option)
+						if (form[pom_for_bit_options] == uint_options[i].short_option)
 						{
 							wrong = false;
 							//do
@@ -488,6 +500,15 @@ namespace urke
 								uint_temp.push_back(current);
 								in.get(current);
 							}
+							//
+							if (uint_temp.empty())
+							{
+								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								{
+									uint_temp.push_back(form[q]);
+								}
+							}
+							//
 							if (to_uint_parser(uint_temp, val2))
 							{
 								if (uint_temp.empty())
@@ -502,6 +523,7 @@ namespace urke
 								err << "Unable to convert " << uint_temp << " to unsigned integer value!";
 								return false;
 							}
+							if (pom_if_together == false) pom_if_together = true;
 							break;
 						}
 					}
@@ -511,7 +533,7 @@ namespace urke
 					{
 						if (float_options[i].short_option == '\0')
 							continue;
-						if (form[form.size() - 1] == float_options[i].short_option)
+						if (form[pom_for_bit_options] == float_options[i].short_option)
 						{
 							wrong = false;
 							//do
@@ -524,6 +546,15 @@ namespace urke
 								float_temp.push_back(current);
 								in.get(current);
 							}
+							//
+							if (float_temp.empty())
+							{
+								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								{
+									float_temp.push_back(form[q]);
+								}
+							}
+							//
 							if (to_float_parser(float_temp, val3))
 							{
 								if (float_temp.empty())
@@ -538,6 +569,7 @@ namespace urke
 								err << "Unable to convert " << float_temp << " to double value!";
 								return false;
 							}
+							if (pom_if_together == false) pom_if_together = true;
 							break;
 						}
 					}
@@ -547,7 +579,7 @@ namespace urke
 					{
 						if (string_options[i].short_option == '\0')
 							continue;
-						if (form[form.size() - 1] == string_options[i].short_option)
+						if (form[pom_for_bit_options] == string_options[i].short_option)
 						{
 							wrong = false;
 							//do
@@ -555,15 +587,16 @@ namespace urke
 							{
 								in.get(current);
 							} //while (!in.eof() && (current == ' ' || current == '	'));
-							if (in.eof())
+							if (in.eof() && form.size() <= pom_for_bit_options + 1)
 							{
 								err << "String option needs an argument!";
 								return false;
 							}
 							string_options[i].value->clear();
-							while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)))
+							//while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)))
+							do
 							{
-								if (current == '-' || in.eof())
+								if (current == '-' /*|| in.eof()*/)
 								{
 									err << "String option needs an argument!";
 									return false;
@@ -581,14 +614,15 @@ namespace urke
 								if (pom_for_string_options == 2 && current != '"') break;
 								if (current != '"') string_options[i].value->push_back(current);
 								in.get(current);
-							}
+							} while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)));
+							if (pom_if_together == false) pom_if_together = true;
 							break;
 						}
 					}
 					pom_for_string_options = 0;
 					quotes = false;
 					//for string options
-					if (wrong)
+					if (wrong || !pom_if_together)
 					{
 						err << "Unknown command " << form << "!";
 						return false;
