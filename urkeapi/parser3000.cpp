@@ -457,7 +457,7 @@ namespace urke
 							//
 							if (int_temp.empty())
 							{
-								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								for (size_t q = pom_for_bit_options + 1; q < form.size(); q++)
 								{
 									int_temp.push_back(form[q]);
 								}
@@ -503,7 +503,7 @@ namespace urke
 							//
 							if (uint_temp.empty())
 							{
-								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								for (size_t q = pom_for_bit_options + 1; q < form.size(); q++)
 								{
 									uint_temp.push_back(form[q]);
 								}
@@ -549,7 +549,7 @@ namespace urke
 							//
 							if (float_temp.empty())
 							{
-								for (int q = pom_for_bit_options + 1; q < form.size(); q++)
+								for (size_t q = pom_for_bit_options + 1; q < form.size(); q++)
 								{
 									float_temp.push_back(form[q]);
 								}
