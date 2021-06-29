@@ -23,7 +23,7 @@ namespace urke
 
 		size_t columns_number = 0;
 
-		if (options != 0 && options != 1 && options != 2)
+		if (options != 0 && options != 1 && options != 2 && options != 3)
 		{
 			out << "Options variable is invalid\r\n";
 			return;
@@ -220,8 +220,12 @@ namespace urke
 
 		size_t length = 0;
 
+		size_t cut_string_pom = 0;
+		bool repeat_for_rows = false;
+
 		for (const auto& row : table)
 		{
+			begin:
 			if (!first)
 				out << "\r\n";
 			if (!row.empty())
@@ -310,7 +314,7 @@ namespace urke
 						{
 							if (widths[i] <= niz_pom[i])
 							{
-								for (size_t j = 0; j < rest.size() - 2 - niz_pom[i] + widths[i]; j++)
+								for (size_t j = 0; j < rest.size() - 2 /* + niz_pom[i] - widths[i]*/; j++)
 									out << ' ';
 							}
 							else if (widths[i] > max_width && row[i].value.size() >= max_width)
@@ -403,6 +407,91 @@ namespace urke
 
 						//if (i != columns_number - 1) out << "  ";
 				
+					}
+					////////////////////////////////////////////////////////////////////
+					else if (options == 3)
+					{
+						if (row[i].value.size() >= widths[i])
+						{
+							for (size_t j = cut_string_pom; j < length; j++)
+							{
+								out << row[i].value[j];
+								if (j == widths[i] - 4)
+								{
+									j = row[i].value.size();
+									/*cut_string_pom = j;
+									repeat_for_rows = true;*/
+								}
+							}
+							if (!repeat_for_rows)
+							{
+								cut_string_pom += length;
+
+								if(length*2>row[i].value.size()) repeat_for_rows = true;
+							}
+							//out << "...";
+						}
+						else if (row[i].value.size() == widths[i] - 1)
+						{
+							for (size_t j = 0; j < length; j++)
+							{
+								out << row[i].value[j];
+								if (j == widths[i] - 4)
+								{
+									j = row[i].value.size();
+									/*cut_string_pom = j;
+									repeat_for_rows = true;*/
+								}
+							}
+							//out << "..";
+						}
+						else
+						{
+							out << row[i].value;
+						}
+
+
+						if (!row[i].postfix.empty())
+							out << row[i].postfix;
+
+						////////////////////////////////////////////////////////////////////
+						if (empty_char == '.')
+						{
+							if (widths[i] <= niz_pom[i] - widths[i])
+							{
+								for (size_t j = 0; j < rest.size() - 2; j++)
+									out << '.';
+							}
+							/*else if (widths[i] == niz_pom[i] && row[i].value.size() >= widths[i])
+							{
+								out << "";
+							}*/
+							else
+							{
+								for (size_t j = 0; j < rest.size() - 2; j++)
+									out << '.';
+							}
+							//if (i != columns_number - 1) out << "  ";
+						}
+						else
+						{
+							if (widths[i] <= niz_pom[i])
+							{
+								for (size_t j = 0; j < rest.size() - 2 /* + niz_pom[i] - widths[i]*/; j++)
+									out << ' ';
+							}
+							else if (widths[i] > max_width && row[i].value.size() >= max_width)
+							{
+								out << "  ";
+							}
+							else
+							{
+								for (size_t j = 0; j < rest.size() - widths[i]; j++)
+									out << ' ';
+							}
+							//if (i != columns_number - 1) out << "  ";
+						}
+						if (i != columns_number) out << "  ";
 					}
 					////////////////////////////////////////////////////////////////////
 					else
@@ -647,6 +736,18 @@ namespace urke
 			pom++;
 			for (size_t i = 0; i <= length_for_clear - pom_length + 3; i++)
 				out << ' ';
+
+
+			
+			if (repeat_for_rows)
+			{
+				if (cut_string_pom * 2 < length * 2)
+				{
+					repeat_for_rows = false;
+					cut_string_pom = 0;
+				}
+				goto begin;
+			}
 		}
 
 		pom = 0;

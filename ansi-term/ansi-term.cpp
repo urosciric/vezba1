@@ -233,7 +233,7 @@ int main(int argc , char* args[])
 
     tabela[1].emplace_back("Val1");
     tabela[1].emplace_back("Val2");
-    tabela[1].emplace_back("Val3  sgsdgsadgsdgsdgsdg");
+    tabela[1].emplace_back("Val3  12345678910111213");
     tabela[1].emplace_back("Val4", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
     tabela[2].emplace_back("Val5");
@@ -256,10 +256,16 @@ int main(int argc , char* args[])
     tabela[5].emplace_back("Val19   ");
     tabela[5].emplace_back("Val20  eeeeeeeeeeeee", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
-  /*  urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 0);
+
+    
+   /* urke::rx_dump_table(tabela, std::cout, true, false, ' ', max_width - 10, 3);
+    tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+    system("pause");*/
+
+    urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 0);
     system("pause");
 
-    tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
+   tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width, 1);
     tabela[1][2].prefix = ANSI_COLOR_GREEN ANSI_COLOR_BOLD;
@@ -274,13 +280,14 @@ int main(int argc , char* args[])
     tabela[4][3].prefix = ANSI_COLOR_RED ANSI_COLOR_BOLD;
     system("pause");  
     urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width * 5, 2);
-    system("pause");*/
+    system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width * 2, 1);
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width - 3, 0);
     system("pause");
     urke::rx_dump_table(tabela, std::cout, true, true, '=', max_width * 4, 2);
     system("pause");
+    
     /*tabela[0].emplace_back("a");
     tabela[0].emplace_back("b");
     tabela[0].emplace_back("ccc");
