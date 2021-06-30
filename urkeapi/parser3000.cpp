@@ -370,10 +370,13 @@ namespace urke
 
 			bool wrong = true;
 
+			size_t count_bit_options = 0;
+
 			while (!in.eof())
 			{
 				wrong = true;
 				pom_for_bit_options = 0;
+				count_bit_options = 0;
 				form = "";
 				if (bool_temp == 0)
 					in.get(current);
@@ -396,6 +399,7 @@ namespace urke
 						{
 							if (form[j] == bit_options[i].short_option)
 							{
+								count_bit_options++;
 								wrong = false;
 								if (*bit_options[i].value == true)
 								{
@@ -616,9 +620,32 @@ namespace urke
 								in.get(current);
 							} while (!in.eof() && ((current != ' ' && current != '	') || (quotes == true)));
 							if (pom_if_together == false) pom_if_together = true;
+
+							if (count_bit_options > 0)
+							{
+								string_options[i].value->clear();
+								for (size_t w = count_bit_options + 1; w < form.size(); w++)
+								{
+									if (form[w] != '"')
+										string_options[i].value->push_back(form[w]);
+									else if (w != 0 && w != form.size() - 1)
+										if (form[w] == '"' && form[w - 1] == '"' && form[w + 1] == '"')
+											string_options[i].value->push_back(form[w]);
+								}
+									
+							}
+
 							break;
 						}
+
+						/*if (count_bit_options > 1)
+						{
+							string_options[i].value->clear();
+							for (size_t w = count_bit_options; w < form.size(); w++)
+								string_options[i].value->push_back(form[w]);
+						}*/
 					}
+					
 					pom_for_string_options = 0;
 					quotes = false;
 					//for string options
