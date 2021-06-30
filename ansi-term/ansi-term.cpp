@@ -200,6 +200,7 @@ void test_socket()
     WSACleanup();
 }
 
+
 int main(int argc , char* args[])
 {
     /*string_type arg1;
@@ -223,6 +224,8 @@ int main(int argc , char* args[])
     //std::cout << ANSI_CUR(5,5) ANSI_COLOR_RED ANSI_COLOR_BOLD "Hello " ANSI_COLOR_RESET " World! \n";
 
     size_t max_width = 50;
+
+    std::cout << ANSI_CUR_PUSH;
 
     urke::rx_table_type tabela(6);
     
@@ -256,9 +259,12 @@ int main(int argc , char* args[])
     tabela[5].emplace_back("Val19   q");
     tabela[5].emplace_back("Val20  12345678910q", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
-    urke::rx_dump_table(tabela, std::cout, true, false, ' ', max_width - 10, 0);
+    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width - 10, 0);
     tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
     system("pause");
+
+    std::cout << ANSI_CUR_POP;
+    std::cout << ANSI_CUR_PUSH;
     
    // urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width * 2, 3);
    // tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
@@ -269,6 +275,7 @@ int main(int argc , char* args[])
 
    tabela[1][3].prefix = ANSI_COLOR_YELLOW ANSI_COLOR_BOLD;
     system("pause");
+    std::cout << ANSI_CUR_POP;
     urke::rx_dump_table(tabela, std::cout, true, true, ' ', max_width, 1);
     tabela[1][2].prefix = ANSI_COLOR_GREEN ANSI_COLOR_BOLD;
     system("pause");
