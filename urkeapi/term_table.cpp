@@ -683,7 +683,7 @@ namespace urke
 			{
 				for (size_t i = 0; i <= length_for_clear - pom_length + 3; i++)
 					out << ' ';
-				if(!repeat_for_rows) out << "\r\n";
+				if (!repeat_for_rows && option != ' ') out << "\r\n";
 				size_t total_width = 0;
 				for (size_t i = 0; i < columns_number; i++)
 				{
