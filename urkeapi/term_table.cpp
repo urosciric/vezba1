@@ -3,9 +3,36 @@
 #include "ansi_codes.h"
 #define MAXN 10000
 
+
 namespace urke
 {
 
+namespace
+{
+void term_set_cursor(std::ostream& out, int x, int y)
+{
+	char buffer[0x40];
+	sprintf_s(buffer, sizeof(buffer) / sizeof(buffer[0]), "\x1b[%d;%dH", x, y);
+	out << buffer;
+}
+
+
+void term_cursor_up(std::ostream& out, int count)
+{
+	char buffer[0x40];
+	sprintf_s(buffer, sizeof(buffer) / sizeof(buffer[0]), "\x1b[%dA", count);
+	out << buffer;
+}
+
+void zajebancija()
+{
+	for (int i = 0; i < 80; i++)
+	{
+		term_set_cursor(std::cout, 40, i);
+		Sleep(200);
+	}
+}
+}
 	size_t niz_pom[MAXN];
 	size_t niz_max[MAXN];
 
@@ -19,7 +46,6 @@ namespace urke
 
 		const char option = table_frame;
 
-		out << ANSI_CUR(0, 0);
 
 		size_t columns_number = 0;
 
@@ -885,9 +911,9 @@ namespace urke
 
 			for (size_t i = 0; i <= length_for_clear - pom_length; i++)
 				out << ' ';
-		}
 
-		out << "\r\n" << ANSI_CUR(tabela.size(), 0);
+		}
+		out << "\r\n";
 	}
 
 } //urke
