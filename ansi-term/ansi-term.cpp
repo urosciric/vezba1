@@ -259,17 +259,23 @@ int main(int argc , char* args[])
     tabela[5].emplace_back("Val19   q");
     tabela[5].emplace_back("Val20  12345678910q", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
-    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width - 10, 0);
+    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width, 0);
+    tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width, 1);
+    tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width, 2);
+    tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+    system("pause");
+    urke::rx_dump_table(tabela, std::cout, false, false, ' ', max_width, 3);
     tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
     system("pause");
 
     std::cout << ANSI_CUR_POP;
     std::cout << ANSI_CUR_PUSH;
     
-   // urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width * 2, 3);
-   // tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
-   // system("pause");
-
+   
     urke::rx_dump_table(tabela, std::cout, true, true, '-', max_width, 0);
     system("pause");
 
