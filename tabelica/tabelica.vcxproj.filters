@@ -33,6 +33,15 @@
     <ClCompile Include="term_rows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="table3000.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="columns_creator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="term_drawer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="term_table.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="term_rows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="table3000.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="columns_creator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="term_drawer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

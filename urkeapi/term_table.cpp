@@ -36,29 +36,6 @@ void zajebancija()
 	size_t niz_pom[MAXN];
 	size_t niz_max[MAXN];
 
-	struct context
-	{
-		char option;
-		size_t columns_number;
-		size_t first_line;
-		size_t col_diff;
-		size_t width_pom;
-		bool max_width_pom;
-		size_t length_for_clear;
-		size_t pom_length;
-		size_t pom;
-		std::vector<size_t>* widths;
-		size_t length;
-		char empty_char;
-		std::ostream* out_;
-		std::ostream& out()
-		{
-			return *out_;
-		}
-		string_type rest;
-		rx_row_type* row;
-
-	};
 	void column_width_calculator(context* ctx, size_t max_width)
 	{
 

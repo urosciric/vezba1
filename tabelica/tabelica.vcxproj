@@ -140,15 +140,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ansi_codes.cpp" />
+    <ClCompile Include="columns_creator.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="tabela3000.cpp" />
+    <ClCompile Include="table3000.cpp" />
+    <ClCompile Include="term_drawer.cpp" />
     <ClCompile Include="term_header.cpp" />
     <ClCompile Include="term_rows.cpp" />
     <ClCompile Include="term_table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ansi_codes.h" />
+    <ClInclude Include="columns_creator.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="table3000.h" />
+    <ClInclude Include="term_drawer.h" />
     <ClInclude Include="term_header.h" />
     <ClInclude Include="term_rows.h" />
     <ClInclude Include="term_table.h" />
