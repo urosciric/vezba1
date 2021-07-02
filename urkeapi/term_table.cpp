@@ -7,7 +7,7 @@
 namespace urke
 {
 
-namespace
+/*namespace
 {
 void term_set_cursor(std::ostream& out, int x, int y)
 {
@@ -32,7 +32,7 @@ void zajebancija()
 		Sleep(200);
 	}
 }
-}
+}*/
 	size_t niz_pom[MAXN];
 	size_t niz_max[MAXN];
 
@@ -40,7 +40,7 @@ void zajebancija()
 	{
 		char option;
 		size_t columns_number;
-		size_t* first_line;
+		size_t first_line;
 		size_t col_diff;
 		size_t width_pom;
 		bool max_width_pom;
@@ -117,15 +117,15 @@ void zajebancija()
 			for (size_t i = 0; i < ctx->columns_number; i++)
 			{
 
-				*ctx->first_line += ((*ctx->widths)[i] + ctx->col_diff + 3);
+				ctx->first_line += ((*ctx->widths)[i] + ctx->col_diff + 3);
 
 			}
 
-			*ctx->first_line += (ctx->columns_number - 1) * 2;
+			ctx->first_line += (ctx->columns_number - 1) * 2;
 
 			ctx->out() << '+';
 
-			for (size_t i = 1; i < *ctx->first_line; i++)
+			for (size_t i = 1; i < ctx->first_line; i++)
 			{
 
 				if (!ctx->max_width_pom)
@@ -135,7 +135,7 @@ void zajebancija()
 						if (ctx->pom == (*ctx->widths).size() - 1) ctx->max_width_pom = true;
 						if (ctx->max_width_pom)
 						{
-							i = *ctx->first_line;
+							i = ctx->first_line;
 						}
 						else
 						{
@@ -167,10 +167,10 @@ void zajebancija()
 		{
 			for (size_t i = 0; i < ctx->columns_number; i++)
 			{
-				*ctx->first_line += ((*ctx->widths)[i] + ctx->col_diff);
+				ctx->first_line += ((*ctx->widths)[i] + ctx->col_diff);
 			}
 
-			for (size_t i = 1; i < *ctx->first_line + 5 + (ctx->columns_number - 1) * 5; i++)
+			for (size_t i = 1; i < ctx->first_line + 5 + (ctx->columns_number - 1) * 5; i++)
 				ctx->out() << ' ';
 
 
@@ -410,9 +410,9 @@ void zajebancija()
 					{
 						ctx.length = row[i].value.size();
 					}
-
-					ctx.rest=((*ctx.widths)[i] + ctx.col_diff - ctx.length,
-						i == ctx.columns_number - 1 || first || row[i].value.empty()
+					bool test = ((*ctx.widths)[i] + ctx.col_diff - ctx.length,
+						i == ctx.columns_number - 1 || first || row[i].value.empty());
+					ctx.rest=(test
 						? ' ' : ctx.empty_char);
 
 					
@@ -769,7 +769,7 @@ void zajebancija()
 
 				if (ctx.option == '-')
 				{
-					for (size_t i = 1; i < *ctx.first_line; i++)
+					for (size_t i = 1; i < ctx.first_line; i++)
 					{
 						if ((*ctx.widths)[ctx.pom] <= max_width)
 						{
@@ -781,7 +781,7 @@ void zajebancija()
 
 									if (ctx.max_width_pom)
 									{
-										i = *ctx.first_line;
+										i = ctx.first_line;
 									}
 									else
 									{
@@ -809,7 +809,7 @@ void zajebancija()
 									if (ctx.pom == (*ctx.widths).size() - 1) ctx.max_width_pom = true;
 									if (ctx.max_width_pom)
 									{
-										i = *ctx.first_line;
+										i = ctx.first_line;
 									}
 									else
 									{
@@ -881,7 +881,7 @@ void zajebancija()
 			{
 				out << '+';
 
-				for (size_t i = 1; i < *ctx.first_line; i++)
+				for (size_t i = 1; i < ctx.first_line; i++)
 				{
 					if ((*ctx.widths)[ctx.pom] <= max_width)
 					{
@@ -893,7 +893,7 @@ void zajebancija()
 
 								if (ctx.max_width_pom)
 								{
-									i = *ctx.first_line;
+									i = ctx.first_line;
 								}
 								else
 								{
@@ -921,7 +921,7 @@ void zajebancija()
 								if (ctx.pom == (*ctx.widths).size() - 1) ctx.max_width_pom = true;
 								if (ctx.max_width_pom)
 								{
-									i = *ctx.first_line;
+									i = ctx.first_line;
 								}
 								else
 								{
@@ -949,7 +949,7 @@ void zajebancija()
 			else
 			{
 
-				for (size_t i = 0; i < *ctx.first_line; i++)
+				for (size_t i = 0; i < ctx.first_line; i++)
 					out << "  ";
 
 
