@@ -41,6 +41,10 @@
         tabela[5].emplace_back("Val19   q");
         tabela[5].emplace_back("Val20  12345678910q", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
+        tto.dot_lines = true;
+        tto.max_width = 50;
+        tto.table_frame = '-';
+
         urke::rx_dump_table(tabela, std::cout, tto);
         tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
         system("pause");

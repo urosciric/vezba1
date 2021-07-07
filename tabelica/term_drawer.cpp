@@ -1,10 +1,11 @@
 #include "term_drawer.h"
+#include "ansi_codes.h"
 #include "pch.h"
 
 namespace urke
 {
 
-	void table_drawer::drawer(const rx_table_type& table, const std::vector<table_header> ret, std::ostream& out)
+	void table_drawer::drawer(const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out)
 	{
 
 		size_t i = 0;
@@ -38,6 +39,17 @@ namespace urke
 
 			out << "\r\n";
 		}
+	}
+
+	void table_drawer::frame(term_table_options& tto, std::ostream& out)
+	{
+		ANSI_CUR(1, 1);
+		out << "wwwwwwwwwwwwwwwwwwww";
+	}
+
+	void table_drawer::dots(term_table_options tto, const std::vector<table_header>& ret, std::ostream& out)
+	{
+
 	}
 
 } //urke

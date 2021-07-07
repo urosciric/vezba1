@@ -37,10 +37,13 @@ namespace urke
 	{
 		columns_creator cc;
 		table_drawer td;
-		std::vector<table_header> ret;
+		term_table_options tto;
+		
+		std::vector<table_header> ret = cc.create_headers(table, options);
 
 		cc.create_headers(table, options);
 		td.drawer(table, ret, std::cout);
+		td.frame(tto, std::cout);
 	}
 
 } //urke
