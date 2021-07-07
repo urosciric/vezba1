@@ -372,6 +372,8 @@ namespace urke
 
 			size_t count_bit_options = 0;
 
+			bool pom_bit_string = true;
+
 			while (!in.eof())
 			{
 				wrong = true;
@@ -385,23 +387,25 @@ namespace urke
 					temp++;
 				else if (current != '-' && current != ' ' && current != '	' && temp == 1)
 				{
-					/*while (!in.eof() && current != ' ' && current != '	')
-					{*/
-						form.push_back(current);
-						in.get(current);
-				//	}
+					
+					form.push_back(current);
+					in.get(current);
+
+					
+
 					for (unsigned int i = 0; i < bit_options.size(); i++)
 					{
-						
+						pom_bit_string = false;
+
 						if (bit_options[i].short_option == '\0')
 							continue;
 						for (unsigned int j = 0; j < form.size(); j++)
 						{
 							if (form[j] == bit_options[i].short_option)
 							{
-								count_bit_options++;
+								if (!pom_bit_string) count_bit_options++;
 								wrong = false;
-								if (*bit_options[i].value == true)
+								if (*bit_options[i].value == true && !pom_bit_string )
 								{
 									err << "You can't put 2 same commands!";
 									return false;
@@ -418,7 +422,7 @@ namespace urke
 									return false;
 								}
 								bool_temp = 1;
-								pom_for_bit_options++;
+								if(!pom_bit_string) pom_for_bit_options++;
 
 								if (j == 0)
 								{
@@ -428,6 +432,22 @@ namespace urke
 										in.get(current);
 									}
 									///
+								}
+
+								if (!string_options.empty() && j == 0)
+								{
+									for (size_t q = 1; q < form.size(); q++)
+									{
+										for (size_t w = 0; w < string_options.size(); w++)
+										{
+											if (form[q] == string_options[w].short_option)
+											{
+												pom_bit_string = true;
+												break;
+											}
+										}
+										if (pom_bit_string) break;
+									}
 								}
 							}
 							
