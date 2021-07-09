@@ -372,7 +372,7 @@ namespace urke
 
 			size_t count_bit_options = 0;
 
-			bool turn_off_bits = false;
+			bool pom_bit_string = true;
 
 			while (!in.eof())
 			{
@@ -387,14 +387,15 @@ namespace urke
 					temp++;
 				else if (current != '-' && current != ' ' && current != '	' && temp == 1)
 				{
-					/*while (!in.eof() && current != ' ' && current != '	')
-					{*/
-						form.push_back(current);
-						in.get(current);
-				//	}
+					
+					form.push_back(current);
+					in.get(current);
+
+					
+
 					for (unsigned int i = 0; i < bit_options.size(); i++)
 					{
-						turn_off_bits = false;
+						pom_bit_string = false;
 
 						if (bit_options[i].short_option == '\0')
 							continue;
@@ -402,12 +403,9 @@ namespace urke
 						{
 							if (form[j] == bit_options[i].short_option)
 							{
-								//turn_off_bits = true;
-								count_bit_options++;
+								if (!pom_bit_string) count_bit_options++;
 								wrong = false;
-
-								
-								if (*bit_options[i].value == true)
+								if (*bit_options[i].value == true && !pom_bit_string )
 								{
 									
 
@@ -430,7 +428,7 @@ namespace urke
 									return false;
 								}
 								bool_temp = 1;
-								pom_for_bit_options++;
+								if(!pom_bit_string) pom_for_bit_options++;
 
 								if (j == 0)
 								{
@@ -442,20 +440,23 @@ namespace urke
 									///
 								}
 
-								if (string_options.size() != 0)
+								if (!string_options.empty() && j == 0)
 								{
-									for (unsigned int q = 0; q < string_options.size(); q++)
+									for (size_t q = 1; q < form.size(); q++)
 									{
-										if (form[j + 1] == string_options[q].short_option)
+										for (size_t w = 0; w < string_options.size(); w++)
 										{
-											turn_off_bits = true;
-											break;
+											if (form[q] == string_options[w].short_option)
+											{
+												pom_bit_string = true;
+												break;
+											}
 										}
+										if (pom_bit_string) break;
 									}
-
 								}
 							}
-							//if (turn_off_bits) j=form.size();
+							
 						}
 						if (i == bit_options.size() - 1 && pom_for_bit_options != form.size() && !wrong && ((current != ' ' && current != '	')/* && pom_for_bit_options == 0*/))
 						{

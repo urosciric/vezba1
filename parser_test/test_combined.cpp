@@ -267,7 +267,7 @@ void test_combined_all_options(test_context& ctx)
     option13 = "";
 
     ctx.tests++;
-    option_str = " -ama";
+    option_str = " -amqa";
     result = do_parse(option_str, parser, error);
     if (!result)
     {
@@ -275,7 +275,32 @@ void test_combined_all_options(test_context& ctx)
         std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
             << error << "\r\n";
     }
-    else if (!option1 || option13 != "a")
+    else if (!option1 || option13 != "qa")
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str
+            << " not all options are true\r\n";
+    }
+    else
+    {
+        std::cout << "Option " << ANSI_COLOR_YELLOW ANSI_COLOR_BOLD << option_str << ANSI_COLOR_RESET << " " << OK_TEXT "\r\n";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    option1 = false;
+    option13 = "";
+
+    ctx.tests++;
+    option_str = " -amqaaa";
+    result = do_parse(option_str, parser, error);
+    if (!result)
+    {
+        ctx.errors++;
+        std::cout << ERROR_TEXT "Error parsing options " << option_str << ":\r\n"
+            << error << "\r\n";
+    }
+    else if (!option1 || option13 != "qaaa")
     {
         ctx.errors++;
         std::cout << ERROR_TEXT "Error parsing options " << option_str
