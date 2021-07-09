@@ -33,7 +33,7 @@ namespace urke
 
 	};
 
-	void rx_dump_table(const rx_table_type& table, std::ostream& out, const term_table_options& options)
+	void rx_dump_table(const rx_table_type& table, std::ostream& out,const term_table_options& options)
 	{
 		columns_creator cc;
 		table_drawer td;
@@ -42,8 +42,14 @@ namespace urke
 		std::vector<table_header> ret = cc.create_headers(table, options);
 
 		cc.create_headers(table, options);
-		td.drawer(table, ret, std::cout);
+		td.drawer(options, table, ret, std::cout);
 		td.frame(tto, std::cout);
+		td.dots(options, table, ret, std::cout);
+
+		out << "\r\n";
+		system("pause");
+
+		td.clearer(options, table, ret, std::cout);
 	}
 
 } //urke

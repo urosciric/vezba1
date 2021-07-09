@@ -13,9 +13,10 @@ namespace urke
 	{
 		columns_creator cc;
 		table_drawer td;
+		term_table_options tto;
 		
 		headers_ = cc.create_headers(table, options_);
-		td.drawer(table, headers_, std::cout);
+		td.drawer(options_, table, headers_, std::cout);
 	}
 
 } //urke

@@ -49,16 +49,16 @@ namespace urke
 				}
 			}
 
-			for_if_bellow = max_widths[pom_pos] - 5 + o.max_width - max_max_width;
+			for_if_bellow = max_widths[pom_pos] - 7 + o.max_width - max_max_width;
 			if (for_if_bellow >= 0)
 			{
-				max_widths[pom_pos] -= max_max_width - o.max_width + 5;
+				max_widths[pom_pos] -= max_max_width - o.max_width + 7;
 				max_max_width = o.max_width;
 			}
 			else
 			{
-				max_max_width -= max_widths[pom_pos] - 5;
-				max_widths[pom_pos] = 5;	
+				max_max_width -= max_widths[pom_pos] - 7;
+				max_widths[pom_pos] = 7;	
 			}
 		}
 		//cutting columns to fit in max_width

@@ -42,12 +42,23 @@
         tabela[5].emplace_back("Val20  12345678910q", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 
         tto.dot_lines = true;
-        tto.max_width = 50;
+        tto.max_width = 70;
         tto.table_frame = '-';
+        tto.options = 1;
 
         urke::rx_dump_table(tabela, std::cout, tto);
         tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
-        system("pause");
+
+        tto.max_width = 50;
+        tto.options = 2;
+
+        urke::rx_dump_table(tabela, std::cout, tto);
+        tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
+
+        tto.options = 3;
+
+        urke::rx_dump_table(tabela, std::cout, tto);
+        tabela[1][1].prefix = ANSI_COLOR_BLUE ANSI_COLOR_BOLD;
 
         return 0;
 	}
