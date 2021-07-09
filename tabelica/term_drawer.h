@@ -13,7 +13,7 @@ namespace urke
 
 	public:
 
-		void drawer(const rx_table_type& table, const std::vector<table_header> ret, std::ostream& out);
+		void drawer(const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
 
 	};
 

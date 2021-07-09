@@ -35,12 +35,9 @@ namespace urke
 
 	void rx_dump_table(const rx_table_type& table, std::ostream& out, const term_table_options& options)
 	{
-		columns_creator cc;
-		table_drawer td;
-		std::vector<table_header> ret;
-
-		cc.create_headers(table, options);
-		td.drawer(table, ret, std::cout);
+		table3000 t3000;
+		t3000.set_options(options);
+		t3000.display(table, out);
 	}
 
 } //urke

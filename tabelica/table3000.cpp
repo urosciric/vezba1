@@ -1,5 +1,6 @@
 #include "table3000.h"
 #include "columns_creator.h"
+#include "term_drawer.h"
 
 namespace urke
 {
@@ -11,8 +12,10 @@ namespace urke
 	void table3000::display(const rx_table_type& table, std::ostream& out)
 	{
 		columns_creator cc;
+		table_drawer td;
 		
 		headers_ = cc.create_headers(table, options_);
+		td.drawer(table, headers_, std::cout);
 	}
 
 } //urke

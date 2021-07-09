@@ -4,7 +4,7 @@
 namespace urke
 {
 
-	void table_drawer::drawer(const rx_table_type& table, const std::vector<table_header> ret, std::ostream& out)
+	void table_drawer::drawer(const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out)
 	{
 
 		size_t i = 0;
