@@ -41,10 +41,19 @@ namespace urke
 		
 		std::vector<table_header> ret = cc.create_headers(table, options);
 
-		cc.create_headers(table, options);
-		td.drawer(options, table, ret, std::cout);
-		td.frame(tto, std::cout);
-		td.dots(options, table, ret, std::cout);
+		if (options.options != 4)
+		{
+			cc.create_headers(table, options);
+			td.drawer(options, table, ret, std::cout);
+			td.dots(options, table, ret, std::cout);
+			td.frame(options, table, ret, std::cout);
+		}
+		else
+		{
+			td.multi_row(options, table, ret, std::cout);
+		}
+
+		//printf("%c[%d;%df", 0x1B, 20, 20);
 
 		out << "\r\n";
 		system("pause");

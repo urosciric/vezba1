@@ -14,8 +14,10 @@ namespace urke
 	public:
 
 		void drawer(term_table_options tto, const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
-		void frame(term_table_options& tto, std::ostream& out);
+		void frame(term_table_options tto, const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
 		void dots(term_table_options tto, const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
+
+		void multi_row(term_table_options tto, const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
 
 		void clearer(term_table_options tto, const rx_table_type& table, const std::vector<table_header>& ret, std::ostream& out);
 

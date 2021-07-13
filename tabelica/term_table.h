@@ -14,6 +14,7 @@ namespace urke
 		char table_frame;
 		size_t max_width;
 		size_t options;
+		bool header;
 
 	};
 
